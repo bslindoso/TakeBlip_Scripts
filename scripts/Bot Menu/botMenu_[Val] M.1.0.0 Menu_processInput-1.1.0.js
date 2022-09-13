@@ -19,20 +19,22 @@ const run = (selected, inputType, formatMenu, intent, setaOpcoesMenuPrincipal) =
   intent = (typeof intent !== 'undefined') ? intent : 'None';
   setaOpcoesMenuPrincipal = JSON.parse(setaOpcoesMenuPrincipal);
   let listaDisponivel = setaOpcoesMenuPrincipal.listaDisponivel;
-  let itens;
+  let itens = [];
 
-  if (formatMenu == 'Login') {
-    let usuarioLogado = setaOpcoesMenuPrincipal.usuarioLogado; // IDs das opções deste cenário
-    itens = defineItens(listaDisponivel, usuarioLogado);
+  if (intent == 'None') {  
+    if (formatMenu == 'Login') {
+      let usuarioLogado = setaOpcoesMenuPrincipal.usuarioLogado; // IDs das opções deste cenário
+      itens = defineItens(listaDisponivel, usuarioLogado);
 
-  } else if (formatMenu == 'Portal') {
-    let usuarioPortal = setaOpcoesMenuPrincipal.usuarioPortal; // IDs das opções deste cenário
-    itens = defineItens(listaDisponivel, usuarioPortal);
+    } else if (formatMenu == 'Portal') {
+      let usuarioPortal = setaOpcoesMenuPrincipal.usuarioPortal; // IDs das opções deste cenário
+      itens = defineItens(listaDisponivel, usuarioPortal);
 
-  } else {
-    let usuarioDeslogado = setaOpcoesMenuPrincipal.usuarioDeslogado; // IDs das opções deste cenário
-    itens = defineItens(listaDisponivel, usuarioDeslogado);
-  }
+    } else {
+      let usuarioDeslogado = setaOpcoesMenuPrincipal.usuarioDeslogado; // IDs das opções deste cenário
+      itens = defineItens(listaDisponivel, usuarioDeslogado);
+    }
+  };
 
   const validacao = {
     'MenuDinamico': true,
@@ -97,6 +99,7 @@ function defineItens(listaDisponivel, cenario) {
         itens.push({
           "name": agrupamento
         });
+        break;  
       };
     };
   };
