@@ -27,7 +27,7 @@ function run(input, menu) {
     try {
         menu = JSON.parse(menu);
         const opcao = menu.itens;
-  
+
         for (i = 0; i < opcao.length; i++) {
             for (x = 0; x < opcao[i].name.length; x++) {
                 if (opcao[i].name[x] == input) {
@@ -40,4 +40,4 @@ function run(input, menu) {
     catch (e) {
         return 'error'
     }
-  }
+}
