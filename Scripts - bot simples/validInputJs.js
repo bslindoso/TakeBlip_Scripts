@@ -38,6 +38,6 @@ function run(input, menu) {
         return 'INPUT INESPERADO'
     }
     catch (e) {
-        return 'error'
+        return 'validInputJS ERROR: UNEXPECTED ERROR'
     }
 }
