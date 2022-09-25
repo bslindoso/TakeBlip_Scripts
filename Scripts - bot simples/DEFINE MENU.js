@@ -37,3 +37,5 @@ function addItens(itens) {
     }
     return newItens;
 }
+
+console.log(run())
