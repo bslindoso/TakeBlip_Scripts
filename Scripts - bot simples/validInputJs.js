@@ -1,5 +1,5 @@
 // ================================================================================
-// OLD VERSION
+// OLD VERSION: MARCIA
 // ================================================================================
 // function run(input, menu) {
 //     try {
@@ -22,22 +22,227 @@
 //     }
 // }
 // ================================================================================
+// OLD VERSION: BRUNO
+// ================================================================================
+// function run(input, menu) {
+//     try {
+//         menu = JSON.parse(menu);
+//         const opcao = menu.itens;
 
-function run(input, menu) {
+//         for (i = 0; i < opcao.length; i++) {
+//             for (x = 0; x < opcao[i].name.length; x++) {
+//                 if (opcao[i].name[x] == input) {
+//                     return opcao[i].name[0]
+//                 }
+//             }
+//         }
+//         return 'INPUT INESPERADO'
+//     }
+//     catch (e) {
+//         return 'validInputJS ERROR: UNEXPECTED ERROR'
+//     }
+// }
+// ================================================================================
+
+function run(input, inputType, menu, platform) {
     try {
-        menu = JSON.parse(menu);
-        const opcao = menu.itens;
 
-        for (i = 0; i < opcao.length; i++) {
-            for (x = 0; x < opcao[i].name.length; x++) {
-                if (opcao[i].name[x] == input) {
-                    return opcao[i].name[0]
-                }
+        // ========================================================================
+        //          ATENÇÃO: ALTERAR APENAS AS DUAS CONSTANTES A SEGUIR
+        //     Insira aqui que tipo de validação de input vai ser necessário 
+        //   (se mais de um for selecionado, apenas o mais acima será validado)
+        // ========================================================================
+        const validacaoMenu = false; //True para validação de Menu, false para Input
+        const validacoesInput = {
+            'data': false,
+            'email': true,
+            'cep': false,
+            'img': false,
+            'imgTxt': false,
+            'nome': false
+        };
+        // ========================================================================
+        
+
+        // Verifica se o usuário digitou SAIR ou MENU
+        if (input == 'sair' || input == 'SAIR' || input == 'Sair') {
+            return 'SAIR'
+        } else if (input == 'menu' || input == 'MENU' || input == 'Menu') {
+            return 'MENU'
+        }
+
+        // Formata variáveis
+        menu = JSON.parse(menu);
+        platform = platform.toUpperCase()
+
+        if (validacaoMenu) {
+            // Validação de MENU
+            const valMenu = validaMenu(input, menu, platform)
+            return valMenu;
+        } else {
+            // Validação de INPUT
+            const val = Object.entries(validacoesInput);
+            const valInput = identificaValidacao(val, input, inputType)
+            return valInput;
+        }      
+
+
+    } catch (e) {
+        return 'ERRO INESPERADO'
+    }
+}
+
+function identificaValidacao(validacoes, input, inputType) {
+
+    let inputValidado;
+
+    for (let i = 0; i < validacoes.length; i++) {
+
+        if (validacoes[i][1]) {
+
+            switch (validacoes[i][0]) {
+                case 'nome':
+                    inputValidado = validaNome(input);
+                    break;
+                case 'email':
+                    inputValidado = validaEmail(input);
+                    break;
+                case 'cep':
+                    inputValidado = validaCep(input);
+                    break;
+                case 'data':
+                    inputValidado = validaData(input);
+                    break;
+                case 'img':
+                    inputValidado = validaImagem(input, inputType);
+                    break;
+                case 'imgTxt':
+                    inputValidado = validaImagemETexto(input, inputType);
+                    break;
+                case 'menu':
+                    inputValidado = validaMenu(input, menu);
+                    break;
+                default:
+                    inputValidado = 'ERRO INESPERADO';
+                    break;
+            }
+            return inputValidado;
+        }
+    }
+}
+
+function validaNome(input) {
+
+    const regex = {
+        "image": /image/,
+        "audio": /audio/,
+        "video": /video/,
+        "emoji": /[\u2600-\u26ff]|[\u2600-\u27ff]|[\u2700-\u27bf]|\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff]|\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f]|\ud83d[\ude80-\udeff]|\ud83c[\udde6-\uddff]|\ud83c[\udffb-\udfff]/,
+        "link": /^(((https?:\/\/)[^\s.]+|(www))\.[\w][^\s]+)$/,
+        "arquivo": /application|text\/csv|text\/html/,
+        "figurinha": /application\/octet-stream|image\/webp/,
+        "numero": /[0-9]/
+    }
+    let isString = input.replace(/[0-9]/g, 'ERRO NOME')
+    let name = isString.split(' ')
+
+
+    if (input.match(regex.image) || input.match(regex.audio) || input.match(regex.video) || input.match(regex.emoji) || input.match(regex.figurinha) || input.match(regex.link) || input.match(regex.arquivo) || isString.match(regex.numero)) {
+        return "ERRO NOME"
+    }
+    else if (isString.includes('ERRO NOME')) {
+        return "ERRO NOME"
+    }
+    else if (name.length >= 2) {
+        return isString.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+    }
+    return "ERRO NOME"
+
+
+}
+
+function validaMenu(input, menu, platform) {
+
+    const opcao = menu.itens;
+
+    for (i = 0; i < opcao.length; i++) {
+        for (x = 0; x < opcao[i].name.length; x++) {
+            if (opcao[i].name[x] == input) {
+                return opcao[i].name[0]
             }
         }
-        return 'INPUT INESPERADO'
     }
-    catch (e) {
-        return 'validInputJS ERROR: UNEXPECTED ERROR'
+
+    if (platform == 'INSTAGRAM' || platform == 'MESSENGER') {
+        return 'ERRO MENU NUMERICO'
+    } else {
+        return 'ERRO MENU DINAMICO'
+    }
+}
+
+function validaCep(input) {
+
+    const matchDash = input.match(/^[0-9]{5}-[0-9]{3}$/gm);
+    const matchWithoutDash = input.match(/^[0-9]{5}[0-9]{3}$/gm);
+    if (!matchDash && !matchWithoutDash) {
+        return "ERRO CEP";
+    } else {
+        if (matchDash) {
+            return input.split('-').join('')
+        }
+        return input;
+    }
+}
+
+function validaData(input) {
+
+    // Verifica se o input informado está no formato esperado 
+    const match = input.match(/^(\d{1,2})\/(\d{1,2})\/\d{4}$/gm);
+    if (!match) {
+        return "ERRO DATA";
+    } else {
+        return input;
+    };
+
+};
+
+function validaEmail(input) {
+
+    const match = input.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.?([a-z]+)?$/gm);
+    if (!match) {
+        return "ERRO EMAIL";
+    } else {
+        return input;
+    }
+}
+
+function validaImagem(input, inputType) {
+
+    if (inputType == 'application/vnd.lime.media-link+json') {
+        input = JSON.parse(input);
+        if (input.type.includes('image')) {
+            return input.uri;
+        } else {
+            return 'ERRO IMAGEM'
+        }
+    } else {
+        return 'ERRO IMAGEM'
+    }
+
+}
+
+function validaImagemETexto(input, inputType) {
+
+    if (inputType == 'text/plain') {
+        return input;
+    } else if (inputType == 'application/vnd.lime.media-link+json') {
+        input = JSON.parse(input);
+        if (input.type.includes('image')) {
+            return input.uri;
+        } else {
+            return 'ERRO IMAGEM'
+        }
+    } else {
+        return 'ERRO IMAGEM'
     }
 }
