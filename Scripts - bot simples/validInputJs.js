@@ -1,49 +1,3 @@
-// ================================================================================
-// OLD VERSION: MARCIA
-// ================================================================================
-// function run(input, menu) {
-//     try {
-//         menu = JSON.parse(menu);
-//         input = input.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-//         input = input.split(" ")[0]
-//         const opcao = menu.itens;
-
-//         for (i = 0; i < opcao.length; i++) {
-//             for (x = 0; x < opcao[i].name.length; x++) {
-//                 if (opcao[i].name[x].includes(input)) {
-//                     return opcao[i].name[0]
-//                 }
-//             }
-//         }
-//         return 'INPUT INESPERADO'
-//     }
-//     catch (e) {
-//         return 'error'
-//     }
-// }
-// ================================================================================
-// OLD VERSION: BRUNO
-// ================================================================================
-// function run(input, menu) {
-//     try {
-//         menu = JSON.parse(menu);
-//         const opcao = menu.itens;
-
-//         for (i = 0; i < opcao.length; i++) {
-//             for (x = 0; x < opcao[i].name.length; x++) {
-//                 if (opcao[i].name[x] == input) {
-//                     return opcao[i].name[0]
-//                 }
-//             }
-//         }
-//         return 'INPUT INESPERADO'
-//     }
-//     catch (e) {
-//         return 'validInputJS ERROR: UNEXPECTED ERROR'
-//     }
-// }
-// ================================================================================
-
 function run(input, inputType, menu, platform) {
     try {
 
@@ -54,15 +8,15 @@ function run(input, inputType, menu, platform) {
         // ========================================================================
         const validacaoMenu = false; //True para validação de Menu, false para Input
         const validacoesInput = {
-            'data': false,
-            'email': true,
-            'cep': false,
-            'img': false,
-            'imgTxt': false,
-            'nome': false
+            data: false,
+            email: false,
+            cep: false,
+            img: false,
+            imgTxt: false,
+            nome: false
         };
         // ========================================================================
-        
+
 
         // Verifica se o usuário digitou SAIR ou MENU
         if (input == 'sair' || input == 'SAIR' || input == 'Sair') {
@@ -77,22 +31,26 @@ function run(input, inputType, menu, platform) {
 
         if (validacaoMenu) {
             // Validação de MENU
-            const valMenu = validaMenu(input, menu, platform)
-            return valMenu;
+            const processedInput = validaMenu(input, menu, platform)
+            return processedInput;
         } else {
             // Validação de INPUT
             const val = Object.entries(validacoesInput);
-            const valInput = identificaValidacao(val, input, inputType)
-            return valInput;
-        }      
+            const processedInput = validaInput(val, input, inputType)
 
+            if (processedInput == 'INPUT SEM VALIDAÇÕES') {
+                return input;
+            } else {
+                return processedInput;
+            }
+        }
 
     } catch (e) {
         return 'ERRO INESPERADO'
     }
 }
 
-function identificaValidacao(validacoes, input, inputType) {
+function validaInput(validacoes, input, inputType) {
 
     let inputValidado;
 
@@ -119,15 +77,13 @@ function identificaValidacao(validacoes, input, inputType) {
                 case 'imgTxt':
                     inputValidado = validaImagemETexto(input, inputType);
                     break;
-                case 'menu':
-                    inputValidado = validaMenu(input, menu);
-                    break;
                 default:
                     inputValidado = 'ERRO INESPERADO';
                     break;
             }
             return inputValidado;
         }
+        return 'INPUT SEM VALIDAÇÕES'
     }
 }
 

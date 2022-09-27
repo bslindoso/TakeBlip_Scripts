@@ -1,33 +1,53 @@
+// ============================================================================
+// TESTES
+// ============================================================================
 const menu = defineMenu();
-const input = 'b@c.com';
+const input = 'dfsdfsdfsd';
 const inputType = 'text/plain';
 const platform = 'blipchat';
-
 console.log(run(input, inputType, menu, platform));
+function defineMenu() {
 
-// Tipo de erros para retornar
-// =======================================
-// ERRO MENU DINAMICO
-// ERRO AGENDAMENTO
-// ERRO NOME
-// ERRO DATA
-// ERRO MENU INICIAL
-// ERRO IMAGEM
-// ERRO EMAIL
-// ERRO ORCAMENTOS EXAMES
-// ERRO TESTE PATERNIDADE
-// ERRO COLETA DOMICILIAR
-// ERRO MEDICO PARCEIRO
-// ERRO IDOSO COLETA
-// ERRO CURADORIA
-// ERRO TERCEIRA IDADE
-// ERRO ENDERECO
-// ERRO CSAT
-// ERRO MENU NUMERICO
-// ERRO CEP
-// ERRO MENU DINAMICO SINGULAR
-// ERRO API
+    let menu = {
+        'text': '💡Antes de iniciarmos, separei algumas {{n1}}dicas{{n2}} que podem te ajudar em nossa conversa:\n\n➡ Digite {{n1}}“Menu”{{n2}} toda vez que desejar retornar ao menu principal;\n\n➡ Digite {{n1}}“Sair”{{n2}} quando precisar encerrar o nosso chat.\n\nE não se esqueça! Sempre que eu te perguntar algo, responda em uma {{n1}}única mensagem.{{n2}} 😉',
+        'options': ["Entendi"],
+        'values': ["Entendi"],
+        'description': [],
+        'itens': [
+            { name: ['Entendi'] },
+            { name: ['Menu', 'Voltar ao início', 'Reiniciar'] },
+            { name: ['Sair'] }
+        ]
+    }
 
+    menu.itens = addItens(menu.itens);
+
+    return JSON.stringify(menu);
+}
+function addItens(itens) {
+    let newItens = [];
+    let newNames;
+    let name;
+    let match;
+    for (let i = 0; i < itens.length; i++) {
+        name = itens[i].name;
+        newNames = []
+        for (let y = 0; y < itens[i].name.length; y++) {
+            match = name[y];
+            newNames.push(match);
+            // Adiciona uma variação lowerCase e UpperCase para cada opção do menu
+            newNames.push(match.toLowerCase());
+            newNames.push(match.toUpperCase());
+            newItens[i] = { name: newNames };
+        }
+        newNames.push(`${i + 1}`); // Acrescenta numeração automática
+    }
+    return newItens;
+}
+
+// ============================================================================
+// INICIO DA FUNÇÃO 
+// ============================================================================
 function run(input, inputType, menu, platform) {
     try {
 
@@ -38,15 +58,15 @@ function run(input, inputType, menu, platform) {
         // ========================================================================
         const validacaoMenu = false; //True para validação de Menu, false para Input
         const validacoesInput = {
-            'data': false,
-            'email': true,
-            'cep': false,
-            'img': false,
-            'imgTxt': false,
-            'nome': false
+            data: false,
+            email: false,
+            cep: false,
+            img: false,
+            imgTxt: false,
+            nome: false
         };
         // ========================================================================
-        
+
 
         // Verifica se o usuário digitou SAIR ou MENU
         if (input == 'sair' || input == 'SAIR' || input == 'Sair') {
@@ -61,22 +81,26 @@ function run(input, inputType, menu, platform) {
 
         if (validacaoMenu) {
             // Validação de MENU
-            const valMenu = validaMenu(input, menu, platform)
-            return valMenu;
+            const processedInput = validaMenu(input, menu, platform)
+            return processedInput;
         } else {
             // Validação de INPUT
             const val = Object.entries(validacoesInput);
-            const valInput = identificaValidacao(val, input, inputType)
-            return valInput;
-        }      
+            const processedInput = validaInput(val, input, inputType)
 
+            if (processedInput == 'INPUT SEM VALIDAÇÕES') {
+                return input;
+            } else {
+                return processedInput;
+            }
+        }
 
     } catch (e) {
         return 'ERRO INESPERADO'
     }
 }
 
-function identificaValidacao(validacoes, input, inputType) {
+function validaInput(validacoes, input, inputType) {
 
     let inputValidado;
 
@@ -103,15 +127,13 @@ function identificaValidacao(validacoes, input, inputType) {
                 case 'imgTxt':
                     inputValidado = validaImagemETexto(input, inputType);
                     break;
-                case 'menu':
-                    inputValidado = validaMenu(input, menu);
-                    break;
                 default:
                     inputValidado = 'ERRO INESPERADO';
                     break;
             }
             return inputValidado;
         }
+        return 'INPUT SEM VALIDAÇÕES'
     }
 }
 
@@ -229,63 +251,4 @@ function validaImagemETexto(input, inputType) {
     } else {
         return 'ERRO IMAGEM'
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// =========================================================================================
-// FUNÇÕES AUXILIARES (APAGAR)
-// =========================================================================================
-
-function defineMenu() {
-
-    let menu = {
-        'text': '💡Antes de iniciarmos, separei algumas {{n1}}dicas{{n2}} que podem te ajudar em nossa conversa:\n\n➡ Digite {{n1}}“Menu”{{n2}} toda vez que desejar retornar ao menu principal;\n\n➡ Digite {{n1}}“Sair”{{n2}} quando precisar encerrar o nosso chat.\n\nE não se esqueça! Sempre que eu te perguntar algo, responda em uma {{n1}}única mensagem.{{n2}} 😉',
-        'options': ["Entendi"],
-        'values': ["Entendi"],
-        'description': [],
-        'itens': [
-            { name: ['Entendi'] },
-            { name: ['Menu', 'Voltar ao início', 'Reiniciar'] },
-            { name: ['Sair'] }
-        ]
-    }
-
-    menu.itens = addItens(menu.itens);
-
-    return JSON.stringify(menu);
-}
-
-function addItens(itens) {
-    let newItens = [];
-    let newNames;
-    let name;
-    let match;
-    for (let i = 0; i < itens.length; i++) {
-        name = itens[i].name;
-        newNames = []
-        for (let y = 0; y < itens[i].name.length; y++) {
-            match = name[y];
-            newNames.push(match);
-            // Adiciona uma variação lowerCase e UpperCase para cada opção do menu
-            newNames.push(match.toLowerCase());
-            newNames.push(match.toUpperCase());
-            newItens[i] = { name: newNames };
-        }
-        newNames.push(`${i + 1}`); // Acrescenta numeração automática
-    }
-    return newItens;
 }
