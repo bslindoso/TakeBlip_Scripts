@@ -1,3 +1,16 @@
+TAREFA DE AMANHÃ:
+
+retornar um objeto
+
+{
+    type: 'error' ou 'success',
+    input: processedInput
+    validation: tipo da validacao
+}
+
+
+
+
 // ============================================================================
 // TESTES
 // ============================================================================
