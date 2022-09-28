@@ -1,23 +1,20 @@
-TAREFA DE AMANHÃ:
+// TAREFA DE AMANHÃ:
 
-retornar um objeto
+// retornar um objeto
 
-{
-    type: 'error' ou 'success',
-    input: processedInput
-    validation: tipo da validacao
-}
-
-
-
+// {
+//     type: 'error' ou 'success',
+//     input: processedInput
+//     validation: tipo da validacao
+// }
 
 // ============================================================================
 // TESTES
 // ============================================================================
 const menu = defineMenu();
-const input = 'dfsdfsdfsd';
+const input = 'kjhk';
 const inputType = 'text/plain';
-const platform = 'blipchat';
+const platform = 'messenger';
 console.log(run(input, inputType, menu, platform));
 function defineMenu() {
 
@@ -59,17 +56,34 @@ function addItens(itens) {
 }
 
 // ============================================================================
-// INICIO DA FUNÇÃO 
+//      TYPE
 // ============================================================================
+// reserved => quando há alguma palavra reservada que o bot deverá processar, como SAIR E MENU por exemplo
+// error => quando alguma validação deverá retornar um erro para cair em exceção
+// success => quando a validação foi bem sucedida.
+// ============================================================================
+//      INPUT
+// ============================================================================
+// Retorna o input após processamento.
+// Se type == error => o input será a descrição do erro. Ex: ERRO NOME
+// Se type == success => o input será o input original processado.
+// ============================================================================
+//      VALIDATION
+// ============================================================================
+// Retorna em qual validação o input foi processado. Ex: validaCep
+// ============================================================================
+
 function run(input, inputType, menu, platform) {
     try {
 
-        // ========================================================================
-        //          ATENÇÃO: ALTERAR APENAS AS DUAS CONSTANTES A SEGUIR
-        //     Insira aqui que tipo de validação de input vai ser necessário 
-        //   (se mais de um for selecionado, apenas o mais acima será validado)
-        // ========================================================================
-        const validacaoMenu = false; //True para validação de Menu, false para Input
+        // =================================================================================
+        //             ATENÇÃO: MANIPULAR SOMENTE AS DUAS CONSTANTES A SEGUIR
+        // =================================================================================
+        // - validacaoMenu => true para validação de Menu, false para Input
+        // - validacoesInput => insira aqui que tipo de validação de input vai ser  
+        //   necessário (se mais de um for selecionado, apenas o mais acima será validado)
+        // =================================================================================
+        const validacaoMenu = false;
         const validacoesInput = {
             data: false,
             email: false,
@@ -80,12 +94,22 @@ function run(input, inputType, menu, platform) {
         };
         // ========================================================================
 
+        // Inicia o objeto que será retornado pela função
+        let processedInput = {
+            type: null,
+            input: null,
+            validation: 'none'
+        }
 
         // Verifica se o usuário digitou SAIR ou MENU
         if (input == 'sair' || input == 'SAIR' || input == 'Sair') {
-            return 'SAIR'
+            processedInput.type = 'reserved'
+            processedInput.input = 'SAIR'
+            return JSON.stringify(processedInput)
         } else if (input == 'menu' || input == 'MENU' || input == 'Menu') {
-            return 'MENU'
+            processedInput.type = 'reserved'
+            processedInput.input = 'MENU'
+            return JSON.stringify(processedInput)
         }
 
         // Formata variáveis
@@ -94,22 +118,24 @@ function run(input, inputType, menu, platform) {
 
         if (validacaoMenu) {
             // Validação de MENU
-            const processedInput = validaMenu(input, menu, platform)
-            return processedInput;
+            processedInput = validaMenu(input, menu, platform)
+            return JSON.stringify(processedInput);
+
         } else {
             // Validação de INPUT
             const val = Object.entries(validacoesInput);
-            const processedInput = validaInput(val, input, inputType)
+            processedInput = validaInput(val, input, inputType)
 
-            if (processedInput == 'INPUT SEM VALIDAÇÕES') {
-                return input;
+            // Se nenhuma validação foi processada, retorna o input sem validação
+            if (processedInput.input == 'INPUT SEM VALIDAÇÕES') {
+                return JSON.stringify({type: 'success', input: input, validation: 'none'});
             } else {
-                return processedInput;
+                return JSON.stringify(processedInput);
             }
         }
 
     } catch (e) {
-        return 'ERRO INESPERADO'
+        return {type: 'error', input: 'ERRO INESPERADO', validation: 'none'}
     }
 }
 
@@ -141,13 +167,13 @@ function validaInput(validacoes, input, inputType) {
                     inputValidado = validaImagemETexto(input, inputType);
                     break;
                 default:
-                    inputValidado = 'ERRO INESPERADO';
+                    inputValidado = {type: 'error', input: 'ERRO INESPERADO', validation: 'none'};
                     break;
             }
             return inputValidado;
         }
-        return 'INPUT SEM VALIDAÇÕES'
     }
+    return {type: 'error', input: 'INPUT SEM VALIDAÇÕES', validation: 'none'}
 }
 
 function validaNome(input) {
@@ -167,15 +193,15 @@ function validaNome(input) {
 
 
     if (input.match(regex.image) || input.match(regex.audio) || input.match(regex.video) || input.match(regex.emoji) || input.match(regex.figurinha) || input.match(regex.link) || input.match(regex.arquivo) || isString.match(regex.numero)) {
-        return "ERRO NOME"
+        return {type: 'error', input: 'ERRO NOME', validation: 'nome'}
     }
     else if (isString.includes('ERRO NOME')) {
-        return "ERRO NOME"
+        return {type: 'error', input: 'ERRO NOME', validation: 'nome'}
     }
     else if (name.length >= 2) {
-        return isString.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+        return {type: 'success', input: isString.normalize('NFD').replace(/[\u0300-\u036f]/g, ""), validation: 'nome'}
     }
-    return "ERRO NOME"
+    return {type: 'error', input: 'ERRO NOME', validation: 'nome'}
 
 
 }
@@ -187,15 +213,15 @@ function validaMenu(input, menu, platform) {
     for (i = 0; i < opcao.length; i++) {
         for (x = 0; x < opcao[i].name.length; x++) {
             if (opcao[i].name[x] == input) {
-                return opcao[i].name[0]
+                return {type: 'success', input: opcao[i].name[0], validation: 'menu'}
             }
         }
     }
 
     if (platform == 'INSTAGRAM' || platform == 'MESSENGER') {
-        return 'ERRO MENU NUMERICO'
+        return {type: 'error', input: 'ERRO MENU NUMERICO', validation: 'menu'}
     } else {
-        return 'ERRO MENU DINAMICO'
+        return {type: 'error', input: 'ERRO MENU DINAMICO', validation: 'menu'}
     }
 }
 
@@ -204,12 +230,12 @@ function validaCep(input) {
     const matchDash = input.match(/^[0-9]{5}-[0-9]{3}$/gm);
     const matchWithoutDash = input.match(/^[0-9]{5}[0-9]{3}$/gm);
     if (!matchDash && !matchWithoutDash) {
-        return "ERRO CEP";
+        return {type: 'error', input: 'ERRO CEP', validation: 'cep'};
     } else {
         if (matchDash) {
-            return input.split('-').join('')
+            return {type: 'success', input: input.split('-').join(''), validation: 'cep'}
         }
-        return input;
+        return {type: 'success', input: input, validation: 'cep'};
     }
 }
 
@@ -218,9 +244,9 @@ function validaData(input) {
     // Verifica se o input informado está no formato esperado 
     const match = input.match(/^(\d{1,2})\/(\d{1,2})\/\d{4}$/gm);
     if (!match) {
-        return "ERRO DATA";
+        return {type: 'error', input: 'ERRO DATA', validation: 'data'};
     } else {
-        return input;
+        return {type: 'success', input: input, validation: 'data'};
     };
 
 };
@@ -229,9 +255,9 @@ function validaEmail(input) {
 
     const match = input.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.?([a-z]+)?$/gm);
     if (!match) {
-        return "ERRO EMAIL";
+        return {type: 'error', input: 'ERRO EMAIL', validation: 'email'};
     } else {
-        return input;
+        return {type: 'success', input: input, validation: 'email'};
     }
 }
 
@@ -240,12 +266,12 @@ function validaImagem(input, inputType) {
     if (inputType == 'application/vnd.lime.media-link+json') {
         input = JSON.parse(input);
         if (input.type.includes('image')) {
-            return input.uri;
+            return {type: 'success', input: input.uri, validation: 'imagem'};
         } else {
-            return 'ERRO IMAGEM'
+            return {type: 'error', input: 'ERRO IMAGEM', validation: 'imagem'}
         }
     } else {
-        return 'ERRO IMAGEM'
+        return {type: 'error', input: 'ERRO IMAGEM', validation: 'imagem'}
     }
 
 }
@@ -253,15 +279,15 @@ function validaImagem(input, inputType) {
 function validaImagemETexto(input, inputType) {
 
     if (inputType == 'text/plain') {
-        return input;
+        return {type: 'success', input: input, validation: 'imagem/texto'};
     } else if (inputType == 'application/vnd.lime.media-link+json') {
         input = JSON.parse(input);
         if (input.type.includes('image')) {
             return input.uri;
         } else {
-            return 'ERRO IMAGEM'
+            return {type: 'error', input: 'ERRO IMAGEM', validation: 'imagem/texto'}
         }
     } else {
-        return 'ERRO IMAGEM'
+        return {type: 'error', input: 'ERRO IMAGEM', validation: 'imagem/texto'}
     }
 }
