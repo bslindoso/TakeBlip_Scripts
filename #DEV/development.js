@@ -1,21 +1,11 @@
-// TAREFA DE AMANHÃ:
-
-// retornar um objeto
-
-// {
-//     type: 'error' ou 'success',
-//     input: processedInput
-//     validation: tipo da validacao
-// }
-
 // ============================================================================
 // TESTES
 // ============================================================================
 const menu = defineMenu();
-const input = 'kjhk';
+const input = 'não';
 const inputType = 'text/plain';
-const platform = 'messenger';
-console.log(run(input, inputType, menu, platform));
+const platform = 'instagram';
+console.log(run(input, inputType, platform, menu));
 function defineMenu() {
 
     let menu = {
@@ -58,22 +48,23 @@ function addItens(itens) {
 // ============================================================================
 //      TYPE
 // ============================================================================
-// reserved => quando há alguma palavra reservada que o bot deverá processar, como SAIR E MENU por exemplo
-// error => quando alguma validação deverá retornar um erro para cair em exceção
-// success => quando a validação foi bem sucedida.
+// - reserved => quando há alguma palavra reservada que o bot deverá processar, 
+// como SAIR E MENU por exemplo
+// - error => quando alguma validação deverá retornar um erro para cair em exceção
+// - success => quando a validação foi bem sucedida.
 // ============================================================================
 //      INPUT
 // ============================================================================
 // Retorna o input após processamento.
-// Se type == error => o input será a descrição do erro. Ex: ERRO NOME
-// Se type == success => o input será o input original processado.
+// - Se type == error => o input será a descrição do erro. Ex: ERRO CEP
+// - Se type == success => o input será o input original processado.
 // ============================================================================
 //      VALIDATION
 // ============================================================================
-// Retorna em qual validação o input foi processado. Ex: validaCep
+// Retorna em qual validação o input foi processado. Ex: cep
 // ============================================================================
 
-function run(input, inputType, menu, platform) {
+function run(input, inputType, platform, menu) {
     try {
 
         // =================================================================================
@@ -82,8 +73,11 @@ function run(input, inputType, menu, platform) {
         // - validacaoMenu => true para validação de Menu, false para Input
         // - validacoesInput => insira aqui que tipo de validação de input vai ser  
         //   necessário (se mais de um for selecionado, apenas o mais acima será validado)
+        // - erroMenuEspecial => altere somente se, caso a validação seja um Menu e para
+        //   este menu haja um tratamento diferente de exceção.
         // =================================================================================
         const validacaoMenu = false;
+        const erroMenuEspecial = '';
         const validacoesInput = {
             data: false,
             email: false,
@@ -96,9 +90,9 @@ function run(input, inputType, menu, platform) {
 
         // Inicia o objeto que será retornado pela função
         let processedInput = {
-            type: null,
-            input: null,
-            validation: 'none'
+            'type': null,
+            'input': null,
+            'validation': 'none'
         }
 
         // Verifica se o usuário digitou SAIR ou MENU
@@ -119,6 +113,11 @@ function run(input, inputType, menu, platform) {
         if (validacaoMenu) {
             // Validação de MENU
             processedInput = validaMenu(input, menu, platform)
+
+            // Verifica se precisa mudar a mensagem de erro do Menu Dinâmico para o Especial
+            if ((processedInput.input == 'ERRO MENU DINAMICO' || processedInput.input == 'ERRO MENU NUMERICO') && erroMenuEspecial != '') {
+                processedInput.input = erroMenuEspecial; 
+            }
             return JSON.stringify(processedInput);
 
         } else {
@@ -129,6 +128,7 @@ function run(input, inputType, menu, platform) {
             // Se nenhuma validação foi processada, retorna o input sem validação
             if (processedInput.input == 'INPUT SEM VALIDAÇÕES') {
                 return JSON.stringify({type: 'success', input: input, validation: 'none'});
+
             } else {
                 return JSON.stringify(processedInput);
             }
