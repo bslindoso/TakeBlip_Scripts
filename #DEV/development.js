@@ -1,20 +1,10 @@
-// TAREFA DE AMANHÃ:
-
-// retornar um objeto
-
-// {
-//     type: 'error' ou 'success',
-//     input: processedInput
-//     validation: tipo da validacao
-// }
-
 // ============================================================================
 // TESTES
 // ============================================================================
 const menu = defineMenu();
-const input = 'kjhk';
+const input = 'não';
 const inputType = 'text/plain';
-const platform = 'messenger';
+const platform = 'whatsapp';
 console.log(run(input, inputType, menu, platform));
 function defineMenu() {
 
@@ -70,7 +60,7 @@ function addItens(itens) {
 // ============================================================================
 //      VALIDATION
 // ============================================================================
-// Retorna em qual validação o input foi processado. Ex: validaCep
+// Retorna em qual validação o input foi processado. Ex: cep
 // ============================================================================
 
 function run(input, inputType, menu, platform) {
@@ -83,7 +73,7 @@ function run(input, inputType, menu, platform) {
         // - validacoesInput => insira aqui que tipo de validação de input vai ser  
         //   necessário (se mais de um for selecionado, apenas o mais acima será validado)
         // =================================================================================
-        const validacaoMenu = false;
+        const validacaoMenu = true;
         const validacoesInput = {
             data: false,
             email: false,
@@ -96,9 +86,9 @@ function run(input, inputType, menu, platform) {
 
         // Inicia o objeto que será retornado pela função
         let processedInput = {
-            type: null,
-            input: null,
-            validation: 'none'
+            'type': null,
+            'input': null,
+            'validation': 'none'
         }
 
         // Verifica se o usuário digitou SAIR ou MENU
