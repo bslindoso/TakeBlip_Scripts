@@ -216,6 +216,7 @@ function validaMenu(input, menu, platform) {
                 return {type: 'success', input: opcao[i].name[0], validation: 'menu'}
             }
         }
+        
     }
 
     if (platform == 'INSTAGRAM' || platform == 'MESSENGER') {
