@@ -1,0 +1,9 @@
+BOT MEDICO PARCEIRO
+====================
+Finalizados:
+- Exceção implementada
+- validInputJs e condições de saídas corrigidos
+- registro de eventos corrigidos
+
+Falta:
+- Inatividade

@@ -142,7 +142,7 @@ function validaImagemETexto(input, inputType) {
     } else if (inputType == 'application/vnd.lime.media-link+json') {
         input = JSON.parse(input);
         if (input.type.includes('image')) {
-            return input.uri;
+            return {type: 'success', input: input.uri, validation: 'imagem/texto'};
         } else {
             return {type: 'error', input: 'ERRO IMAGEM', validation: 'imagem/texto'}
         }
