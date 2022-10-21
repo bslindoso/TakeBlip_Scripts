@@ -1,4 +1,4 @@
-let input = 'Olá, Tecnisa! Gostaria de receber mais informações sobre o 39, Alagoas, Outras Homes. Vi o empreendimento no Bla bal.'
+let input = 'Olá, Tecnisa! Gostaria de receber mais informações sobre o 39, São Paulo, Outras Homes. Vi o empreendimento no Bla bal.'
 
 console.log(run(input))
 
