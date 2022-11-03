@@ -80,7 +80,7 @@ function run(input, inputType, platform, inputOptions) {
       processedInput = validaMenu(input, inputOptions, platform)
 
       // Verifica se precisa mudar a mensagem de erro do Menu Dinâmico para o Especial
-      if ((processedInput.input == 'ERRO MENU DINAMICO' || processedInput.input == 'ERRO MENU NUMERICO') && erroMenuEspecial != '') {
+      if ((processedInput.input == 'ERRO DINAMICO' || processedInput.input == 'ERRO NUMERICO') && erroMenuEspecial != '') {
         processedInput.input = erroMenuEspecial;
       }
       return JSON.stringify(processedInput);

@@ -80,9 +80,9 @@ function validaMenu(input, menu, platform) {
   }
 
   if (platform == 'INSTAGRAM' || platform == 'MESSENGER') {
-    return { type: 'error', input: 'ERRO MENU NUMERICO', validation: 'menu' }
+    return { type: 'error', input: 'ERRO NUMERICO', validation: 'menu' }
   } else {
-    return { type: 'error', input: 'ERRO MENU DINAMICO', validation: 'menu' }
+    return { type: 'error', input: 'ERRO DINAMICO', validation: 'menu' }
   }
 }
 
