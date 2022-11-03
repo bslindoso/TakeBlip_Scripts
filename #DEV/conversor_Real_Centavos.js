@@ -1,4 +1,4 @@
-const valor = 'R$ 15,99'
+const valor = 'R$ 7,00'
 
 console.log(run(valor))
 
@@ -10,5 +10,5 @@ function run(valor) {
 
     const valorConvertido = (unidadeDeReal * 100) + centavoDeReal
 
-    return valorConvertido
+    return valorConvertido;
 }
