@@ -5,7 +5,7 @@ console.log(run(input))
 function run(input) {
 
   if (input != '') {
-    let valor = input.match(/^(R\$)?\ ?[0-9]*,?0?0?$/gm);
+    let valor = input.match(/^(R\$)?\ ?[0-9]*((,|\.)[0-9]{2})?$/gm);
 
     if (valor != null) {
 
@@ -17,7 +17,11 @@ function run(input) {
       }
 
       if (!valor.includes(',')) {
-        valor = `${valor},00`
+          if (valor.includes('.')) {
+              valor = valor.replace('.', ',')
+          } else {
+            valor = `${valor},00`
+        }
       }
 
       return valor;
