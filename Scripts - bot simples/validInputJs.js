@@ -16,7 +16,7 @@
 // ============================================================================
 // Retorna em qual validação o input foi processado. Ex: cep
 // ============================================================================
-{{ resource.FunctionProcessInput}}
+{{resource.FunctionProcessInput}}
 
 function run(input, inputType, platform, inputOptions) {
 
@@ -43,7 +43,7 @@ function run(input, inputType, platform, inputOptions) {
       const validacoesInput = {
           data: false,
           email: false,
-          telefone: true,
+          telefone: false,
           cep: false,
           img: false,
           imgTxt: false,

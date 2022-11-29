@@ -1,50 +1,75 @@
-function run(input) {
-
-    if (input != '') {
-      let valor = input.match(/^(R\$)?\ ?[0-9]*((,|\.)[0-9]{2})?$/gm);
-
-      console.log(valor)
-  
-      if (valor != null) {
-  
-        if (valor[0].includes('R$')) {
-          valor = valor[0].replace('R$ ', 'R$');
-          valor = valor.replace('R$', 'R$ ');
-        } else {
-          valor = `R$ ${valor[0]}`
-        }
-  
-        if (!valor.includes(',')) {
-            if (valor.includes('.')) {
-                valor = valor.replace('.', ',')
-            } else {
-              valor = `${valor},00`
+const processResponse = JSON.stringify(
+  {
+    "type": "success", "status": 200, "message": "Pedido encontrado", "response": [
+      {
+        "orderId": "1212372160784-01",
+        "creationDate": "2022-02-21T12:35:58.6480915+00:00",
+        "status": "invoiced",
+        "statusDescription": "Faturado",
+        "items": [
+          {
+            "name": "Camiseta Preta Intelbras G"
           }
-        }
-  
-        return valor;
-  
-      }
-      return false;
-  
-    }
-    return false;
+        ]
+      },
+      // {
+      //   "orderId": "1180551105577-01",
+      //   "creationDate": "2021-12-02T15:18:22.9121790+00:00",
+      //   "status": "invoiced",
+      //   "statusDescription": "Faturado",
+      //   "items": [
+      //     {
+      //       "name": "TERMINAL DEDICADO TDMI 300"
+      //     }
+      //   ]
+      // }
+    ]
+  }
+)
+
+console.log(run(processResponse))
+
+function run(processResponse) {
+
+  processResponse = JSON.parse(processResponse)
+  let response = processResponse.response;
+
+  let quantity = response.length;
+  // Conta quantos elementos possui
+  if (response.length >= 1 && response.length <= 4){
+    response = response;
+  } else {
+    // processa 4 ultimos
+    response = response.slice(0, 4)
   }
 
-// valor convertido em centavos
-  function valorEmCentavos(valor) {
-    valor = valor.replace('R$ ', '')
+  // Processa os pedidos
+  let orders = []
+  response.forEach(order => {
+    const statusDescription = order.statusDescription;
+    const statusCode = order.status
 
-    const unidadeDeReal = parseInt(valor.split(',')[0])
-    const centavoDeReal = parseInt(valor.split(',')[1])
+    let items = order.items;
+    let orderName = "";
 
-    const valorConvertido = (unidadeDeReal * 100) + centavoDeReal
+    items.forEach(function (item) {
+      orderName += item.name + " ";
+    })
 
-    return valorConvertido;
+    orders.push({
+      "name": orderName,
+      "statusCode": statusCode,
+      "statusDescription": statusDescription,
+    });
+  });
+
+
+  // return JSON.stringify({
+  //   quantity: quantity,
+  //   orders : orders
+  // })
+  return {
+    quantity: quantity,
+    orders : orders
+  }
 }
-
-//////////////// TESTES
-
-const teste = run('0,40');
-console.log(teste)
-console.log(valorEmCentavos(teste))
