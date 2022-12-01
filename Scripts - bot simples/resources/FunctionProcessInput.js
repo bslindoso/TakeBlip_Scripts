@@ -239,7 +239,7 @@ function validaCpf(cpf) {
 
 function validaTelefone(telefone) {
 
-    let regex = /^(\(?[0-9]{2}(\)|-)?) ?([0-9]{1})?[0-9]{4}(-| )?[0-9]{4}/gm;
+    let regex = /^(\(?[0-9]{2}(\)|-)?) ?([0-9]{1})?( )?[0-9]{4}(-| )?[0-9]{4}$/gm;
     let match = telefone.match(regex)
 
     if (match) {

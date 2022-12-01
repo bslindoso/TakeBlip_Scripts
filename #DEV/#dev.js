@@ -1,75 +1,86 @@
-const processResponse = JSON.stringify(
-  {
-    "type": "success", "status": 200, "message": "Pedido encontrado", "response": [
-      {
-        "orderId": "1212372160784-01",
-        "creationDate": "2022-02-21T12:35:58.6480915+00:00",
-        "status": "invoiced",
-        "statusDescription": "Faturado",
-        "items": [
-          {
-            "name": "Camiseta Preta Intelbras G"
-          }
-        ]
-      },
-      // {
-      //   "orderId": "1180551105577-01",
-      //   "creationDate": "2021-12-02T15:18:22.9121790+00:00",
-      //   "status": "invoiced",
-      //   "statusDescription": "Faturado",
-      //   "items": [
-      //     {
-      //       "name": "TERMINAL DEDICADO TDMI 300"
-      //     }
-      //   ]
-      // }
-    ]
+let input;
+input = '300'
+// input = 'R$300,01'
+// input = 'R$400.00'
+// input = '299,99'
+// input = '100.00'
+
+
+console.log(run(input));
+// run(input)
+
+
+function run(input) {
+
+  if (input != '') {
+    let valor = input.match(/^(R\$)?\ ?[0-9]*((,|\.)[0-9]{2})?$/gm);
+
+    if (valor != null) {
+
+      if (valor[0].includes('R$')) {
+        valor = valor[0].replace('R$', '').trim();
+        console.log('A: Possui R$ - ' + valor)
+
+      } else {
+        valor = valor[0]
+        console.log('B: Não possui R$ - '+ valor)
+      }
+
+      if (!valor.includes(',')) {
+          if (valor.includes('.')) {
+              valor = valor.replace('.', '')
+              console.log('C: Possui ponto - ' + valor)
+          } else {
+            valor = valor * 100
+            console.log('D: Não possui ponto vírgula - ' + valor)
+        }
+      } else {
+        valor = valor.replace(',', '')
+        console.log('E: Possui vírgula - ' + valor)
+      }
+
+      if (valor >= 30000) {
+        return false
+      } else {
+
+        return valor;
+      }
+      
+    }
+    return false;
+
   }
-)
-
-console.log(run(processResponse))
-
-function run(processResponse) {
-
-  processResponse = JSON.parse(processResponse)
-  let response = processResponse.response;
-
-  let quantity = response.length;
-  // Conta quantos elementos possui
-  if (response.length >= 1 && response.length <= 4){
-    response = response;
-  } else {
-    // processa 4 ultimos
-    response = response.slice(0, 4)
-  }
-
-  // Processa os pedidos
-  let orders = []
-  response.forEach(order => {
-    const statusDescription = order.statusDescription;
-    const statusCode = order.status
-
-    let items = order.items;
-    let orderName = "";
-
-    items.forEach(function (item) {
-      orderName += item.name + " ";
-    })
-
-    orders.push({
-      "name": orderName,
-      "statusCode": statusCode,
-      "statusDescription": statusDescription,
-    });
-  });
-
-
-  // return JSON.stringify({
-  //   quantity: quantity,
-  //   orders : orders
-  // })
-  return {
-    quantity: quantity,
-    orders : orders
-  }
+  return false;
 }
+
+// function run(input) {
+
+//   if (input != '') {
+//     let valor = input.match(/^(R\$)?\ ?[0-9]*((,|\.)[0-9]{2})?$/gm);
+
+//     if (valor != null) {
+
+//       if (valor[0].includes('R$')) {
+//         valor = valor[0].replace('R$ ', 'R$');
+//         valor = valor.replace('R$', 'R$ ');
+
+//       } else {
+//         valor = `R$ ${valor[0]}`
+//       }
+
+//       if (!valor.includes(',')) {
+//           if (valor.includes('.')) {
+//               valor = valor.replace('.', ',')
+//           } else {
+//             valor = `${valor},00`
+//         }
+//       }
+
+//       return valor;
+
+//     }
+//     return false;
+
+//   }
+//   return false;
+// }
