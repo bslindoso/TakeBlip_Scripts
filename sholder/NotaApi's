@@ -1,0 +1,105 @@
+[
+    {
+        "Pedido": {
+            "NumeroPedido": "1268553514050",
+            "DataCriacao": "2022-10-13T15:17:38.8171043+00:00",
+            "ValorDoPedido": 955.28,
+            "Entregas": [
+                {
+                    "MetodoEntrega": "Entrega Shoulder",
+                    "DataEstimada": "2022-10-18T19:00:00+00:00",
+                    "Status": "Faturado",
+                    "URLRastreio": null,
+                    "CodigoRastreio": null
+                },
+                {
+                    "MetodoEntrega": "Entrega Shoulder Tamboré",
+                    "DataEstimada": "2022-10-19T13:00:00+00:00",
+                    "Status": "Entregue a Transportadora",
+                    "URLRastreio": "http://tracking.totalexpress.com.br/poupup_track.php?reid=20197&pedido=990&nfiscal=000002064",
+                    "CodigoRastreio": "246321028"
+                }
+            ]
+        }
+    },
+    {
+        "Pedido": {
+            "NumeroPedido": "1267663510655",
+            "DataCriacao": "2022-10-09T21:34:45.8502878+00:00",
+            "ValorDoPedido": 619.96,
+            "Entregas": [
+                {
+                    "MetodoEntrega": "Entrega Shoulder",
+                    "DataEstimada": "2022-10-13T19:00:00+00:00",
+                    "Status": "Faturado",
+                    "URLRastreio": null,
+                    "CodigoRastreio": null
+                }
+            ]
+        }
+    },
+    {
+        "Pedido": {
+            "NumeroPedido": "1263813491369",
+            "DataCriacao": "2022-09-23T20:32:39.3272703+00:00",
+            "ValorDoPedido": 297,
+            "Entregas": [
+                {
+                    "MetodoEntrega": "Entrega Shoulder Oscar Freire",
+                    "DataEstimada": "2022-09-28T13:00:00+00:00",
+                    "Status": "Entregue a Transportadora",
+                    "URLRastreio": "http://tracking.totalexpress.com.br/poupup_track.php?reid=20197&pedido=9371&nfiscal=000025733",
+                    "CodigoRastreio": "243796676"
+                }
+            ]
+        }
+    },
+    {
+        "Pedido": {
+            "NumeroPedido": "1258772418027",
+            "DataCriacao": "2022-09-02T20:40:18.5837812+00:00",
+            "ValorDoPedido": 369.57,
+            "Entregas": [
+                {
+                    "MetodoEntrega": "Entrega Shoulder",
+                    "DataEstimada": "2022-09-09T17:00:00+00:00",
+                    "Status": "Entregue a Transportadora",
+                    "URLRastreio": "https://www.loggi.com/rastreador/225be1aa0c/1258772418027-01",
+                    "CodigoRastreio": "1258772418027-01"
+                }
+            ]
+        }
+    },
+    {
+        "Pedido": {
+            "NumeroPedido": "1257740944233",
+            "DataCriacao": "2022-08-29T14:15:43.7754155+00:00",
+            "ValorDoPedido": 1918.9,
+            "Entregas": [
+                {
+                    "MetodoEntrega": "Entrega Shoulder",
+                    "DataEstimada": "2022-09-02T19:00:00+00:00",
+                    "Status": "Faturado",
+                    "URLRastreio": null,
+                    "CodigoRastreio": null
+                }
+            ]
+        }
+    },
+    {
+        "Pedido": {
+            "NumeroPedido": "1249642238339",
+            "DataCriacao": "2022-07-26T19:37:16.5561851+00:00",
+            "ValorDoPedido": 379,
+            "Entregas": [
+                {
+                    "MetodoEntrega": "Entrega Shoulder",
+                    "DataEstimada": "2022-08-01T19:00:00+00:00",
+                    "Status": "Faturado",
+                    "URLRastreio": null,
+                    "CodigoRastreio": null
+                }
+            ]
+        }
+    }
+]
