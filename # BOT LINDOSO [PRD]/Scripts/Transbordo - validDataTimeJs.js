@@ -112,4 +112,4 @@ function getMinutes() {
   } else {
     return minutes.toString();
   }
-}
+} 
