@@ -1,0 +1,45 @@
+{
+    "weekdays": [{
+        "day": "Domingo",
+        "id": 0,
+        "hourStart": "",
+        "hourEnd": ""
+    },
+    {
+        "day": "Segunda",
+        "id": 1,
+        "hourStart": "0900",
+        "hourEnd": "1800"
+    },
+    {
+        "day": "Terça",
+        "id": 2,
+        "hourStart": "0900",
+        "hourEnd": "1800"
+    },
+    {
+        "day": "Quarta",
+        "id": 3,
+        "hourStart": "0900",
+        "hourEnd": "1800"
+    },
+    {
+        "day": "Quinta",
+        "id": 4,
+        "hourStart": "0900",
+        "hourEnd": "1800"
+    },
+    {
+        "day": "Sexta",
+        "id": 5,
+        "hourStart": "0900",
+        "hourEnd": "1800"
+    },
+    {
+        "day": "Sábado",
+        "id": 6,
+        "hourStart": "",
+        "hourEnd": ""
+    }
+    ]
+}
