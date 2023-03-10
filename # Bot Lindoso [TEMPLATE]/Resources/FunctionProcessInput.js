@@ -65,7 +65,15 @@ function validaNome(input) {
         return { type: 'error', input: 'ERRO NOME', validation: 'nome' }
     }
     else if (name.length >= 2) {
-        return { type: 'success', input: isString.normalize('NFD').replace(/[\u0300-\u036f]/g, ""), validation: 'nome' }
+        let str = isString.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        const arr = str.split(" ");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+        
+        }
+        const nomeSucess = arr.join(" ");
+        
+        return { type: 'success', input: nomeSucess, validation: 'nome' }
     }
     return { type: 'error', input: 'ERRO NOME', validation: 'nome' }
 }

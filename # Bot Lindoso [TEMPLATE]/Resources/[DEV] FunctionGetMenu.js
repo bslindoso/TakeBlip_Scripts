@@ -413,3 +413,39 @@ function channelTags(userChannel) {
   
     return CHANNELS[userChannel] || CHANNELS.default;
   }
+
+
+///////////////////////////////////
+//////// TESTES //////////////////
+// let default_msg = {
+//     "text": "Qual a sua seleção",
+//     "header": 'Menu',
+//     "body": "Qual a sua seleção",
+//     "footer": '',
+//     "button": 'Menu',
+//     "title": 'Menu',
+//     "namespaceTemplate": '',
+//     "nameTemplate": '',
+//     "options": ["Informações", "Dúvidas"],
+//     "values": ["Informações", "Dúvidas"],
+//     "submenu": [],
+//     "description": "",
+//     "menuScope": {
+//         "whatsappButton": false,
+//         "whatsappList": false,
+//         "blipchatQuickReply": false,
+//         "blipchatMenu": false,
+//         "defaultText": true,
+//         "platform": "blipchat",
+//         "boldValue": JSON.stringify({
+//             "open": "<b>",
+//             "close": "</b>"
+//         })
+//     },
+// };
+
+// var newMenu = getMenuForPlatform(default_msg);
+
+// console.log(newMenu);
+
+///////////////////////////////////////////
