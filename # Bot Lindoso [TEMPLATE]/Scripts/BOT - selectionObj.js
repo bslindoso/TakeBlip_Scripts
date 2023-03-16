@@ -1,6 +1,9 @@
 const run = (validInput) => {
   let input = JSON.parse(validInput).input;
 
+  const defaultTextoDescricao = `Ok! Antes de transferir para um de nossos atendentes, por favor, {{n1}}me informe a aula em que aparece o problema como no exemplo abaixo{{n2}} 👇` 
+  const descricaoTextoExemple = "{{n1}}Assim:{{n2}} aula 4 negociação"
+
   trackingsAndTransbordo = (input) => {
     const optionList = {
       "Áudio ruim": {
@@ -8,7 +11,8 @@ const run = (validInput) => {
         emailExibicao: "problemas com conteudo audio ruim exibicao",
         emailInput: "problemas com conteudo audio ruim email input",
         emailInesperado: "problemas com conteudo audio ruim email input inesperado",
-        textoDescricao: "Ok! Antes de transferir para um de nossos atendentes, por favor, {{n1}}me informe a aula em que aparece o problema como no exemplo abaixo{{n2}} 👇 \n\n{{n1}}Assim:{{n2}} aula 4 negociação",
+        textoDescricao: defaultTextoDescricao,
+        descricaoTextoExemple : descricaoTextoExemple,
         descricaoExibicao: "problemas com conteudo audio ruim aula exibicao",
         descricaoInput: "problemas com conteudo audio ruim aula input",
         transbordo: "Marca Digital",
@@ -18,8 +22,9 @@ const run = (validInput) => {
         textoEmail: "Ah que chato isso... 😕\nPoderia me passa o {{n1}}e-mail{{n2}} que você utilizou para fazer a compra?",
         emailExibicao: "problemas com conteudo video ruim exibicao",
         emailInput: "problemas com conteudo video ruim email input",
-        textoDescricao: "Ok! Antes de transferir para um de nossos atendentes, por favor, {{n1}}me informe a aula em que aparece o problema como no exemplo abaixo{{n2}} 👇 \n\n{{n1}}Assim:{{n2}} aula 4 negociação",
         emailInesperado: "problemas com conteudo video ruim email input inesperado",
+        textoDescricao: defaultTextoDescricao,
+        descricaoTextoExemple : descricaoTextoExemple,
         descricaoExibicao: "problemas com conteudo video ruim aula exibicao",
         descricaoInput: "problemas com conteudo video ruim aula input",
         transbordo: "Marca Digital",
@@ -30,7 +35,8 @@ const run = (validInput) => {
         emailExibicao: "problemas com conteudo aula em falta exibicao",
         emailInput: "problemas com conteudo aula em falta email input",
         emailInesperado: "problemas com conteudo aula em falta email input inesperado",
-        textoDescricao: "Ok! Antes de transferir para um de nossos atendentes, por favor, {{n1}}me informe a aula em que aparece o problema como no exemplo abaixo{{n2}} 👇 \n\n{{n1}}Assim:{{n2}} aula 4 negociação",
+        textoDescricao: defaultTextoDescricao,
+        descricaoTextoExemple : descricaoTextoExemple,
         descricaoExibicao: "problemas com conteudo aula em falta aula exibicao",
         descricaoInput: "problemas com conteudo aula em falta aula input",
         transbordo: "Marca Digital",
@@ -41,7 +47,8 @@ const run = (validInput) => {
         emailExibicao: "problemas com conteudo pdf aula exibicao",
         emailInput: "problemas com conteudo pdf aula email input",
         emailInesperado: "problemas com conteudo pdf aula email input inesperado",
-        textoDescricao: "Ok! Antes de transferir para um de nossos atendentes, por favor, {{n1}}me informe a aula em que aparece o problema como no exemplo abaixo{{n2}} 👇 \n\n{{n1}}Assim:{{n2}} aula 4 negociação",
+        textoDescricao: defaultTextoDescricao,
+        descricaoTextoExemple : descricaoTextoExemple,
         descricaoExibicao: "problemas com conteudo pdf aula aula exibicao",
         descricaoInput: "problemas com conteudo pdf aula aula input",
         transbordo: "Marca Digital",
@@ -52,7 +59,8 @@ const run = (validInput) => {
         emailExibicao: "problemas com conteudo progresso exibicao",
         emailInput: "problemas com conteudo progresso email input",
         emailInesperado: "problemas com conteudo progresso email input inesperado",
-        textoDescricao: "Ok! Antes de transferir para um de nossos atendentes, por favor, {{n1}}me informe a aula em que aparece o problema como no exemplo abaixo{{n2}} 👇 \n\n{{n1}}Assim:{{n2}} aula 4 negociação",
+        textoDescricao: defaultTextoDescricao,
+        descricaoTextoExemple : descricaoTextoExemple,
         descricaoExibicao: "problemas com conteudo progresso aula exibicao",
         descricaoInput: "problemas com conteudo progresso aula input",
         transbordo: "XGrow",
@@ -63,7 +71,8 @@ const run = (validInput) => {
         emailExibicao: "problemas com conteudo link exibicao",
         emailInput: "problemas com conteudo link email input",
         emailInesperado: "problemas com conteudo link email input inesperado",
-        textoDescricao: "Ok! Antes de transferir para um de nossos atendentes, por favor, {{n1}}me informe a aula em que aparece o problema como no exemplo abaixo{{n2}} 👇 \n\n{{n1}}Assim:{{n2}} aula 4 negociação",
+        textoDescricao: defaultTextoDescricao,
+        descricaoTextoExemple : descricaoTextoExemple,
         descricaoExibicao: "problemas com conteudo link aula exibicao",
         descricaoInput: "problemas com conteudo link aula input",
         transbordo: "Marca Digital",
@@ -75,6 +84,7 @@ const run = (validInput) => {
         emailInput: "problemas com conteudo outro assunto email input",
         emailInesperado: "problemas com conteudo outro assunto email input inesperado",
         textoDescricao: "Ok! Antes de transferir para um de nossos atendentes, por favor, me informe em poucas palavras sobre {{n1}}qual assunto{{n2}} você gostaria de falar 👇",
+        descricaoTextoExemple : "",
         descricaoExibicao: "problemas com conteudo outro assunto aula exibicao",
         descricaoInput: "problemas com conteudo outro assunto aula input",
         transbordo: "Marca Digital",
