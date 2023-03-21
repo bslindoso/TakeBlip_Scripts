@@ -1,7 +1,7 @@
 let lista = JSON.stringify({
   total: 11,
   totalPaginas: 4,
-  veiculos: [
+  lista: [
     {
       modelo: "CIVIC SED LXL 1.7 16V 130CV MT",
       placa: "LUN3678",
@@ -55,49 +55,44 @@ let lista = JSON.stringify({
     { modelo: "YARIS HB XS 1.5 AT", placa: "LUI3J43", situacao: "ATIVO" },
   ],
 });
-let status = "200";
 
-console.log(run(lista));
+
+console.log(run(lista, '2', '3'));
 
 /////////////////////////////////////////
 
-function run(lista, pagAtual) {
-    lista = JSON.parse(lista);
-    pagAtual = parseInt(pagAtual);
-
-    const Paginatio = (lista, page_size) => {
-        const paginate = (array, page_size, page_number) => {
-            // human-readable page numbers usually start with 1, so we reduce 1 in the first argument
-            return array.slice(
-                (page_number - 1) * page_size,
-                page_number * page_size
-            );
-        };
-
-        const getPage = (page_number) => {
-            const page = paginate(lista, page_size, page_number);
-            const pageFormated = getPageFormated(page);
-            return pageFormated;
-        };
-
-        const getPageFormated = (listaPaginated) => {
-            return listaPaginated.map((l) => {
-                const index =
-                    lista.findIndex((x) => x.placa === l.placa) + 1;
-                // aqui entra o formato do menu
-                return `${index}. Veículo: ${l.modelo}\nPlaca: ${l.placa}\nSituação: ${l.situacao}`;
-            });
-        };
-
-        return {
-            getPage: getPage,
-        };
+function run(lista, pagAtual, qtdPorPagina) {
+  lista = JSON.parse(lista);
+  pagAtual = parseInt(pagAtual);
+  qtdPorPagina = parseInt(qtdPorPagina);
+  const Paginatio = (lista, page_size) => {
+    const paginate = (array, page_size, page_number) => {
+      return array.slice(
+        (page_number - 1) * page_size,
+        page_number * page_size
+      );
     };
 
+    const getPage = (page_number) => {
+      const page = paginate(lista, page_size, page_number);
+      const pageFormated = getPageFormated(page);
+      return pageFormated;
+    };
 
-    const a = Paginatio(lista.veiculos, 3);
+    const getPageFormated = (listaPaginated) => {
+      return listaPaginated.map((l) => {
+        const index = lista.findIndex((x) => x.placa === l.placa) + 1;
+        // aqui entra o formato do menu
+        // TRABALHA O QUE QUER RETORNAR AQUI
+        return {index: `${index}`, text: `{{n1}}${index}.{{n2}} Veículo: ${l.modelo}\nPlaca: ${l.placa}\nSituação: ${l.situacao}\n\n`}
+      });
+    };
 
+    return {
+      getPage: getPage,
+    };
+  };
 
-    return a.getPage(pagAtual);
-};
-
+  const a = Paginatio(lista.lista, qtdPorPagina);
+  return JSON.stringify(a.getPage(pagAtual));
+}
