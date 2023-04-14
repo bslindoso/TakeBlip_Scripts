@@ -33,12 +33,19 @@ function run(input, inputType, platform, menu) {
         const validacaoMenu = true;
         const erroMenuEspecial = 'ERRO DINAMICO';
         const validacoesInput = {
-            data: false,
+            primeiroNome: false,
+            nomeCompleto: false,
             email: false,
+            telefone: false,
             cep: false,
+            data: false,
             img: false,
             imgTxt: false,
-            nome: false
+            endereco: false,
+            moeda: false,
+            cpf: false,
+            cnpj: false,
+            cpfcnpj: false
         };
         // ========================================================================
 
@@ -50,15 +57,15 @@ function run(input, inputType, platform, menu) {
         }
 
         // Verifica se o usuário digitou SAIR ou MENU
-        if (input == 'sair' || input == 'SAIR' || input == 'Sair') {
-            processedInput.type = 'reserved'
-            processedInput.input = 'SAIR'
-            return JSON.stringify(processedInput)
-        } else if (input == 'menu' || input == 'MENU' || input == 'Menu') {
-            processedInput.type = 'reserved'
-            processedInput.input = 'MENU'
-            return JSON.stringify(processedInput)
-        }
+        // if (input == 'sair' || input == 'SAIR' || input == 'Sair') {
+        //     processedInput.type = 'reserved'
+        //     processedInput.input = 'SAIR'
+        //     return JSON.stringify(processedInput)
+        // } else if (input == 'menu' || input == 'MENU' || input == 'Menu') {
+        //     processedInput.type = 'reserved'
+        //     processedInput.input = 'MENU'
+        //     return JSON.stringify(processedInput)
+        // }
 
         // Formata variáveis
         menu = JSON.parse(menu);

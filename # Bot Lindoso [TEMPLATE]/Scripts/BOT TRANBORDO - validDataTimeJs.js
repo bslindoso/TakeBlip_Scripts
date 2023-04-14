@@ -83,11 +83,11 @@ function run(holiday, workTime) {
     }
 
     for (let i = 0; i < workTimeJS.weekdays.length; i++) {
-
-      if (workTimeJS.weekdays[i].id && weekdays == 0) {
-        return `fora de hora`
-      }
-      else if (workTimeJS.weekdays[i].id == weekdays) {
+      // if (workTimeJS.weekdays[i].id && weekdays == 0) {
+      //   return `fora de hora`
+      // }
+      // else 
+      if (workTimeJS.weekdays[i].id == weekdays) {
         let hourStart = parseInt(workTimeJS.weekdays[i].hourStart)
         let hourEnd = parseInt(workTimeJS.weekdays[i].hourEnd)
         if (time < hourStart || time > hourEnd) {

@@ -4,7 +4,7 @@ const run = (validInput) => {
   const defaultTextoDescricao = `Ok! Antes de transferir para um de nossos atendentes, por favor, {{n1}}me informe a aula em que aparece o problema como no exemplo abaixo{{n2}} 👇` 
   const descricaoTextoExemple = "{{n1}}Assim:{{n2}} aula 4 negociação"
 
-  trackingsAndTransbordo = (input) => {
+  options = (input) => {
     const optionList = {
       "Áudio ruim": {
         textoEmail: "Sinto muito por isso... 😕\nPoderia me passa o {{n1}}e-mail{{n2}} que você utilizou para fazer a compra?",
@@ -95,5 +95,5 @@ const run = (validInput) => {
     return optionList[input] || "ERROR: NO MATCH";
   };
 
-  return trackingsAndTransbordo(input);
+  return options(input);
 }

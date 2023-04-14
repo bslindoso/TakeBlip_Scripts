@@ -1,0 +1,13 @@
+const run = () => {
+
+    const serviceList = {
+        boas_vindas: "boasvindas",
+        excecao: "excecao",
+        finalizacao: "finalizacao",
+        nota: "csat",
+        transbordo: "transbordo",
+        algo_mais: "algomais"
+    };
+
+    return serviceList;
+}

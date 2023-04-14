@@ -15,7 +15,7 @@ function getMenuForPlatform(menuFormat) {
     } else {
         boldValue = channelTags(platform).bold;
     }
-    
+
     let menuScope = menu.menuScope;
 
     let definePlatform = '';
@@ -71,8 +71,11 @@ function returnFormatMenu(menuScope) {
     if (menuScope.blipchatMenu == true && platform == 'blipchat') {
         return 'blipchatMenu';
     }
-    if (menuScope.defaultText == true && platform == 'whatsapp' || platform == 'blipchat') {
+    if (menuScope.defaultText == true && (platform == 'whatsapp' || platform == 'blipchat')) {
         return 'defaultText';
+    }
+    if (menuScope.defaultTextInverted == true && (platform == 'whatsapp' || platform == 'blipchat')) {
+        return 'defaultTextInverted';
     }
 }
 
@@ -92,7 +95,9 @@ function defineTypeWhatsApp(menuScope, Menu, boldValue) {
         case 'whatsappTemplate':
             returnMenu = getTemplateZap(Menu);
             break;
-
+        case 'defaultTextInverted':
+            returnMenu = getTextMenuInverted(Menu, boldValue);
+            break;
         default:
             returnMenu = getTextMenu(Menu, boldValue);
             break;
@@ -113,7 +118,9 @@ function defineTypeBlipChat(menuScope, Menu, boldValue) {
         case 'blipchatMenu':
             returnMenu = getMenu(Menu);
             break;
-
+        case 'defaultTextInverted':
+            returnMenu = getTextMenuInverted(Menu, boldValue);
+            break;
         default:
             returnMenu = getTextMenu(Menu, boldValue);
             break;
@@ -148,6 +155,44 @@ function getTextMenu(menu, boldValue) {
                 menu.options[i] +
                 BreakLine;
         }
+    }
+    if (menu.submenu.length > 0) {
+        for (let i = 0; i < menu.submenu.length; i++) {
+            menuText += "\n" + boldValue.open + menu.submenu[i].number + "." + boldValue.close + " " + menu.submenu[i].text
+        }
+    }
+    return { text: menuText };
+}
+
+function getTextMenuInverted(menu, boldValue) {
+    let menuText = '';
+    if (menu.text) {
+        menuText += menu.text + BreakLine + BreakLine;
+    }
+
+    let inverted = menu.options.length;
+    for (let i = 0; i < menu.options.length; i++) {
+        if (typeof menu.options[i] === typeof {}) {
+            menuText += menu.options[i].isBreakLine ? BreakLine : '';
+            menuText +=
+                boldValue.open +
+                menu.options[i].option +
+                '.' +
+                boldValue.close +
+                ' ' +
+                menu.options[i].text +
+                BreakLine;
+        } else {
+            menuText +=
+                boldValue.open +
+                (inverted) +
+                '.' +
+                boldValue.close +
+                ' ' +
+                menu.options[i] +
+                BreakLine;
+        }
+        inverted--;
     }
     if (menu.submenu.length > 0) {
         for (let i = 0; i < menu.submenu.length; i++) {
@@ -293,9 +338,9 @@ function getTemplateZap(Menu) {
 function channelTags(userChannel) {
     userChannel = userChannel.toLowerCase();
     return getChannelStylingTags(userChannel);
-  }
-  
-  function getChannelStylingTags(userChannel) {
+}
+
+function getChannelStylingTags(userChannel) {
     const TAGS = {
         bold: {
             empty: {
@@ -352,7 +397,7 @@ function channelTags(userChannel) {
             }
         }
     };
-  
+
     const CHANNELS = {
         default: {
             bold: TAGS.bold.empty,
@@ -400,6 +445,6 @@ function channelTags(userChannel) {
         // email:  ,
         // pagseguro:  ,
     };
-  
+
     return CHANNELS[userChannel] || CHANNELS.default;
-  }
+}

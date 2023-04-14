@@ -3,8 +3,11 @@ function validaInput(validacoes, input, inputType) {
     for (let i = 0; i < validacoes.length; i++) {
         if (validacoes[i][1]) {
             switch (validacoes[i][0]) {
-                case 'nome':
-                    inputValidado = validaNome(input);
+                case 'primeiroNome':
+                    inputValidado = validaPrimeiroNome(input);
+                    break;
+                case 'nomeCompleto':
+                    inputValidado = validaNomeCompleto(input);
                     break;
                 case 'email':
                     inputValidado = validaEmail(input);
@@ -33,6 +36,12 @@ function validaInput(validacoes, input, inputType) {
                 case 'cpf':
                     inputValidado = validaCpf(input);
                     break;
+                case "cnpj":
+                    inputValidado = validaCnpj(input);
+                    break;
+                case "cpfcnpj":
+                    inputValidado = validaCpfCnpj(input);
+                    break;
                 default:
                     inputValidado = { type: 'error', input: 'ERRO RESOURCE', validation: 'none' };
                     break;
@@ -43,7 +52,47 @@ function validaInput(validacoes, input, inputType) {
     return { type: 'error', input: 'INPUT SEM VALIDAÇÕES', validation: 'none' }
 }
 
-function validaNome(input) {
+function validaPrimeiroNome(input) {
+    input = input.trim()
+
+    const regex = {
+        "image": /image/,
+        "audio": /audio/,
+        "video": /video/,
+        "emoji": /[\u2600-\u26ff]|[\u2600-\u27ff]|[\u2700-\u27bf]|\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff]|\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f]|\ud83d[\ude80-\udeff]|\ud83c[\udde6-\uddff]|\ud83c[\udffb-\udfff]/,
+        "link": /^(((https?:\/\/)[^\s.]+|(www))\.[\w][^\s]+)$/,
+        "arquivo": /application|text\/csv|text\/html/,
+        "figurinha": /application\/octet-stream|image\/webp/,
+        "numero": /[0-9]/
+    }
+    let isString = input.replace(/[0-9]/g, 'ERRO NOME')
+    let name = isString.split(' ')
+
+    console.log(name)
+
+    if (input.match(regex.image) || input.match(regex.audio) || input.match(regex.video) || input.match(regex.emoji) || input.match(regex.figurinha) || input.match(regex.link) || input.match(regex.arquivo) || isString.match(regex.numero)) {
+        return { type: 'error', input: 'ERRO NOME', validation: 'primeiroNome' }
+    }
+    else if (isString.includes('ERRO NOME')) {
+        return { type: 'error', input: 'ERRO NOME', validation: 'primeiroNome' }
+    }
+    else if (name.length >= 2) {
+        return { type: 'error', input: 'ERRO NOME', validation: 'primeiroNome' }
+    } else {
+        let str = isString.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        const arr = str.split(" ");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+
+        }
+        const nomeSucess = arr.join(" ");
+
+        return { type: 'success', input: nomeSucess, validation: 'primeiroNome' }
+    }
+    return { type: 'error', input: 'ERRO NOME', validation: 'primeiroNome' }
+}
+
+function validaNomeCompleto(input) {
 
     const regex = {
         "image": /image/,
@@ -59,23 +108,23 @@ function validaNome(input) {
     let name = isString.split(' ')
 
     if (input.match(regex.image) || input.match(regex.audio) || input.match(regex.video) || input.match(regex.emoji) || input.match(regex.figurinha) || input.match(regex.link) || input.match(regex.arquivo) || isString.match(regex.numero)) {
-        return { type: 'error', input: 'ERRO NOME', validation: 'nome' }
+        return { type: 'error', input: 'ERRO NOME', validation: 'nomeCompleto' }
     }
     else if (isString.includes('ERRO NOME')) {
-        return { type: 'error', input: 'ERRO NOME', validation: 'nome' }
+        return { type: 'error', input: 'ERRO NOME', validation: 'nomeCompleto' }
     }
     else if (name.length >= 2) {
         let str = isString.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
         const arr = str.split(" ");
         for (var i = 0; i < arr.length; i++) {
             arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-        
+
         }
         const nomeSucess = arr.join(" ");
-        
-        return { type: 'success', input: nomeSucess, validation: 'nome' }
+
+        return { type: 'success', input: nomeSucess, validation: 'nomeCompleto' }
     }
-    return { type: 'error', input: 'ERRO NOME', validation: 'nome' }
+    return { type: 'error', input: 'ERRO NOME', validation: 'nomeCompleto' }
 }
 
 function validaMenu(input, menu, platform) {
@@ -244,6 +293,30 @@ function validaCpf(cpf) {
     } else {
         return { type: 'error', input: 'ERRO CPF', validation: 'cpf' }
     }
+}
+
+function validaCnpj(input) {
+    let regex = /(^\d{2}(\.)?\d{3}(\.)?\d{3}(\/)?\d{4}(\-)?\d{2}$)/
+    let match = input.match(regex);
+
+    if (match) {
+
+        input = input.replace(/[^\d]+/g, "");
+        return { type: "success", input: input, validation: "cnpj" }
+    }
+    return { type: "error", input: "ERRO CNPJ", validation: "cnpj" };
+}
+
+function validaCpfCnpj(input) {
+    let regex = /(^\d{3}(\.)?\d{3}(\.)?\d{3}(\-)?\d{2}$)|(^\d{2}(\.)?\d{3}(\.)?\d{3}(\/)?\d{4}(\-)?\d{2}$)/
+    let match = input.match(regex);
+
+    if (match) {
+
+        input = input.replace(/[^\d]+/g, "");
+        return { type: "success", input: input, validation: "cpfcnpj" }
+    }
+    return { type: "error", input: "ERRO CPF CNPJ", validation: "cpfcnpj" };
 }
 
 function validaTelefone(telefone) {

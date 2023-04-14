@@ -1,7 +1,6 @@
 {{resource.FunctionGetMenu}}
 
 const run = (platform, menu) => {
-  let convertPlatform = platform.toLowerCase();
   menu = JSON.parse(menu);
   platform = platform.toLowerCase();
 
@@ -26,12 +25,8 @@ const run = (platform, menu) => {
     "submenu": [],
     "description": menu.description,
     "menuScope": {
-      "whatsappButton": false,
-      "whatsappList": false,
-      "blipchatQuickReply": false,
-      "blipchatMenu": false,
-      "defaultText": true,
-      "platform": convertPlatform
+      ... menu.menuScope,
+      "platform": platform
     },
   };
 
