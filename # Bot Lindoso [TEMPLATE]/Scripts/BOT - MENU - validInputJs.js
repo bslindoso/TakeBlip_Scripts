@@ -37,6 +37,7 @@ function run(input, inputType, platform, menu) {
             nomeCompleto: false,
             email: false,
             telefone: false,
+            numeroInteiro: false,
             cep: false,
             data: false,
             img: false,

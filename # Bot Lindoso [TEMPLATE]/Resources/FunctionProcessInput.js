@@ -1,3 +1,22 @@
+function validaMenu(input, menu, platform) {
+
+    const opcao = menu.itens;
+
+    for (i = 0; i < opcao.length; i++) {
+        for (x = 0; x < opcao[i].name.length; x++) {
+            if (opcao[i].name[x] == input) {
+                return { type: 'success', input: opcao[i].name[0], validation: 'menu' }
+            }
+        }
+    }
+
+    if (platform == 'INSTAGRAM' || platform == 'MESSENGER') {
+        return { type: 'error', input: 'ERRO NUMERICO', validation: 'menu' }
+    } else {
+        return { type: 'error', input: 'ERRO DINAMICO', validation: 'menu' }
+    }
+}
+
 function validaInput(validacoes, input, inputType) {
     let inputValidado;
     for (let i = 0; i < validacoes.length; i++) {
@@ -14,6 +33,9 @@ function validaInput(validacoes, input, inputType) {
                     break;
                 case 'telefone':
                     inputValidado = validaTelefone(input);
+                    break;
+                case 'numeroInteiro':
+                    inputValidado = validaNumeroInteiro(input);
                     break;
                 case 'cep':
                     inputValidado = validaCep(input);
@@ -89,7 +111,6 @@ function validaPrimeiroNome(input) {
 
         return { type: 'success', input: nomeSucess, validation: 'primeiroNome' }
     }
-    return { type: 'error', input: 'ERRO NOME', validation: 'primeiroNome' }
 }
 
 function validaNomeCompleto(input) {
@@ -127,24 +148,15 @@ function validaNomeCompleto(input) {
     return { type: 'error', input: 'ERRO NOME', validation: 'nomeCompleto' }
 }
 
-function validaMenu(input, menu, platform) {
+function validaNumeroInteiro(input) {
+    const match = input.match(/^[0-9]+$/gm);
 
-    const opcao = menu.itens;
-
-    for (i = 0; i < opcao.length; i++) {
-        for (x = 0; x < opcao[i].name.length; x++) {
-            if (opcao[i].name[x] == input) {
-                return { type: 'success', input: opcao[i].name[0], validation: 'menu' }
-            }
-        }
-    }
-
-    if (platform == 'INSTAGRAM' || platform == 'MESSENGER') {
-        return { type: 'error', input: 'ERRO NUMERICO', validation: 'menu' }
+    if (!match) {
+        return { type: 'error', input: 'ERRO NUMERO INTEIRO', validation: 'numeroInteiro' };
     } else {
-        return { type: 'error', input: 'ERRO DINAMICO', validation: 'menu' }
-    }
-}
+        return { type: 'success', input: input, validation: 'numeroInteiro' };
+    };
+};
 
 function validaCep(input) {
 
@@ -161,17 +173,30 @@ function validaCep(input) {
 }
 
 function validaData(input) {
-
     // Verifica se o input informado está no formato esperado 
     const match = input.match(/^(\d{1,2})\/(\d{1,2})\/\d{4}$/gm);
+
     if (!match) {
         return { type: 'error', input: 'ERRO DATA', validation: 'data' };
     } else {
+        const dia = parseInt(match[0].split('/')[0])
+        const mes = parseInt(match[0].split('/')[1])
+        const ano = parseInt(match[0].split('/')[2])
+        const data = new Date(`${ano}-${mes}-${dia}`)
+        const dataMes = data.toString().split(' ')[1]
+        const meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+        // Valida se o mês da data é igual ao mês inputado (corrigir conversão automática 31/02 para 02/03)
+        if (data == 'Invalid Date' || dataMes !== meses[mes - 1]) {
+            return { type: 'error', input: 'ERRO DATA', validation: 'data' };
+        }
         return { type: 'success', input: input, validation: 'data' };
     };
 };
 
 function validaEmail(input) {
+
+    input = input.toLowerCase()
 
     const match = input.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.?([a-z]+)?$/gm);
     if (!match) {
