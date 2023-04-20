@@ -1,0 +1,9 @@
+- Beholder
+- Builder Variables
+- CloneBots
+- Migrate WhatsApp Number
+
+Instalação (Beholder, Builder Variables e CloneBots):
+* Domínio: postmaster@portal.blip.ai
+* Chave: Plugins
+* Valor: { "adaf81f4-85c6-4d9b-9bea-41ec1748b9e7": { "name": "Beholder: Blip Debugger", "url": "https://take-plugin-bot-beholder.cs.blip.ai/" }, "78347ac4-9f1e-4c81-8d31-4e6196bd2b64": { "name": "Builder Variables", "url": "https://ww-blip-plugins.web.app/" }, "d8c2317f-1f9f-48ee-96d8-401b8fc984dd": { "name": "CloneBots", "url": "https://wilkor.github.io/clone-bots-plugin/" } }

@@ -1,3 +1,4 @@
+// ENTRADA: calendar.time
 // time format = 09:42 (09 horas e 42 minutos) GMT 0
 // Saída esperada: 06:42
 const run = (time) => {    
@@ -6,8 +7,8 @@ const run = (time) => {
         hourOnly: true // Configura se o retorno vai ser somente a hora (Ex: 06) ou hora e minuto (Ex: 06:42) - Default: false (hora e minuto)
     }
 
-
     let hour = time.split(':')[0]
+    hour = parseInt(hour)
     let minute = time.split(':')[1]
 
     switch (hour) {
