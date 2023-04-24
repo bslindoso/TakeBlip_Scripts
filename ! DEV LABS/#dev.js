@@ -47,8 +47,7 @@ function run(responseOnlineAgents, principal, validaRegraAtendimento) {
             break;
         }
     }
-    console.log(agentsOnline)
-
+    
     if (agentsOnline > 0) {
         return true
     }

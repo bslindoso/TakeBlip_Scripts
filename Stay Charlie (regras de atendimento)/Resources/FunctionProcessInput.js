@@ -64,8 +64,8 @@ function validaInput(validacoes, input, inputType) {
                 case "cpfcnpj":
                     inputValidado = validaCpfCnpj(input);
                     break;
-                case "alfaNumerico":
-                    inputValidado = validaAlfaNumerico(input);
+                case "reserva":
+                    inputValidado = validaReserva(input);
                     break;
                 default:
                     inputValidado = { type: 'error', input: 'ERRO RESOURCE', validation: 'none' };
@@ -382,13 +382,13 @@ function validaTelefone(telefone) {
 }
 
 // Valida input apenas letras e números
-function validaAlfaNumerico(input) {
+function validaReserva(input) {
     const regex = /^[A-Za-z0-9]*$/
     const match = input.match(regex)
 
     if (match) {
-        return { type: 'success', input: input, validation: 'alfaNumérico' }
+        return { type: 'success', input: input, validation: 'reserva' }
     } else {
-        return { type: 'error', input: 'ERRO ALFA NUMERICO', validation: 'alfaNumérico' }
+        return { type: 'error', input: 'ERRO RESERVA', validation: 'reserva' }
     }
 }
