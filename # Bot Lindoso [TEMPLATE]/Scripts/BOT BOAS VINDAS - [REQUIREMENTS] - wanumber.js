@@ -16,8 +16,7 @@ function run(contact) {
         let retorno = concat;
 
         return retorno;
-    }
-    if(tamanho == 11){
+    } else {
         
         let retorno = phone
         return retorno;
