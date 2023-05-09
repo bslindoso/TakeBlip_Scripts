@@ -42,6 +42,7 @@ function run(input, inputType, platform, menu) {
             data: false,
             img: false,
             imgTxt: false,
+            imgVideo: false,
             endereco: false,
             moeda: false,
             cpf: false,

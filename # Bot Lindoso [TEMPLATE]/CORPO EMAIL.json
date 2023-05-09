@@ -1,0 +1,8 @@
+{
+    "to": "bruno.lindoso%40digitalbot.com.br@mailgun.gw.msging.net",
+    "type": "text/plain",
+    "content": "Produto não disponível no momento de consulta do cliente no catálogo, segue o detalhamento:\n\nNome: {{contact.name}};\nTelefone: {{contact.phoneNumber}};\nE-mail: {{contact.email}}; Produto escolhido: {{produtos@product_retailer_id}};\nLoja escolhida: {{loja@nome}}",
+     "metadata": {
+     "mail.subject": "{{contact.identity}}: Produto Indisponível"
+   }
+}

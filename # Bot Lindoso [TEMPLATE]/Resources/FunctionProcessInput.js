@@ -67,6 +67,9 @@ function validaInput(validacoes, input, inputType) {
                 case "alfaNumerico":
                     inputValidado = validaAlfaNumerico(input);
                     break;
+                case "imgVideo":
+                    inputValidado = validaImagemEVideo(input, inputType);
+                    break;
                 default:
                     inputValidado = { type: 'error', input: 'ERRO RESOURCE', validation: 'none' };
                     break;
@@ -390,5 +393,33 @@ function validaAlfaNumerico(input) {
         return { type: 'success', input: input, validation: 'alfaNumérico' }
     } else {
         return { type: 'error', input: 'ERRO ALFA NUMERICO', validation: 'alfaNumérico' }
+    }
+}
+
+function validaImagemEVideo(input, inputType) {
+
+    const regex = {
+        "audio": /audio/,
+        "emoji": /[\u2600-\u26ff]|[\u2600-\u27ff]|[\u2700-\u27bf]|\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff]|\ud83c[\udf00-\udfff]|\ud83d[\udc00-\ude4f]|\ud83d[\ude80-\udeff]|\ud83c[\udde6-\uddff]|\ud83c[\udffb-\udfff]/,
+        "arquivo": /application|text\/csv|text\/html/,
+        "figurinha": /application\/octet-stream|image\/webp/,
+    }
+    if (input.match(regex.audio) || input.match(regex.emoji) || input.match(regex.figurinha) || input.match(regex.arquivo)) {
+        return { type: 'error', input: 'ERRO IMAGEM E VIDEO', validation: 'imagem/video' }
+    }
+
+    if (inputType == 'text/plain') {
+        return { type: 'error', input: "ERRO IMAGEM E VIDEO", validation: 'imagem/video' };
+    } else if (inputType == 'application/vnd.lime.media-link+json') {
+        input = JSON.parse(input);
+        if (input.type.includes('image')) {
+            return { type: 'success', input: input.uri, validation: 'imagem/video' };
+        } else if (input.type.includes('video')) {
+            return { type: 'success', input: input.uri, validation: 'imagem/video' };
+        } else {
+            return { type: 'error', input: 'ERRO IMAGEM E VIDEO', validation: 'imagem/video' }
+        }
+    } else {
+        return { type: 'error', input: 'ERRO IMAGEM E VIDEO', validation: 'imagem/video' }
     }
 }
