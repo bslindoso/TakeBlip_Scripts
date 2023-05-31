@@ -1,0 +1,20 @@
+{
+  "content": {
+    "type": "text",
+    "text": "Which do you prefer?",
+    "actions": [
+        {
+            "type": "reply",
+            "text": "Tacos",
+            "iconUrl": "http://imgur.com/taco.png",
+            "payload": "TACOS"
+        },
+        {
+            "type": "reply",
+            "text": "Burritos",
+            "iconUrl": "http://imgur.com/burrito.png",
+            "payload": "BURRITOS"
+        }
+    ]
+  }
+}

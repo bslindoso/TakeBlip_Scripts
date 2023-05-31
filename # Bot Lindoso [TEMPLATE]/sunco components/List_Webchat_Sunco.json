@@ -1,0 +1,45 @@
+{
+    "content": {
+        "type": "list",
+        "items": [
+            {
+                "title": "Tacos",
+                "description": "Beef and cheese... Mhm...",
+                "size": "large",
+                "mediaUrl": "https://www.tacojohns.com/globalassets/2016-tacos-menu/taco-bravo---436x420.jpg",
+                "actions": [
+                    {
+                        "text": "Oh yeah!",
+                        "type": "postback",
+                        "payload": "TACOS"
+                    }
+                ]
+            },
+            {
+                "title": "Burritos",
+                "description": "Beefier and cheesier... Mhm...",
+                "mediaUrl": "http://www.tacobueno.com/media/1381/beefbob.png?quality=65",
+                "actions": [
+                    {
+                        "text": "Burritooo!",
+                        "type": "postback",
+                        "payload": "BURRITOS"
+                    },
+                    {
+                        "text": "Burritooo!",
+                        "type": "link",
+                        "uri": "http://burritos.com",
+                        "default": true
+                    }
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "text": "More Choices!",
+                "type": "postback",
+                "payload": "MORE"
+            }
+        ]
+    }
+}

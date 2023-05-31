@@ -1,0 +1,68 @@
+{
+    "content": {
+        "type": "text",
+        "text": "Pick a date for your delivery.",
+        "actions": [
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            },
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            },
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            },
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            },
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            },
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            },
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            },
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            },
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            },
+            {
+                "type": "webview",
+                "text": "Pick Date",
+                "uri": "https://pick-a-date.com",
+                "fallback": "https://pick-a-date-fallback.com"
+            }
+        ]
+    }
+}

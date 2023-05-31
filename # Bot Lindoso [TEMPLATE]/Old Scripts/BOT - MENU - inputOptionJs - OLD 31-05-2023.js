@@ -16,8 +16,7 @@ function run(hideInputText, sentenceOtherMistakesJs, returnJs) {
       "blipchatQuickReply": false,
       "blipchatMenu": true,
       "defaultText": false,
-      "defaultTextInverted": false,
-      "suncoQuickReply": false,
+      "defaultTextInverted": false
     }
   }
 

@@ -1,0 +1,13 @@
+{
+    "content": {
+        "type": "text",
+        "text": "Just put some vinegar on it",
+        "actions": [
+            {
+                "type": "link",
+                "text": "Button Label",
+                "uri": "http://url.button.com"
+            }
+        ]
+    }
+}

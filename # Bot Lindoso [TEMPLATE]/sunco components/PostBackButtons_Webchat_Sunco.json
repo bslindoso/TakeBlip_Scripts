@@ -1,0 +1,18 @@
+{
+    "content": {
+        "type": "text",
+        "text": "Just put some vinegar on it",
+        "actions": [
+            {
+                "type": "postback",
+                "text": "Postback Button Label",
+                "payload": "PAYLOAD_HERE"
+            },
+            {
+                "type": "link",
+                "text": "Link Button Label",
+                "uri": "http://url.button.com"
+            }
+        ]
+    }
+}
