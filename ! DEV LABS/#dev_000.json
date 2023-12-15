@@ -1,0 +1,53 @@
+{
+    "recipient_type": "individual",
+    "type": "interactive",
+    "interactive": {
+        "type": "list",
+        "header": {
+            "type": "text",
+            "text": "Guia Ram Connect"
+        },
+        "body": {
+            "text": "Escolha o modelo do seu Ram👇"
+        },
+        "action": {
+            "button": "Selecione",
+            "sections": [
+                {
+                    "rows": [
+                        	{
+		"id":"1",
+		"title":"Rampage",
+		"description": "" 
+	},
+	{
+		"id":"2",
+		"title":"Classic",
+		"description": "" 
+	},
+	{
+		"id":"3",
+		"title":"1500",
+		"description": "" 
+	},
+	{
+		"id":"4",
+		"title":"2500",
+		"description": "" 
+	},
+	{
+		"id":"5",
+		"title":"3500",
+		"description": "" 
+	},
+	{
+		"id":"6",
+		"title":"Voltar ao menu",
+		"description": "" 
+	}
+                    ]
+                }
+            ]
+        }
+    }
+}

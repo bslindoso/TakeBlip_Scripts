@@ -1,0 +1,3 @@
+{{contact.name}} | {{contact.phoneNumber}} | {{contact.email}} | {{menuOptEscolhida}} | {{menuDermoOdonto}} | https://careplusclinic.blip.ai/application/detail/routercpclinicdev/users{{contact.identity}}
+
+[[nome_usuario]] | [[telefone]] | [[email]] | [[opcao_menu_tipo_usuario]] | [[ultimo_menu_visitado]] | [[history_link]]

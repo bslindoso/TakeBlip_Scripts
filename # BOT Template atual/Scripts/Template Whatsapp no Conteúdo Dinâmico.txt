@@ -1,0 +1,42 @@
+Ex01:
+
+{
+    "type": "template",
+    "template": {
+        "namespace": "48f39eeb_5210_4ea5_858e_7315c20cebfc",
+        "name": "reengajamento_24horas",
+        "language": {
+            "policy": "deterministic",
+            "code": "pt_BR"
+        },
+        "components": [
+            {
+                "type": "button",
+                "sub_type": "url",
+                "index":0,
+                "parameters": [
+                    {
+                        "type": "text",
+                        "text": "{{numero}}&trackingName=NewLink&routerIdentifier={{resource.botConfig@routerIdentifier}}"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+Ex02:
+
+{
+    "type": "template",
+    "template": {
+        "namespace": "{{resource.templatesConfig@namespace}}",
+        "name": "{{resource.templatesConfig@templates.politicaDePrivacidade}}",
+        "language": {
+            "policy": "deterministic",
+            "code": "pt_BR"
+        },
+        "components": []     
+        
+    }
+}
