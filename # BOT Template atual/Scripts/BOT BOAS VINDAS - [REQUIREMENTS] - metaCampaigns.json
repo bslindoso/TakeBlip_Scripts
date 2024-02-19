@@ -1,0 +1,20 @@
+{
+    "action": {
+        "$id": "52690b76-9647-401e-9381-b077d9c9c185",
+        "$typeOfContent": "",
+        "type": "ExecuteScript",
+        "$title": "META Campaigns",
+        "$invalid": false,
+        "settings": {
+            "function": "run",
+            "source": "function run(inputMessage) {\n    try {\n        let inputMessageFormatted = JSON.parse(inputMessage);\n        let metadata = inputMessageFormatted.metadata;\n\n        if (metadata && metadata['#wa.referral.headline']) {\n            return getWhatsAppCampaign(metadata);\n        } else if (metadata && metadata['#ig.referral.ref']) {\n            return getInstagramCampaign(metadata);\n        } else if (metadata && metadata['#m.referral.ref']) {\n            return getMessengerCampaign(metadata);\n        } else {\n            return \"\";\n        }\n    } catch (e) {\n        return \"\";\n    }\n}\n\nconst getWhatsAppCampaign = (metadata) => {\n    return JSON.stringify({\n        platform: 'WhatsApp',\n        headline: metadata['#wa.referral.headline'],\n        body: metadata['#wa.referral.body'],\n        source_type: metadata['#wa.referral.source_type'],\n        source_id: metadata['#wa.referral.source_id'],\n        source_url: metadata['#wa.referral.source_url'],\n        media_id: metadata['#wa.referral.image.id']\n    });\n}\n\nconst getInstagramCampaign = (metadata) => {\n    return JSON.stringify({\n        platform: 'Instagram',\n        ref: metadata['#ig.referral.ref'],\n        type: metadata['#ig.referral.type'],\n        source: metadata['#ig.referral.source']\n    });\n}\n\nconst getMessengerCampaign = (metadata) => {\n    return JSON.stringify({\n        platform: 'Messenger',\n        ref: metadata['#m.referral.ref'],\n        type: metadata['#m.referral.type'],\n        source: metadata['#m.referral.source']\n    });\n}",
+            "inputVariables": [
+                "input.message"
+            ],
+            "outputVariable": "metaCampaigns",
+            "LocalTimeZoneEnabled": false
+        },
+        "conditions": []
+    },
+    "isCopyFromBlipActions": true
+}

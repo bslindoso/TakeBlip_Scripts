@@ -1,0 +1,7 @@
+{
+    "namespace": "48f39eeb_5210_4ea5_858e_7315c20cebfc",
+    "templates": {
+        "reengajamento" : "reengajamento_24horas",
+        "inatividade" : "inatividade_padrao_v1"
+    }    
+}

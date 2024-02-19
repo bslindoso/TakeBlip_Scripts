@@ -1,0 +1,16 @@
+{
+    "action": {
+        "$id": "52cd8b10-4508-48d9-a1bc-c1b2d086c7c8",
+        "$typeOfContent": "",
+        "type": "TrackEvent",
+        "$title": "ctw entrada fluxo",
+        "$invalid": false,
+        "settings": {
+            "extras": {},
+            "action": "telefone: {{contact.phoneNumber}} | headline: {{metaCampaigns@headline}} | url mídia: {{metaCampaigns@source_url}} | id anúncio: {{metaCampaigns@source_id}} | origem: {{metaCampaigns@source_type}}",
+            "category": "ctw entrada fluxo"
+        },
+        "conditions": []
+    },
+    "isCopyFromBlipActions": true
+}
