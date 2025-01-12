@@ -1,0 +1,49 @@
+{
+  "recipient_type": "individual",
+  "type": "interactive",
+  "interactive": {
+    "type": "list",
+    "header": {
+      "type": "text",
+      "text": "your-header-content"
+    },
+    "body": {
+      "text": "List Body Message"
+    },
+    "action": {
+      "button": "Send",
+      "sections": [
+        {
+          "title": "Section 1",
+          "rows": [
+            {
+              "id": "ID 1.1",
+              "title": "Title 1.1",
+              "description": "Description 1.1"
+            },
+            {
+              "id": "ID 1.2",
+              "title": "Title 1.2",
+              "description": "Description 1.2"
+            }
+          ]
+        },
+        {
+          "title": "Section 2",
+          "rows": [
+            {
+              "id": "ID 2.1",
+              "title": "Title 2.1",
+              "description": "Description 2.1"
+            },
+            {
+              "id": "ID 2.2",
+              "title": "Title 2.2",
+              "description": "Description 2.2"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

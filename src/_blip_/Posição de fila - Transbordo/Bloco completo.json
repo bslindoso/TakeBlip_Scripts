@@ -1,0 +1,112 @@
+[
+  {
+    "$contentActions": [
+      {
+        "input": {
+          "bypass": true,
+          "$cardContent": {
+            "document": {
+              "id": "a6f48a87-b654-47f1-a6ae-67c53bfa8f34",
+              "type": "text/plain",
+              "textContent": "Entrada do usuário",
+              "content": "Entrada do usuário"
+            },
+            "editable": false,
+            "deletable": true,
+            "position": "right",
+            "editing": false
+          },
+          "$invalid": false
+        },
+        "$invalid": false,
+        "$$hashKey": "object:7590"
+      }
+    ],
+    "$conditionOutputs": [
+      {
+        "stateId": "d50e9ed8-445c-4ad5-bd61-e9ae9453742b",
+        "typeOfStateId": "state",
+        "$connId": "con_283",
+        "$id": "0051427b-1679-4d57-85db-422d20502ed6",
+        "conditions": [
+          {
+            "source": "context",
+            "comparison": "equals",
+            "values": [
+              "1compra",
+              "recompra"
+            ],
+            "variable": "contact.extras.Fila",
+            "$$hashKey": "object:7606"
+          }
+        ],
+        "$invalid": false,
+        "$$hashKey": "object:7592"
+      }
+    ],
+    "$enteringCustomActions": [
+      {
+        "$id": "a0a986d0-63ae-4c2a-b022-b8e81a11c79d",
+        "$typeOfContent": "",
+        "type": "ProcessHttp",
+        "$title": "GetWaitingTicketsMetrics",
+        "$invalid": false,
+        "settings": {
+          "headers": {
+            "Authorization": "{{resource.keyManipBalcao@http}}",
+            "Content-Type": "application/json"
+          },
+          "method": "POST",
+          "body": "{\n  \"id\": \"{{$guid}}\",\n  \"to\": \"postmaster@desk.msging.net\",\n  \"method\": \"get\",\n  \"uri\": \"/monitoring/waiting-tickets?version=2\"\n}",
+          "responseStatusVariable": "statusGetWaitingTicketsMetrics",
+          "responseBodyVariable": "responseGetWaitingTicketsMetrics",
+          "uri": "{{resource.urlBlip}}"
+        },
+        "conditions": []
+      },
+      {
+        "$id": "22f7e5fc-e071-40c4-bd1c-912484ce9a60",
+        "$typeOfContent": "",
+        "type": "ExecuteScript",
+        "$title": "queue",
+        "$invalid": false,
+        "settings": {
+          "function": "run",
+          "source": "function run(getWaitingTicketsMetrics) {\n    return queue = queuePos(getWaitingTicketsMetrics);\n}\n\n\nfunction queuePos(getWaitingTicketsMetrics) {\n\n    var queue = JSON.parse(getWaitingTicketsMetrics);\n    var queueCount = queue.resource.total;\n\n    if (queueCount === undefined) {\n        queueCount = 1;\n        return queueCount;\n    } else {\n        queueCount = queueCount + 1;\n        return queueCount;\n    }\n}",
+          "inputVariables": [
+            "responseGetWaitingTicketsMetrics"
+          ],
+          "outputVariable": "queue",
+          "LocalTimeZoneEnabled": false
+        },
+        "conditions": []
+      }
+    ],
+    "$leavingCustomActions": [],
+    "$inputSuggestions": [],
+    "$defaultOutput": {
+      "stateId": "fallback",
+      "$invalid": false
+    },
+    "isAiGenerated": false,
+    "$tags": [
+      {
+        "background": "#7762E3",
+        "label": "ProcessHttp",
+        "id": "blip-tag-c68d05ec-d727-45bc-b09e-2a70041550af",
+        "canChangeBackground": false
+      }
+    ],
+    "id": "dee3fe36-bc01-4f09-aab1-1492c3d8461b",
+    "root": false,
+    "$title": "Valida origem / Posição na fila",
+    "$position": {
+      "top": "3663px",
+      "left": "1047px"
+    },
+    "$invalidContentActions": false,
+    "$invalidOutputs": false,
+    "$invalidCustomActions": false,
+    "$invalid": false
+  }
+]

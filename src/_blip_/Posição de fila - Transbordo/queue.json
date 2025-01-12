@@ -1,0 +1,19 @@
+[
+  {
+    "$id": "22f7e5fc-e071-40c4-bd1c-912484ce9a60",
+    "$typeOfContent": "",
+    "type": "ExecuteScript",
+    "$title": "queue",
+    "$invalid": false,
+    "settings": {
+      "function": "run",
+      "source": "function run(getWaitingTicketsMetrics) {\n    return queue = queuePos(getWaitingTicketsMetrics);\n}\n\n\nfunction queuePos(getWaitingTicketsMetrics) {\n\n    var queue = JSON.parse(getWaitingTicketsMetrics);\n    var queueCount = queue.resource.total;\n\n    if (queueCount === undefined) {\n        queueCount = 1;\n        return queueCount;\n    } else {\n        queueCount = queueCount + 1;\n        return queueCount;\n    }\n}",
+      "inputVariables": [
+        "responseGetWaitingTicketsMetrics"
+      ],
+      "outputVariable": "queue",
+      "LocalTimeZoneEnabled": false
+    },
+    "conditions": []
+  }
+]

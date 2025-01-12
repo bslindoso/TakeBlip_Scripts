@@ -1,0 +1,100 @@
+[
+  {
+    "$contentActions": [
+      {
+        "input": {
+          "bypass": true,
+          "$cardContent": {
+            "document": {
+              "id": "31495451-b2e5-4985-bd18-6b788b12598f",
+              "type": "text/plain",
+              "textContent": "Entrada do usuário",
+              "content": "Entrada do usuário"
+            },
+            "editable": false,
+            "deletable": true,
+            "position": "right",
+            "editing": false
+          },
+          "$invalid": false
+        },
+        "$invalid": false,
+        "$$hashKey": "object:977"
+      }
+    ],
+    "$conditionOutputs": [],
+    "$enteringCustomActions": [
+      {
+        "$id": "54c9a1b3-99f4-43e8-9b7c-c8d4f6010efe",
+        "$typeOfContent": "",
+        "type": "ExecuteScript",
+        "$title": "ID E-mail",
+        "$invalid": false,
+        "settings": {
+          "function": "run",
+          "source": "function run (){\n    return (parseInt(Math.random() * 10 ** 8))\n}",
+          "inputVariables": [],
+          "outputVariable": "idEmail",
+          "LocalTimeZoneEnabled": false
+        },
+        "conditions": []
+      },
+      {
+        "$id": "54bac9bc-3520-4bba-b3f1-aba94f578e68",
+        "$typeOfContent": "",
+        "type": "ProcessHttp",
+        "$title": "Envio e-mail",
+        "$invalid": false,
+        "settings": {
+          "headers": {
+            "Authorization": "{{resource.keyRouter}}"
+          },
+          "method": "POST",
+          "body": "{\r\n    \"to\": \"{{regiao@email}}, {{regiao@emailGerente}}, {{regiao@emailCopiaTodos}}@mailgun.gw.msging.net\",\r\n    \"type\": \"text/plain\",\r\n    \"content\": \"Olá, você recebeu uma solicitação de atendimento de {{firstName}}.\\n\\nSeguem dados:\\n\\nNome completo: {{nomeComp}}\\nE-mail: {{email}}\\nTelefone: {{telefone}}\",\r\n    \"metadata\": {\r\n        \"mail.subject\": \"{{idEmail}}: Nova solicitação de {{firstName}}\"\r\n    }\r\n}",
+          "uri": "https://msging.net/messages",
+          "responseStatusVariable": "statusEmail",
+          "responseBodyVariable": "responseEmail"
+        },
+        "conditions": []
+      }
+    ],
+    "$leavingCustomActions": [],
+    "$inputSuggestions": [],
+    "$defaultOutput": {
+      "stateId": "fallback",
+      "$invalid": false
+    },
+    "$tags": [
+      {
+        "background": "#7762E3",
+        "label": "Process HTTP",
+        "id": "blip-tag-c7b12f14-9e61-564a-1387-a68670a2fc48",
+        "canChangeBackground": false
+      },
+      {
+        "background": "#FF961E",
+        "label": "Execute script",
+        "id": "blip-tag-66af64ee-7730-269e-00a9-e0536b79c9c6",
+        "canChangeBackground": false
+      }
+    ],
+    "id": "db0f28a1-1a05-47fb-a802-625823b7971f",
+    "root": false,
+    "$title": "API - Envio de EMAIL",
+    "$position": {
+      "top": "158px",
+      "left": "2704px"
+    },
+    "$invalidContentActions": false,
+    "$invalidOutputs": false,
+    "$invalidCustomActions": false,
+    "$invalid": false,
+    "addonsSettings": {
+      "backgroundColor": "#880e4f",
+      "textColor": "#ffffff",
+      "commentsIdList": [],
+      "shape": "50% 0 50% 0"
+    },
+    "isAiGenerated": false
+  }
+]

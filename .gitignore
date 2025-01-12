@@ -1,3 +1,7 @@
 /! DEV LABS
 /! DEV
+/__dev__
+/_dev_
 /.vscode
+node_*.tmp.js
+/node_modules

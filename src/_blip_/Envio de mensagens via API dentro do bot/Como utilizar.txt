@@ -1,0 +1,17 @@
+### No router que possui whatsapp, tem que ter uma resource chamada *flowsIds* no formato 
+JSON com a seguinte estrutura:
+
+{
+  "nomedofluxoo" : "id_do_fluxo",
+  "araujoonboardinghml": "6bad5943-ac6f-4c25-a786-8d6d7de1240d",
+  "araujoalgomaishml": "da15b27a-5681-40c6-95a3-10efbca31fda",
+}
+
+### No bloco que vai disparar a mensagem e mudar o usuário de router
+1 - [API] getFlowsIds
+2 - [API] checkUserMasterState
+3 - [SCRIPT] userActualMasterStateID
+4 - [API] resetUserToOnboardingOnPreviousFlow
+5 - [API] sendMessage
+6 - [API] changeFlow
+7 - [API] changeBlock

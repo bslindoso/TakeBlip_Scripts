@@ -1,0 +1,25 @@
+API 5 - Muda o fluxo (Master-State)
+
+curl --location 'https://drogariaaraujo.http.msging.net/commands' \
+--header 'Authorization: Key YXJhdWpvcm91dGVyaG1sOlYzYWVOYnJONWpTbkJTUkFhZkxu' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: __cf_bm=X3K8trSN.Ms_rXCS1xNO1xb6m4zstTkqgRQ_E_uwNpE-1732737030-1.0.1.1-rxGnRRRbPbkziARMVpFsGrlQI.8u2..A2h4cbHFGi9rQIIkyE2B_j4mn2VHXvRfFb3XX65vqSQPTyzNlHp1lGQ' \
+--data-raw '{
+    "id": "531658b1-9d93-4758-a8de-28a85664da5f",
+    "to": "postmaster@msging.net",
+    "method": "set",
+    "uri": "/contexts/5582999158747@wa.gw.msging.net/Master-State",
+    "type": "text/plain",
+    "resource": "compraerecompramaniphml@msging.net"
+}'
+
+payload:
+
+{
+    "id": "{{$guid}}",
+    "to": "postmaster@msging.net",
+    "method": "set",
+    "uri": "/contexts/{{numero}}@wa.gw.msging.net/Master-State",
+    "type": "text/plain",
+    "resource": "{{fluxo}}@msging.net"
+}

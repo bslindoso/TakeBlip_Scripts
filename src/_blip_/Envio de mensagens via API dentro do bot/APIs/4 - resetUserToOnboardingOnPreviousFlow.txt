@@ -1,0 +1,32 @@
+API 3 - Define fluxo do user para onboarding
+
+curl --location 'https://drogariaaraujo.http.msging.net/commands' \
+--header 'Authorization: Key YXJhdWpvcm91dGVyaG1sOlYzYWVOYnJONWpTbkJTUkFhZkxu' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: __cf_bm=lZBQue.HhCkxGy_eNV38_HLRULuzHRP8S8H7HPvovxQ-1732732528-1.0.1.1-ZM7K0zNbX1kJ7ABQ7.Rwf49i4vDDFBlUVgjIuitrunKmhgDHyZf8q1FXMvtUOdykkjGAOLaBsdqMTPI__5k_BA' \
+--data-raw '{
+    "id": "a2039189-3bed-4272-a602-4db296a57c13",
+    "to": "postmaster@msging.net",
+    "method": "set",
+    "uri": "/contexts/5582999158747@wa.gw.msging.net/stateid%406bad5943-ac6f-4c25-a786-8d6d7de1240d",
+    "type": "text/plain",
+    "resource": "onboarding"
+}'
+
+======
+
+Usa: [SCRIPT] userActualMasterState.id
+
+Response:
+
+{
+    "method": "set",
+    "status": "success",
+    "id": "be8e8679-f244-4aaf-aeea-a5d2f13be685",
+    "from": "postmaster@builder.msging.net/#msging-application-builder-d7cb6df64-htdcp",
+    "to": "araujorouterhml@msging.net/!msging-server-r7jbk-k4qeet7b",
+    "metadata": {
+        "traceparent": "00-12e1d5bfe77fd059a73070097821cd5b-7294d417395b0ecb-01",
+        "#command.uri": "lime://araujorouterhml@msging.net/contexts/5582999158747@wa.gw.msging.net/stateid%406bad5943-ac6f-4c25-a786-8d6d7de1240d"
+    }
+}

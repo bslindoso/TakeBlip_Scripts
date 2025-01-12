@@ -1,0 +1,3593 @@
+{
+  "flow": {
+    "onboarding": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": false,
+            "$cardContent": {
+              "document": {
+                "id": "a5f855b2-7344-44ad-bf8b-75bccd63d288",
+                "type": "text/plain",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": false,
+              "position": "right"
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "c6fde1c4-1481-4d06-ad78-0804bbf76a92",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$connId": "con_3",
+          "$invalid": false,
+          "$id": "35d42520-8a51-4415-83eb-c220e382bdeb",
+          "typeOfStateId": "state"
+        }
+      ],
+      "$enteringCustomActions": [],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "c6fde1c4-1481-4d06-ad78-0804bbf76a92",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "id": "onboarding",
+      "root": true,
+      "$position": {
+        "top": "38px",
+        "left": "389px"
+      },
+      "$title": "Início",
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "$tags": []
+    },
+    "fallback": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "95b10ba8-e351-4d16-9b10-ce14961cb1fd",
+                "type": "text/plain",
+                "content": "User input"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right"
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "0a53ade3-d1bb-4793-9cf6-0055bf68ab2a",
+          "typeOfStateId": "state",
+          "$connId": "con_8",
+          "$id": "f881585b-aa9f-46d8-9786-e5d3b59ca872",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "notExists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "0a53ade3-d1bb-4793-9cf6-0055bf68ab2a",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$connId": "con_13",
+          "$invalid": false,
+          "$id": "61d23b1d-0f2a-481a-8554-9551b2c3fcb9",
+          "typeOfStateId": "state"
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "a5919010-3862-4847-9916-a43fff1d856b",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "exception",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(previousState, typeInput, previousId) {\n    try {\n        typeInput = JSON.parse(typeInput).input\n        let idFormated = previousState.split(' ');\n        idFormated = idFormated[0].replace(/\\[/g,'').replace(/\\]/g,'').replace(/\\./g,'');\n        const exception = {\n            id: `${idFormated}`,\n            input: '{{input.content}}',\n            redirectMenu: `${typeInput}`,\n            blockId: previousId\n        }\n        return exception\n    }\n    catch (e) {\n        return 'error'\n    }\n}",
+            "inputVariables": [
+              "state.previous.name",
+              "validInputJs",
+              "state.previous.id"
+            ],
+            "outputVariable": "exception",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "onboarding",
+        "$invalid": false
+      },
+      "id": "fallback",
+      "$position": {
+        "top": "16px",
+        "left": "1408px"
+      },
+      "$title": "Exceções",
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "$tags": [
+        {
+          "background": "#FF961E",
+          "label": "executeScript",
+          "id": "blip-tag-a1578857-f2c5-9986-b4db-67b36b5956a3",
+          "canChangeBackground": false
+        }
+      ]
+    },
+    "desk:b69ef3a2-9983-48f8-9d40-16bad478a460": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": false,
+            "$cardContent": {
+              "document": {
+                "id": "b04c3ac0-5b0c-4f61-ade4-9adbd31ae1fc",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right"
+            },
+            "$invalid": false,
+            "expiration": "1:0"
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "b54311a3-7053-4a1c-98e4-c477bbb0256a",
+          "typeOfStateId": "state",
+          "$connId": "con_18",
+          "$id": "bbd9feba-722a-4b2d-94d2-fe6a07e57a9e",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "a5568428-ce9e-46be-828f-7111cc989b2b",
+          "typeOfStateId": "state",
+          "$connId": "con_23",
+          "$id": "e1316bf5-accd-4181-b4fa-41bf63f5b69f",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "equals",
+              "values": [
+                "Sair"
+              ]
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "$isDeskOutput": true,
+          "conditions": [
+            {
+              "source": "context",
+              "variable": "input.type",
+              "comparison": "equals",
+              "values": [
+                "application/vnd.iris.ticket+json"
+              ]
+            },
+            {
+              "source": "context",
+              "variable": "input.content@status",
+              "comparison": "equals",
+              "values": [
+                "ClosedAttendant"
+              ]
+            }
+          ],
+          "$invalid": false,
+          "stateId": "9246bdf4-fb98-49ff-a094-db97fd381a1e",
+          "$connId": "con_28",
+          "$id": "fec13811-ae23-4a84-9b95-48797852a14d"
+        },
+        {
+          "$isDeskOutput": true,
+          "conditions": [
+            {
+              "source": "context",
+              "variable": "input.type",
+              "comparison": "equals",
+              "values": [
+                "application/vnd.iris.ticket+json"
+              ]
+            },
+            {
+              "source": "context",
+              "variable": "input.content@status",
+              "comparison": "equals",
+              "values": [
+                "ClosedClient"
+              ]
+            }
+          ],
+          "$invalid": false,
+          "stateId": "9246bdf4-fb98-49ff-a094-db97fd381a1e",
+          "$connId": "con_33",
+          "$id": "1f73d79b-1c17-4afd-b8f0-a46d516e9133"
+        },
+        {
+          "$isDeskOutput": true,
+          "conditions": [
+            {
+              "source": "context",
+              "variable": "input.type",
+              "comparison": "equals",
+              "values": [
+                "application/vnd.iris.ticket+json"
+              ]
+            },
+            {
+              "source": "context",
+              "variable": "input.content@status",
+              "comparison": "equals",
+              "values": [
+                "ClosedClientInactivity"
+              ]
+            }
+          ],
+          "$invalid": false,
+          "stateId": "4ca10337-bc34-45cd-81ba-bd9db027c75b",
+          "$connId": "con_38",
+          "$id": "d8139e7e-144b-44ce-b2d4-3ee87cba01fb"
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "type": "ExecuteScript",
+          "$title": "GetEncodedContactIdentity",
+          "$invalid": false,
+          "conditions": [
+            {
+              "source": "context",
+              "variable": "state.previous.id",
+              "comparison": "notEquals",
+              "values": [
+                "desk:b69ef3a2-9983-48f8-9d40-16bad478a460"
+              ]
+            }
+          ],
+          "settings": {
+            "function": "run",
+            "source": "function run(identity) {\n return (identity !== undefined) ? encodeURIComponent(identity) : identity;\n}",
+            "inputVariables": [
+              "input.message.fromidentity"
+            ],
+            "outputVariable": "helpDeskEncodedFromIdentity",
+            "LocalTimeZoneEnabled": false
+          }
+        },
+        {
+          "type": "ProcessCommand",
+          "$title": "GetOpenTicket",
+          "conditions": [
+            {
+              "source": "context",
+              "variable": "state.previous.id",
+              "comparison": "notEquals",
+              "values": [
+                "desk:b69ef3a2-9983-48f8-9d40-16bad478a460"
+              ]
+            }
+          ],
+          "settings": {
+            "from": "{{application.identifier}}@{{application.domain}}",
+            "to": "postmaster@desk.msging.net",
+            "method": "get",
+            "uri": "/tickets?$filter=customerIdentity%20eq%20%27{{helpDeskEncodedFromIdentity}}%27%20and%20%28status%20eq%20%27Open%27%20or%20status%20eq%20%27Waiting%27%20or%20status%20eq%20%27Assigned%27%29",
+            "variable": "helpDeskGetOpenTicketCommandResponse"
+          },
+          "$invalid": false
+        },
+        {
+          "type": "ExecuteScript",
+          "$title": "TreatGetOpenTicketResponse",
+          "$invalid": false,
+          "conditions": [
+            {
+              "source": "context",
+              "variable": "state.previous.id",
+              "comparison": "notEquals",
+              "values": [
+                "desk:b69ef3a2-9983-48f8-9d40-16bad478a460"
+              ]
+            }
+          ],
+          "settings": {
+            "function": "run",
+            "source": "function run(commandResponse) {\n    var response = JSON.parse(commandResponse)\n    var ticketExists = (response && response.resource && response.resource.items && response.resource.items.length > 0);\n  return ticketExists ? \"true\" : \"false\";\n}",
+            "inputVariables": [
+              "helpDeskGetOpenTicketCommandResponse"
+            ],
+            "outputVariable": "helpDeskHasTicket",
+            "LocalTimeZoneEnabled": false
+          }
+        },
+        {
+          "type": "ProcessCommand",
+          "$title": "OpenTicketIfNotFound",
+          "conditions": [
+            {
+              "source": "context",
+              "variable": "helpDeskHasTicket",
+              "comparison": "notEquals",
+              "values": [
+                "true"
+              ]
+            }
+          ],
+          "settings": {
+            "from": "{{application.identifier}}@{{application.domain}}",
+            "to": "postmaster@desk.msging.net",
+            "method": "set",
+            "uri": "/tickets/{{helpDeskEncodedFromIdentity}}",
+            "variable": "helpDeskOpenTicketCommandResponse",
+            "type": "text/plain",
+            "resource": "{{input.content}}",
+            "metadata": {
+              "server.shouldStore": true
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "type": "ExecuteScript",
+          "$title": "TreatOpenTicketResponse",
+          "$invalid": false,
+          "conditions": [
+            {
+              "source": "context",
+              "variable": "helpDeskHasTicket",
+              "comparison": "notEquals",
+              "values": [
+                "true"
+              ]
+            }
+          ],
+          "settings": {
+            "function": "run",
+            "source": "function run(commandResponse) {\n    var response = commandResponse ? JSON.parse(commandResponse) : {}\n    var ticketExists = response && response.type === \"application/vnd.iris.ticket+json\" && response.resource \n    return ticketExists ? \"true\" : \"false\";\n}",
+            "inputVariables": [
+              "helpDeskOpenTicketCommandResponse"
+            ],
+            "outputVariable": "helpDeskHasTicket",
+            "LocalTimeZoneEnabled": false
+          }
+        },
+        {
+          "type": "ForwardMessageToDesk",
+          "settings": {},
+          "$invalid": false
+        }
+      ],
+      "$leavingCustomActions": [
+        {
+          "type": "SetVariable",
+          "$title": "ResetHasTicket",
+          "settings": {
+            "$invalid": false,
+            "variable": "helpDeskHasTicket",
+            "value": "false"
+          },
+          "conditions": [
+            {
+              "source": "context",
+              "variable": "input.type",
+              "comparison": "equals",
+              "values": [
+                "application/vnd.iris.ticket+json"
+              ]
+            },
+            {
+              "source": "context",
+              "variable": "input.content@status",
+              "comparison": "equals",
+              "values": [
+                "ClosedAttendant",
+                "ClosedClient",
+                "ClosedClientInactivity"
+              ]
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+        "$invalid": false
+      },
+      "id": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+      "deskStateVersion": "2.0.1",
+      "root": false,
+      "$title": "Atendimento humano",
+      "$position": {
+        "top": "1042px",
+        "left": "586px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "backgroundColor": "#0d47a1",
+        "textColor": "#ffffff"
+      }
+    },
+    "ea376d2d-7e6e-45e3-b5b3-3c0d713e7b11": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "71666f38-879c-488e-bd29-5593e19aae4b",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [],
+      "$leavingCustomActions": [
+        {
+          "$id": "65d944f7-4106-4315-8b5e-967f690dfae9",
+          "$typeOfContent": "",
+          "type": "Redirect",
+          "$title": "[GO TO] NOTA",
+          "$invalid": false,
+          "settings": {
+            "context": {
+              "type": "text/plain",
+              "value": "nota"
+            },
+            "address": "{{resource.serviceList@csat}}"
+          },
+          "conditions": []
+        }
+      ],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "onboarding",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [
+        {
+          "background": "#0A6045",
+          "label": "REDIRECT TO",
+          "id": "blip-tag-180bb99d-115a-1424-84e0-1190407e09c0",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "ea376d2d-7e6e-45e3-b5b3-3c0d713e7b11",
+      "root": false,
+      "$title": "[GO TO] Nota",
+      "$position": {
+        "top": "147px",
+        "left": "1607px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "backgroundColor": "#c8e6c9",
+        "textColor": "#000000"
+      }
+    },
+    "bce95b9d-28db-4c2d-beb9-8deaca4b7f92": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "a5d9fd1a-127c-4642-ac8a-7fd13a8b10f6",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "42e7a7ae-fd62-4a59-8c88-7231ea043a1d",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "42e7a7ae-fd62-4a59-8c88-7231ea043a1d",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "d6a8e98c-8ff3-4522-b6ac-1fd7c3019a38",
+            "$typeOfContent": "text",
+            "type": "SendMessage",
+            "settings": {
+              "id": "91e91be8-99c7-48f7-ad5a-a768694a3787",
+              "type": "text/plain",
+              "content": "Em breve você nossa equipe vai atender você.\n\nAguarde alguns instantes...⏱️",
+              "metadata": {}
+            },
+            "$cardContent": {
+              "document": {
+                "id": "91e91be8-99c7-48f7-ad5a-a768694a3787",
+                "type": "text/plain",
+                "content": "Em breve você nossa equipe vai atender você.\n\nAguarde alguns instantes...⏱️"
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "b59d9b72-bca1-4f3e-b52c-c5207542c3d9",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+          "typeOfStateId": "state",
+          "$connId": "con_43",
+          "$id": "785e17e1-a3e1-44e9-98c9-86167165e3e2",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "true"
+              ],
+              "variable": "waitingTickets"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+          "typeOfStateId": "state",
+          "$connId": "con_48",
+          "$id": "9d1ea57d-32b8-475f-b5d6-3514061bfce7",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "false"
+              ],
+              "variable": "waitingTickets"
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "582cc083-ff4b-43e4-8a56-79c7ef10966d",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "transbordo inicio atendimento exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "transbordo inicio atendimento exibicao",
+            "action": "exibicao"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-71cc8925-4712-543a-feb5-058475fd59db",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "bce95b9d-28db-4c2d-beb9-8deaca4b7f92",
+      "root": false,
+      "$title": "[T.0.0.4] Atendente Disponível",
+      "$position": {
+        "top": "1115px",
+        "left": "221px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "0a5c2fb0-2409-4c7b-b66e-2cf8bb645cb2": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "62b5a087-279b-4b0e-bf14-baf72443b60f",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "b15090e5-f76b-4146-a08b-6081e8674e1c",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "b15090e5-f76b-4146-a08b-6081e8674e1c",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "acd256df-e4ae-4dca-a8c2-04ae0371d7ea",
+            "$typeOfContent": "text",
+            "type": "SendMessage",
+            "settings": {
+              "id": "70fd1d3d-2801-4189-8d0f-aa965c200680",
+              "type": "text/plain",
+              "content": "No momento todos os nossos atendentes estão ocupados...\n\nPor favor, aguarde que em breve iremos te atender! ⏱️\n\n💡 Se não quiser esperar em nossa fila, digite {{n1}}\"Sair\".{{n2}}",
+              "metadata": {}
+            },
+            "$cardContent": {
+              "document": {
+                "id": "70fd1d3d-2801-4189-8d0f-aa965c200680",
+                "type": "text/plain",
+                "content": "No momento todos os nossos atendentes estão ocupados...\n\nPor favor, aguarde que em breve iremos te atender! ⏱️\n\n💡 Se não quiser esperar em nossa fila, digite {{n1}}\"Sair\".{{n2}}"
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "b59d9b72-bca1-4f3e-b52c-c5207542c3d9",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+          "typeOfStateId": "state",
+          "$connId": "con_53",
+          "$id": "785e17e1-a3e1-44e9-98c9-86167165e3e2",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "1449df08-ee96-4475-962b-f739555801de",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "transbordo atendentes ocupados  aviso fila exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "transbordo atendentes ocupados  aviso fila exibicao",
+            "action": "Exibicao"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-71cc8925-4712-543a-feb5-058475fd59db",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "0a5c2fb0-2409-4c7b-b66e-2cf8bb645cb2",
+      "root": false,
+      "$title": "[T.0.0.3] Atendente Ocupado",
+      "$position": {
+        "top": "952px",
+        "left": "218px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "c6fde1c4-1481-4d06-ad78-0804bbf76a92": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "dbe0f7fa-9ba6-450f-89eb-d8029824743b",
+                "type": "text/plain",
+                "content": "User input"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "fd8ad553-3790-4dc0-bec4-1eb6182132b4",
+          "typeOfStateId": "state",
+          "$connId": "con_58",
+          "$id": "6e2ed3fb-25ae-4329-a337-ca9e8aa7ecf1",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "cd2a17cd-740c-4c7f-8775-69b6c6c6545e",
+          "$typeOfContent": "",
+          "type": "SetVariable",
+          "$title": "service",
+          "$invalid": false,
+          "settings": {
+            "variable": "service",
+            "value": "transbordo"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "2b94ab8e-d556-4a91-a5e5-9b181982730a",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "GET Waiting Tickets",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "{{resource.keyTransbordo}}",
+              "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "body": "{\n    \"id\": \"{{$guid}}\",\n    \"to\": \"postmaster@desk.msging.net\",\n    \"method\": \"get\",\n    \"uri\": \"/monitoring/tickets\"\n}",
+            "uri": "{{resource.urlBlip}}",
+            "responseStatusVariable": "statusWaiting",
+            "responseBodyVariable": "responseWaiting"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "8c3f9622-2714-4bd7-b121-eaaba67daf6f",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "GET Online Attendant",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "{{resource.keyTransbordo}}",
+              "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "body": "{\n   \"id\": \"{{$guid}}\",\n   \"to\": \"postmaster@desk.msging.net\",\n   \"method\": \"get\",\n   \"uri\": \"/attendants\"\n }",
+            "uri": "{{resource.urlBlip}}",
+            "responseStatusVariable": "statusOnlineAttendant",
+            "responseBodyVariable": "responseOnlineAttendant"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "90f8bd7b-7a70-438a-b450-2db844d27067",
+          "$typeOfContent": "",
+          "type": "ProcessCommand",
+          "$title": "Merge das Informações extras",
+          "$invalid": false,
+          "settings": {
+            "to": "postmaster@msging.net",
+            "method": "merge",
+            "resource": "{\r\n    \"identity\": \"{{tunnel.identity}}\",\r\n    \"source\": \"{{contact.source}}\",\r\n    \"extras\": {\r\n        \"medidas\": \"{{contact.extras.medidas}}\",\r\n        \"icebreaker_servico\": \"{{contact.extras.icebreaker_servico}}\",\r\n        \"outra_marca\": \"{{contact.extras.outra_marca}}\"\r\n    }\r\n}",
+            "type": "application/vnd.lime.contact",
+            "uri": "/contacts",
+            "variable": "statusMergeContact"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "1ae2f814-b483-4a1f-9702-2c401c23d047",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "bodyExtrasJs",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(contact, id){\n    obj = JSON.parse(contact)\n    obj.identity = id\n\n    request = {\n        \"id\": \"{{$guid}}\",\n        \"method\": \"set\",\n        \"uri\": \"/contacts\",\n        \"type\": \"application/vnd.lime.contact+json\",\n        \"resource\": obj\n    }\n    return request\n}",
+            "inputVariables": [
+              "contact.serialized",
+              "tunnel.identity"
+            ],
+            "outputVariable": "bodyExtrasJs",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        },
+        {
+          "$id": "27c0bd9c-f45d-437d-b341-b0a1b7ba199b",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "updateExtras",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "Key cG5ldXNuYWNpb25hbGx0ZGFyb3V0ZXI6SUVKcUZCV3ZzcUVvVmdFb1pBMGs=",
+              "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "body": "{{bodyExtrasJs}}",
+            "uri": "{{resource.urlBlip}}",
+            "responseStatusVariable": "statusUpdateExtras",
+            "responseBodyVariable": "responseUpdateExtras"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "fallback",
+        "$invalid": false
+      },
+      "$tags": [
+        {
+          "background": "#FF961E",
+          "label": "executeScript",
+          "id": "blip-tag-a1578857-f2c5-9986-b4db-67b36b5956a3",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF4A1E",
+          "label": "Set variable",
+          "id": "blip-tag-0b488f20-3494-a80c-e63c-d05d80fe4a4a",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF1E90",
+          "label": "HTTP Request",
+          "id": "blip-tag-5673e590-3e8b-161c-883c-12340bcae7d5",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#7762E3",
+          "label": "Set Contact",
+          "id": "blip-tag-6e13007c-716c-6d50-68aa-0efb8b4afb47",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "c6fde1c4-1481-4d06-ad78-0804bbf76a92",
+      "$title": "[REQUIREMENTS]",
+      "$position": {
+        "top": "141px",
+        "left": "388px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "backgroundColor": "#000000",
+        "textColor": "#ffffff"
+      }
+    },
+    "a4425c36-b361-4363-97cc-0bb558f88edf": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "581d2ca6-5ab2-4e38-8726-d22b30bcf23c",
+                "type": "text/plain",
+                "textContent": "User input",
+                "content": "User input"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [],
+      "$leavingCustomActions": [
+        {
+          "$id": "8735939c-ee24-45e9-ba72-24fe28e39c0d",
+          "$typeOfContent": "",
+          "type": "Redirect",
+          "$title": "[GO TO] Finalizar",
+          "$invalid": false,
+          "settings": {
+            "context": {
+              "type": "text/plain",
+              "value": "finalizacao"
+            },
+            "address": "{{resource.serviceList@finalizacao}}"
+          },
+          "conditions": []
+        }
+      ],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "onboarding",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [
+        {
+          "background": "#0A6045",
+          "label": "REDIRECT TO",
+          "id": "blip-tag-180bb99d-115a-1424-84e0-1190407e09c0",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "a4425c36-b361-4363-97cc-0bb558f88edf",
+      "root": false,
+      "$title": "[REDIRECT TO] Finalizar",
+      "$position": {
+        "top": "260px",
+        "left": "1606px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "backgroundColor": "#c8e6c9",
+        "textColor": "#000000"
+      }
+    },
+    "0a53ade3-d1bb-4793-9cf6-0055bf68ab2a": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "f4a76ec3-f892-4cad-ad43-60297c09eb7b",
+                "type": "text/plain",
+                "content": "User input"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [],
+      "$leavingCustomActions": [
+        {
+          "$id": "3fb7ef00-299c-4276-8405-acb5cf3a78a4",
+          "$typeOfContent": "",
+          "type": "Redirect",
+          "$title": "[GO TO] Exceções",
+          "$invalid": false,
+          "settings": {
+            "context": {
+              "type": "text/plain",
+              "value": "{{exception}}"
+            },
+            "address": "{{resource.serviceList@excecao}}"
+          },
+          "conditions": []
+        }
+      ],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "onboarding",
+        "$invalid": false
+      },
+      "$tags": [
+        {
+          "background": "#0A6045",
+          "label": "REDIRECT TO",
+          "id": "blip-tag-180bb99d-115a-1424-84e0-1190407e09c0",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "0a53ade3-d1bb-4793-9cf6-0055bf68ab2a",
+      "$title": "[REDIRECT TO] Exceções",
+      "$position": {
+        "top": "15px",
+        "left": "1606px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "backgroundColor": "#c8e6c9",
+        "textColor": "#000000"
+      }
+    },
+    "9246bdf4-fb98-49ff-a094-db97fd381a1e": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "77651b7b-346e-4277-8d19-4cfa5f84b06b",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "addd8fd2-1f30-4774-96b8-17dc3bdf2eda",
+          "typeOfStateId": "state",
+          "$connId": "con_63",
+          "$id": "8feb250b-faeb-4d97-a770-7720ce20d851",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "32b48d03-32d0-4f5b-94a8-1a10c85edd16",
+          "type": "ExecuteScript",
+          "$title": "Get agentIdentity",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "\nfunction run(input) {\n    let ticketData = JSON.parse(input);\n    return encodeURI(ticketData.agentIdentity);\n}\n",
+            "inputVariables": [
+              "input.content"
+            ],
+            "outputVariable": "agentIdentity",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        },
+        {
+          "$id": "ff1d7797-15b2-4904-8366-88e29ace31c7",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "Agent Data",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "{{resource.keyTransbordo}}",
+              "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "body": "{\n  \"id\": \"db42d9df-a77e-42cf-9e17-9d97213eda47\",\n  \"to\": \"postmaster@desk.msging.net\",\n  \"method\": \"get\",\n  \"uri\": \"/attendants?$filter=(identity%20eq%20'{{agentidentity}}')\"\n}",
+            "uri": "{{resource.urlBlip}}",
+            "responseStatusVariable": "statusAgentData",
+            "responseBodyVariable": "agentData"
+          },
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "exists",
+              "values": [],
+              "variable": "agentIdentity"
+            }
+          ]
+        },
+        {
+          "$id": "7994a4ad-c51e-4e4b-944d-9730de6d4f67",
+          "type": "ExecuteScript",
+          "$title": "Get agentName",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(input) {\n    try{\n        let agenteId = JSON.parse(input);\n        return agenteId.resource.items[0].fullName;\n    } \n    catch(e)\n    {\n        return \"\";\n    }\n}",
+            "inputVariables": [
+              "agentData"
+            ],
+            "outputVariable": "agentName",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        },
+        {
+          "$id": "c6413aa4-9998-44d3-b5c0-b07e21389031",
+          "$typeOfContent": "",
+          "type": "SetVariable",
+          "$title": "Ticket ID",
+          "$invalid": false,
+          "settings": {
+            "variable": "ticket",
+            "value": "{{input.content@sequentialId}}"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "6a0e22b4-b0b7-4f14-bcc9-ff09055cfdc0",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "Tag Atendimento",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(inputContent) {\n\n    inputContent = JSON.parse(inputContent)\n\n    if (inputContent.hasOwnProperty(\"tags\")) {\n        let tags = inputContent.tags;\n        return JSON.stringify(tags)\n    } else {\n        return \"[]\"\n    }\n}",
+            "inputVariables": [
+              "input.content"
+            ],
+            "outputVariable": "tagatendimento",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "$invalid": false,
+        "typeOfStateId": "state",
+        "stateId": "addd8fd2-1f30-4774-96b8-17dc3bdf2eda"
+      },
+      "$tags": [
+        {
+          "background": "#FF961E",
+          "label": "ExecuteScript",
+          "id": "blip-tag-d2974ed4-d8d9-0d87-6153-fbed3205d146",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF1E90",
+          "label": "HTTP Request",
+          "id": "blip-tag-5673e590-3e8b-161c-883c-12340bcae7d5",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "9246bdf4-fb98-49ff-a094-db97fd381a1e",
+      "root": false,
+      "$title": "Informação Atendimento",
+      "$position": {
+        "top": "1263.75px",
+        "left": "688px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "invalidOutputs": true,
+      "addonsSettings": {
+        "backgroundColor": "#f06292",
+        "textColor": "#000000"
+      }
+    },
+    "addd8fd2-1f30-4774-96b8-17dc3bdf2eda": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "33dc68fc-4b13-40c2-b0b5-7db20015574f",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "bd9ec309-499c-4ca6-a5f2-beeef3796bdd",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "bd9ec309-499c-4ca6-a5f2-beeef3796bdd",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "2951ab09-7a7b-4f02-b593-6235e5708e47",
+            "$typeOfContent": "text",
+            "type": "SendMessage",
+            "settings": {
+              "id": "13b6d242-d5d8-422e-a5a1-8750dd4a837d",
+              "type": "text/plain",
+              "content": "Atendimento encerrado! ✅",
+              "metadata": {}
+            },
+            "$cardContent": {
+              "document": {
+                "id": "13b6d242-d5d8-422e-a5a1-8750dd4a837d",
+                "type": "text/plain",
+                "content": "Atendimento encerrado! ✅"
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "1fc232be-dfa0-4ecb-a3f8-614ccf9bf9e8",
+                "type": "text/plain",
+                "textContent": "User input",
+                "content": "User input"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [
+        {
+          "$id": "6572f8d0-8d43-470b-a338-4948260da6ba",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "atendimento finalizado exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "atendimento finalizado exibicao",
+            "action": "exibicao"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "4e3ba2da-5ee6-4d99-b15e-47e08b028d1e",
+          "$typeOfContent": "",
+          "type": "SetVariable",
+          "$title": "tipoAtendimento",
+          "$invalid": false,
+          "settings": {
+            "variable": "tipoAtendimento",
+            "value": "humano"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "ea376d2d-7e6e-45e3-b5b3-3c0d713e7b11",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-71cc8925-4712-543a-feb5-058475fd59db",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF4A1E",
+          "label": "Set variable",
+          "id": "blip-tag-0b488f20-3494-a80c-e63c-d05d80fe4a4a",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "addd8fd2-1f30-4774-96b8-17dc3bdf2eda",
+      "root": false,
+      "$title": "[T.0.0.5] Atendimento Encerrado",
+      "$position": {
+        "top": "1409px",
+        "left": "690px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "fd8ad553-3790-4dc0-bec4-1eb6182132b4": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "a07fe793-cf61-4a92-b008-4c6f38857068",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "b961db46-c84c-4794-9ca5-217d1cf7ac66",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "b961db46-c84c-4794-9ca5-217d1cf7ac66",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "327fb08d-8a5f-40c9-a706-2074513f96f7",
+            "$typeOfContent": "text",
+            "type": "SendMessage",
+            "settings": {
+              "id": "c9044315-0e6a-4126-90a2-119a21624d43",
+              "type": "text/plain",
+              "content": "Estou verificando se nossos atendentes estão disponíveis...⏱️",
+              "metadata": {}
+            },
+            "$cardContent": {
+              "document": {
+                "id": "c9044315-0e6a-4126-90a2-119a21624d43",
+                "type": "text/plain",
+                "content": "Estou verificando se nossos atendentes estão disponíveis...⏱️"
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "2a07a4d7-0658-43a2-a65f-2f6649fb7f5d",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "41e85b71-e35d-4cf8-91a6-85f8f9e22db4",
+          "typeOfStateId": "state",
+          "$connId": "con_68",
+          "$id": "64019d8f-12a2-468f-bc6f-18ba1ab5ae38",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "true"
+              ],
+              "variable": "holidayAndOpeningHours@isHoliday"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "ae371e0c-ae9e-43ff-9f41-8b091c61487f",
+          "typeOfStateId": "state",
+          "$connId": "con_73",
+          "$id": "37cead16-ee63-48d0-891d-e603ee4ea9ff",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "false"
+              ],
+              "variable": "holidayAndOpeningHours@isHoliday"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "0a5c2fb0-2409-4c7b-b66e-2cf8bb645cb2",
+          "typeOfStateId": "state",
+          "$connId": "con_78",
+          "$id": "daebba73-1ab4-46d3-a3fc-bf90331972ac",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "5c94d8d7-6d51-4144-97ff-32ed125c6b9a",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "mensagem verificacao transbordo exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "mensagem verificacao transbordo exibicao",
+            "action": "exibicao"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "e404df98-91ee-4797-9b2e-bf94698ba1a0",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "holidayAndOpeningHours",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(holiday, workTime) {\n\ttry {\n\t\t// ===============  CONFIG  ===============\n\t\tconst holidayJS = JSON.parse(holiday)\n\t\tconst workTimeJS = JSON.parse(workTime)\n\n\t\t// Obtém a data atual no formato MM-DD\t\t\n\t\tconst date = `${new Date().getMonth() + 1}-${new Date().getDate()}`\n\t\t// Obtém a data atual no formato DD/MM/YYYY\n\t\tconst currentLocaleDate = `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`\n\n\t\t// Dia da semana\n\t\tconst weekdaysNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']\n\t\tconst weekdays = new Date().getDay() // Sunday - Saturday : 0 - 6 \n\t\tconst currentWeekdayName = weekdaysNames[weekdays]\n\n\t\t// Hora\n\t\tconst hour = getHours()\n\t\tconst minutes = getMinutes();\n\t\tlet time = `${hour}${minutes}`\n\t\ttime = parseInt(time)\n\t\tconst currentLocaleHour = `${hour}:${minutes}`\n\n\t\t// Cria objeto de retorno\n\t\tlet validation = {\n\t\t\tisHoliday: false,\n\t\t\tisOpeningHours: true,\n\t\t\tcurrentLocaleDate: currentLocaleDate,\n\t\t\tcurrentLocaleHour: currentLocaleHour,\n\t\t\tcurrentWeekdayName: currentWeekdayName\n\t\t}\n\n\t\t/// =============== VALIDA FERIADO ===============\n\t\tfor (let i = 0; i < holidayJS.length; i++) {\n\t\t\tif (holidayJS[i] == date) {\n\t\t\t\tvalidation.isHoliday = true\n\t\t\t}\n\t\t}\n\n\t\t/// =============== VALIDA HORÁRIO ===============\n\t\tfor (let i = 0; i < workTimeJS.weekdays.length; i++) {\n\n\t\t\tlet hourStart = parseInt(workTimeJS.weekdays[i].hourStart)\n\t\t\tlet hourEnd = parseInt(workTimeJS.weekdays[i].hourEnd)\n\t\t\tif (time < hourStart || time > hourEnd) {\n\t\t\t\tvalidation.isOpeningHours = false\n\t\t\t}\n\n\t\t}\n\n\t\treturn JSON.stringify(validation)\n\t}\n\tcatch (e) {\n\t\treturn 'ERROR: SCRIPT FAILURE'\n\t}\n}\n\n// FUNÇÕES AUXILIARES\nfunction getMinutes() {\n\tlet minutes = new Date().getMinutes();\n\tminutes = parseInt(minutes)\n\tif (minutes <= 9) {\n\t\treturn \"0\" + minutes.toString();\n\t} else {\n\t\treturn minutes.toString();\n\t}\n}\n\nfunction getHours() {\n\tlet hour = new Date().getHours();\n\thour = parseInt(hour)\n\tif (hour <= 9) {\n\t\treturn \"0\" + hour.toString();\n\t} else {\n\t\treturn hour.toString();\n\t}\n}\n",
+            "inputVariables": [
+              "resource.holiday",
+              "resource.workTime"
+            ],
+            "outputVariable": "holidayAndOpeningHours",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        },
+        {
+          "$id": "3054c8e1-4331-4740-bb64-fc535400f385",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "waitingTickets",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(response) {\n    try {\n        response = JSON.parse(response)\n        let waiting = response.resource.waiting\n\n        if (waiting == 0) {\n            return false\n        }\n\n        return true\n    }\n    catch (e) {\n        return 'error'\n    }\n}",
+            "inputVariables": [
+              "responseWaiting"
+            ],
+            "outputVariable": "waitingTickets",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        },
+        {
+          "$id": "b1d8326e-6f87-478d-a70c-af926db522fb",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "onlineAttendant",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(response) {\n    try {\n        response = JSON.parse(response)\n        let attendant = response.resource.items\n\n        for (let i = 0; i < attendant.length; i++) {\n            if (attendant[i].status == \"Online\") {\n                return true\n            }\n        }\n\n        return false\n    }\n    catch (e) {\n        return 'error'\n    }\n\n}",
+            "inputVariables": [
+              "responseOnlineAttendant"
+            ],
+            "outputVariable": "onlineAttendant",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "0a5c2fb0-2409-4c7b-b66e-2cf8bb645cb2",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-71cc8925-4712-543a-feb5-058475fd59db",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF961E",
+          "label": "executeScript",
+          "id": "blip-tag-a1578857-f2c5-9986-b4db-67b36b5956a3",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "fd8ad553-3790-4dc0-bec4-1eb6182132b4",
+      "root": false,
+      "$title": "[T.0.0.0] Verifica Feriado, Horário e Atendente",
+      "$position": {
+        "top": "251px",
+        "left": "390px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "aa1df4ca-9aab-4214-9e5a-b91015f89950": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "610908fc-1f20-4b53-a694-97772644eecc",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "3cb96e72-49d9-4ad5-bbd6-aea9281abf07",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "3cb96e72-49d9-4ad5-bbd6-aea9281abf07",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "cf44fcf6-ac57-4a93-9ce6-0ecb99b94edf",
+            "$typeOfContent": "text",
+            "type": "SendMessage",
+            "settings": {
+              "id": "4a75973e-82eb-45ce-b09e-40b9d59fbd97",
+              "type": "text/plain",
+              "content": "Poxa, {{n1}}nossos atendentes não estão disponíveis.{{n2}}\n\nEste é nosso horário de atendimento:\n\n🗓️ Segunda a sexta\n🕙 08h00 às 17h00\n\n🗓️ Sábados\n🕙 08h00 às 12h00",
+              "metadata": {}
+            },
+            "$cardContent": {
+              "document": {
+                "id": "4a75973e-82eb-45ce-b09e-40b9d59fbd97",
+                "type": "text/plain",
+                "content": "Poxa, {{n1}}nossos atendentes não estão disponíveis.{{n2}}\n\nEste é nosso horário de atendimento:\n\n🗓️ Segunda a sexta\n🕙 08h00 às 17h00\n\n🗓️ Sábados\n🕙 08h00 às 12h00"
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "6b5a8cf9-99a9-42d9-8ac2-816ae755c240",
+                "type": "text/plain",
+                "textContent": "User input",
+                "content": "User input"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false,
+            "expiration": "0:30"
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "808e71c2-aa0c-4969-8fcc-cb0491a7a53c",
+          "typeOfStateId": "state",
+          "$connId": "con_83",
+          "$id": "10903bcf-ccfc-4a30-844c-8505be6fcf70",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "25ca7336-0578-4523-adc9-82d66c021f9e",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "transbordo fora horario atendimento exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "transbordo fora horario atendimento exibicao",
+            "action": "Exibicao"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "808e71c2-aa0c-4969-8fcc-cb0491a7a53c",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-71cc8925-4712-543a-feb5-058475fd59db",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "aa1df4ca-9aab-4214-9e5a-b91015f89950",
+      "root": false,
+      "$title": "[T.0.0.1] Fora de Horário",
+      "$position": {
+        "top": "813px",
+        "left": "216px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "427e4798-f475-4a5d-ac9b-2755c6687d01": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "dbe0f7fa-9ba6-450f-89eb-d8029824743b",
+                "type": "text/plain",
+                "content": "User input"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [
+        {
+          "$id": "cd2a17cd-740c-4c7f-8775-69b6c6c6545e",
+          "$typeOfContent": "",
+          "type": "SetVariable",
+          "$title": "service",
+          "$invalid": false,
+          "settings": {
+            "variable": "service",
+            "value": "sactransbordo"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "8d8cbd18-d687-4b88-b8eb-f501c9ec5d86",
+          "$typeOfContent": "",
+          "type": "SetVariable",
+          "$title": "team - outros assuntos",
+          "$invalid": false,
+          "settings": {
+            "variable": "team"
+          },
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "notExists",
+              "values": [],
+              "variable": "team"
+            },
+            {
+              "source": "context",
+              "comparison": "equals",
+              "variable": "team",
+              "values": [
+                "Outros Assuntos"
+              ]
+            }
+          ]
+        },
+        {
+          "$id": "55a837f9-800b-4b75-9d66-3c2a35d7aa41",
+          "$typeOfContent": "",
+          "type": "MergeContact",
+          "$title": "Set contact",
+          "$invalid": false,
+          "settings": {
+            "extras": {
+              "team": "{{team}}",
+              "nome": "{{nomeCompleto}}",
+              "telefone": "{{phone}}"
+            }
+          },
+          "conditions": []
+        },
+        {
+          "$id": "491401ee-410f-4309-ba51-37c6309634e8",
+          "$typeOfContent": "",
+          "type": "ProcessCommand",
+          "$title": "Merge das Informações extras",
+          "$invalid": false,
+          "settings": {
+            "to": "postmaster@msging.net",
+            "method": "merge",
+            "resource": "{\"identity\":\"{{tunnel.identity}}\",\"source\":\"{{contact.source}}\",\"extras\":{\"team\":\"{{team}}\",\"nome\":\"{{nome}}\",\"Telefone\":\"{{telefone}}\"}}",
+            "type": "application/vnd.lime.contact",
+            "uri": "/contacts",
+            "variable": "statusMergeContact"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "ab9663cb-fa6f-4a6b-9264-ec2ead9cc485",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "bodyExtrasJs",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(contact, id){\n    obj = JSON.parse(contact)\n    obj.identity = id\n\n    request = {\n        \"id\": \"{{$guid}}\",\n        \"method\": \"set\",\n        \"uri\": \"/contacts\",\n        \"type\": \"application/vnd.lime.contact+json\",\n        \"resource\": obj\n    }\n    return request\n}",
+            "inputVariables": [
+              "contact.serialized",
+              "tunnel.identity"
+            ],
+            "outputVariable": "bodyExtrasJs",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        },
+        {
+          "$id": "da6ae3dd-a400-4051-9a62-0c693a67fc70",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "updateExtras",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "{{config.token}}",
+              "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "body": "{{bodyExtrasJs}}",
+            "uri": "{{config.urlBlip}}",
+            "responseStatusVariable": "statusUpdateExtras",
+            "responseBodyVariable": "responseUpdateExtras"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "2b94ab8e-d556-4a91-a5e5-9b181982730a",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "GET Waiting Tickets",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "{{config.token}}",
+              "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "body": "{\n    \"id\": \"{{$guid}}\",\n    \"to\": \"postmaster@desk.msging.net\",\n    \"method\": \"get\",\n    \"uri\": \"/monitoring/tickets\"\n}",
+            "uri": "{{config.urlBlip}}",
+            "responseStatusVariable": "statusWaiting",
+            "responseBodyVariable": "responseWaiting"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "8c3f9622-2714-4bd7-b121-eaaba67daf6f",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "GET Online Attendant",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "{{config.token}}",
+              "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "body": "{\n   \"id\": \"{{$guid}}\",\n   \"to\": \"postmaster@desk.msging.net\",\n   \"method\": \"get\",\n   \"uri\": \"/attendants\"\n }",
+            "uri": "{{config.urlBlip}}",
+            "responseStatusVariable": "statusOnlineAttendant",
+            "responseBodyVariable": "responseOnlineAttendant"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "fallback",
+        "$invalid": false
+      },
+      "$tags": [
+        {
+          "background": "#FF961E",
+          "label": "executeScript",
+          "id": "blip-tag-a1578857-f2c5-9986-b4db-67b36b5956a3",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF4A1E",
+          "label": "Set variable",
+          "id": "blip-tag-0b488f20-3494-a80c-e63c-d05d80fe4a4a",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF1E90",
+          "label": "HTTP Request",
+          "id": "blip-tag-5673e590-3e8b-161c-883c-12340bcae7d5",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#7762E3",
+          "label": "Set Contact",
+          "id": "blip-tag-6e13007c-716c-6d50-68aa-0efb8b4afb47",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "427e4798-f475-4a5d-ac9b-2755c6687d01",
+      "$title": "[REQUIREMENTS] [EXTRAS UPDATE]",
+      "$position": {
+        "top": "81px",
+        "left": "685px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "backgroundColor": "#000000",
+        "textColor": "#ffffff",
+        "commentsIdList": []
+      }
+    },
+    "a6b43e82-4018-4aa0-b74f-366f84ed82f4": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "c64af724-3e92-4164-bccc-d244039494c3",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [
+        {
+          "$id": "5657d048-1dee-49e7-bf71-cd0e5993610f",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "Disparo de Email",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "{{config.token}}"
+            },
+            "method": "POST",
+            "body": "{\n   \"to\":\"b%40c.com@mailgun.gw.msging.net\",\n   \"type\":\"text/plain\",\n   \"content\":\"Cadastro de pessoa com deficiência/limitação registrado!\\n\\n Nome: {{nomeCompleto}} | CPF: {{cpf}} | Telefone: {{telefone}} | Email: {{email}} (opicional)\"\n}",
+            "uri": "https://http.msging.net/messages",
+            "responseStatusVariable": "statusEmail",
+            "responseBodyVariable": "responseEmail"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "onboarding",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [],
+      "id": "a6b43e82-4018-4aa0-b74f-366f84ed82f4",
+      "root": false,
+      "$title": "Envio de Email",
+      "$position": {
+        "top": "-8px",
+        "left": "1870.5px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "backgroundColor": "#f06292",
+        "textColor": "#000000",
+        "commentsIdList": []
+      }
+    },
+    "41e85b71-e35d-4cf8-91a6-85f8f9e22db4": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "de57695b-3b37-4831-bcdf-d918fd617511",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "4292f6f1-604f-4722-af36-e31ed3e362ce",
+          "typeOfStateId": "state",
+          "$connId": "con_88",
+          "$id": "70105f83-6f48-4a12-843d-f7a5d1e4e188",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "Quinta",
+                "Sexta"
+              ],
+              "variable": "holidayAndOpeningHours@currentWeekdayName"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "c78aaa91-4132-4a43-a0b5-9988343b8fe6",
+          "typeOfStateId": "state",
+          "$connId": "con_93",
+          "$id": "a3c67732-033a-4097-9a5a-b398ec5c3871",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "fallback",
+        "$invalid": false
+      },
+      "isAiGenerated": false,
+      "$tags": [],
+      "id": "41e85b71-e35d-4cf8-91a6-85f8f9e22db4",
+      "root": false,
+      "$title": "Feriado [SIM] - Validação de Feriado",
+      "$position": {
+        "top": "464px",
+        "left": "582px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "shape": "50% 0 50% 0",
+        "backgroundColor": "#ffb74d",
+        "textColor": "#000000"
+      }
+    },
+    "ae371e0c-ae9e-43ff-9f41-8b091c61487f": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "d91b44da-c5ba-45b9-921e-86ce77846266",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "4aaa8611-4a55-41d9-809d-e570e249e8bd",
+          "typeOfStateId": "state",
+          "$connId": "con_98",
+          "$id": "7fb4da32-2431-4378-9155-4c569d4d059d",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "Domingo"
+              ],
+              "variable": "holidayAndOpeningHours@currentWeekdayName"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "b07dfe88-54d2-428a-8b25-95cd9f84e28c",
+          "typeOfStateId": "state",
+          "$connId": "con_103",
+          "$id": "a1ccce4b-64dc-4196-bef4-deba4f85f909",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "Sábado"
+              ],
+              "variable": "holidayAndOpeningHours@currentWeekdayName"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "aa1df4ca-9aab-4214-9e5a-b91015f89950",
+          "typeOfStateId": "state",
+          "$connId": "con_108",
+          "$id": "134bffef-4a8c-4c97-9690-132d62a0fae6",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "false"
+              ],
+              "variable": "holidayAndOpeningHours@isOpeningHours"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "bce95b9d-28db-4c2d-beb9-8deaca4b7f92",
+          "typeOfStateId": "state",
+          "$connId": "con_113",
+          "$id": "223adddd-238c-4317-be38-616520ddb45b",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "true"
+              ],
+              "variable": "holidayAndOpeningHours@isOpeningHours"
+            },
+            {
+              "values": [
+                "true"
+              ],
+              "source": "context",
+              "comparison": "equals",
+              "variable": "onlineAttendant"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "0a5c2fb0-2409-4c7b-b66e-2cf8bb645cb2",
+          "typeOfStateId": "state",
+          "$connId": "con_118",
+          "$id": "eb6c5cb6-7e75-4e84-9fd7-f4af81ac09e5",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "false"
+              ],
+              "variable": "onlineAttendant"
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "fallback",
+        "$invalid": false
+      },
+      "isAiGenerated": false,
+      "$tags": [],
+      "id": "ae371e0c-ae9e-43ff-9f41-8b091c61487f",
+      "root": false,
+      "$title": "Feriado [NÃO] - Valida Horário de Atendimento",
+      "$position": {
+        "top": "452px",
+        "left": "209px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "shape": "0 50% 0 50%",
+        "backgroundColor": "#bbdefb",
+        "textColor": "#000000"
+      }
+    },
+    "4292f6f1-604f-4722-af36-e31ed3e362ce": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "417e940d-a3a9-4040-884a-dd1449e2dbe6",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "0b92ffaa-11a7-4775-8495-30283ab5206a",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "0b92ffaa-11a7-4775-8495-30283ab5206a",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "05c97fe3-49a8-4317-bb0f-272ea88f8a29",
+            "$typeOfContent": "text",
+            "type": "SendMessage",
+            "settings": {
+              "id": "6411f288-8395-476d-ab44-77e81a73ed1d",
+              "type": "text/plain",
+              "content": "Desculpe, {{n1}}nossos atendentes não estão disponíveis.{{n2}}\n\nPor favor, volte a nos procurar durante o horário de atendimento:\n\n🗓️ Segunda a sexta\n🕙 08h00 às 17h00\n\n🗓️ Sábados\n🕙 08h00 às 12h00",
+              "metadata": {}
+            },
+            "$cardContent": {
+              "document": {
+                "id": "6411f288-8395-476d-ab44-77e81a73ed1d",
+                "type": "text/plain",
+                "content": "Desculpe, {{n1}}nossos atendentes não estão disponíveis.{{n2}}\n\nPor favor, volte a nos procurar durante o horário de atendimento:\n\n🗓️ Segunda a sexta\n🕙 08h00 às 17h00\n\n🗓️ Sábados\n🕙 08h00 às 12h00"
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "e1b57379-e82a-4719-82d6-47e701fe331c",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [
+        {
+          "$id": "4d4956f7-7fa7-4b22-bed6-6c415d6879ad",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "transbordo feriado prolongado exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "transbordo feriado prolongado exibicao",
+            "action": "exibicao"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "a4425c36-b361-4363-97cc-0bb558f88edf",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "isAiGenerated": false,
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-71cc8925-4712-543a-feb5-058475fd59db",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "4292f6f1-604f-4722-af36-e31ed3e362ce",
+      "root": false,
+      "$title": "[T.0.0.7] Feriado [SIM] - Quinta e Sexta",
+      "$position": {
+        "top": "766px",
+        "left": "581px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "c78aaa91-4132-4a43-a0b5-9988343b8fe6": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "70a7f85b-56fd-477b-b31f-427cd12986a9",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "d4d11688-a4d3-4cc1-bf99-2ec617bd39de",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "d4d11688-a4d3-4cc1-bf99-2ec617bd39de",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "092fbe8c-cf9d-4a7a-ba6d-0ab5a027f56c",
+            "$typeOfContent": "text",
+            "type": "SendMessage",
+            "settings": {
+              "id": "18c68bc7-5e83-43b9-b776-90371f62adf2",
+              "type": "text/plain",
+              "content": "Poxa, hoje {{n1}}nossos atendentes não estão disponíveis.{{n2}}\n\nEste é nosso horário de atendimento:\n\n🗓️ Segunda a sexta\n🕙 08h00 às 17h00\n\n🗓️ Sábados\n🕙 08h00 às 12h00",
+              "metadata": {}
+            },
+            "$cardContent": {
+              "document": {
+                "id": "18c68bc7-5e83-43b9-b776-90371f62adf2",
+                "type": "text/plain",
+                "content": "Poxa, hoje {{n1}}nossos atendentes não estão disponíveis.{{n2}}\n\nEste é nosso horário de atendimento:\n\n🗓️ Segunda a sexta\n🕙 08h00 às 17h00\n\n🗓️ Sábados\n🕙 08h00 às 12h00"
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "0439d194-725d-4f26-9788-c4d3ea9d08c3",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "5b4ff152-62fa-48f2-a020-82e69c43d074",
+          "typeOfStateId": "state",
+          "$connId": "con_123",
+          "$id": "5bde93be-3e3a-4dec-b7ce-12ef416df7c7",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "d0bc6e5a-7ff0-43a3-9236-82c896ee3a75",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "transbordo domingo feriado exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "transbordo domingo feriado exibicao",
+            "action": "exibicao"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "fallback",
+        "$invalid": false
+      },
+      "isAiGenerated": false,
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-71cc8925-4712-543a-feb5-058475fd59db",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "c78aaa91-4132-4a43-a0b5-9988343b8fe6",
+      "root": false,
+      "$title": "[T.0.0.8] Feriado [SIM] - Demais dias",
+      "$position": {
+        "top": "605px",
+        "left": "581px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "4aaa8611-4a55-41d9-809d-e570e249e8bd": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "32e2dbec-3f18-48a2-b7c6-d456e05a208e",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "c78aaa91-4132-4a43-a0b5-9988343b8fe6",
+          "typeOfStateId": "state",
+          "$connId": "con_128",
+          "$id": "5f22e1da-6ef0-4ca7-8c59-d881bfce6174",
+          "conditions": [
+            {
+              "source": "input",
+              "comparison": "exists",
+              "values": []
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "c78aaa91-4132-4a43-a0b5-9988343b8fe6",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "isAiGenerated": false,
+      "$tags": [],
+      "id": "4aaa8611-4a55-41d9-809d-e570e249e8bd",
+      "root": false,
+      "$title": "Domingo",
+      "$position": {
+        "top": "623px",
+        "left": "212px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "b07dfe88-54d2-428a-8b25-95cd9f84e28c": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "56244d3a-2481-43f1-b864-b4e9f2a0decc",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "bce95b9d-28db-4c2d-beb9-8deaca4b7f92",
+          "typeOfStateId": "state",
+          "$connId": "con_133",
+          "$id": "8cc928f2-b4f4-4178-a1f3-635efd9018e4",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "true"
+              ],
+              "variable": "holidayAndOpeningHours@isOpeningHours"
+            },
+            {
+              "values": [
+                "true"
+              ],
+              "source": "context",
+              "comparison": "equals",
+              "variable": "onlineAttendant"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "0a5c2fb0-2409-4c7b-b66e-2cf8bb645cb2",
+          "typeOfStateId": "state",
+          "$connId": "con_138",
+          "$id": "d722ff96-ce03-416c-940e-75d77d6dc4c9",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "true"
+              ],
+              "variable": "holidayAndOpeningHours@isOpeningHours"
+            },
+            {
+              "values": [
+                "false"
+              ],
+              "source": "context",
+              "comparison": "equals",
+              "variable": "onlineAttendant"
+            }
+          ],
+          "$invalid": false
+        },
+        {
+          "stateId": "4292f6f1-604f-4722-af36-e31ed3e362ce",
+          "typeOfStateId": "state",
+          "$connId": "con_143",
+          "$id": "2b6f01c7-8d64-4c45-9da1-c842737bc9c9",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "false"
+              ],
+              "variable": "holidayAndOpeningHours@isOpeningHours"
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "fallback",
+        "$invalid": false
+      },
+      "isAiGenerated": false,
+      "$tags": [],
+      "id": "b07dfe88-54d2-428a-8b25-95cd9f84e28c",
+      "root": false,
+      "$title": "Sábado",
+      "$position": {
+        "top": "716px",
+        "left": "215px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "5b4ff152-62fa-48f2-a020-82e69c43d074": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "2933036f-15b3-4e56-9b35-b2fbb5c1a4aa",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "4df0d084-be7c-4c60-876d-d3c691ec3c9a",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "4df0d084-be7c-4c60-876d-d3c691ec3c9a",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "c221b1ad-6843-4ae7-a1f8-aefb0970f8be",
+            "$typeOfContent": "text",
+            "type": "SendMessage",
+            "settings": {
+              "id": "b4539007-502a-4010-adf2-95a9d71563f3",
+              "type": "text/plain",
+              "content": "Assim que voltarmos, um de nossos atendentes irá te responder por aqui. 😉\n\n💡 Se não quiser esperar em nossa fila, digite {{n1}}\"Sair\".{{n2}}",
+              "metadata": {}
+            },
+            "$cardContent": {
+              "document": {
+                "id": "b4539007-502a-4010-adf2-95a9d71563f3",
+                "type": "text/plain",
+                "content": "Assim que voltarmos, um de nossos atendentes irá te responder por aqui. 😉\n\n💡 Se não quiser esperar em nossa fila, digite {{n1}}\"Sair\".{{n2}}"
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "2adab09f-1ba6-45f7-984b-cca0ef633d83",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [
+        {
+          "$id": "7072b34a-3903-41de-8e36-56c348e6af82",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "transbordo domingo feriado aviso fila exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "transbordo domingo feriado aviso fila exibicao",
+            "action": "exibicao"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "isAiGenerated": false,
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-71cc8925-4712-543a-feb5-058475fd59db",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "5b4ff152-62fa-48f2-a020-82e69c43d074",
+      "root": false,
+      "$title": "[T.0.0.9] Aviso Fila Feriado e Domingo",
+      "$position": {
+        "top": "604.75px",
+        "left": "793px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "808e71c2-aa0c-4969-8fcc-cb0491a7a53c": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "2933036f-15b3-4e56-9b35-b2fbb5c1a4aa",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "4df0d084-be7c-4c60-876d-d3c691ec3c9a",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "4df0d084-be7c-4c60-876d-d3c691ec3c9a",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "c221b1ad-6843-4ae7-a1f8-aefb0970f8be",
+            "$typeOfContent": "text",
+            "type": "SendMessage",
+            "settings": {
+              "id": "b4539007-502a-4010-adf2-95a9d71563f3",
+              "type": "text/plain",
+              "content": "Assim que voltarmos, um de nossos atendentes irá te responder por aqui. 😉\n\n💡 Se não quiser esperar em nossa fila, digite {{n1}}\"Sair\".{{n2}}",
+              "metadata": {}
+            },
+            "$cardContent": {
+              "document": {
+                "id": "b4539007-502a-4010-adf2-95a9d71563f3",
+                "type": "text/plain",
+                "content": "Assim que voltarmos, um de nossos atendentes irá te responder por aqui. 😉\n\n💡 Se não quiser esperar em nossa fila, digite {{n1}}\"Sair\".{{n2}}"
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "2adab09f-1ba6-45f7-984b-cca0ef633d83",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [
+        {
+          "$id": "7072b34a-3903-41de-8e36-56c348e6af82",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "transbordo fora horario atendimento aviso fila exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "transbordo fora horario atendimento aviso fila exibicao",
+            "action": "exibicao"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "isAiGenerated": false,
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-71cc8925-4712-543a-feb5-058475fd59db",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "808e71c2-aa0c-4969-8fcc-cb0491a7a53c",
+      "root": false,
+      "$title": "[T.0.0.2] Aviso Fila Fora de Horário",
+      "$position": {
+        "top": "813.25px",
+        "left": "0px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "4ca10337-bc34-45cd-81ba-bd9db027c75b": {
+      "$contentActions": [
+        {
+          "action": {
+            "$id": "b26420b7-2be2-4dc0-8164-94bcb715789e",
+            "$typeOfContent": "chat-state",
+            "type": "SendMessage",
+            "settings": {
+              "id": "43f8460c-067a-4ee6-8427-9fb9cf0f1882",
+              "type": "application/vnd.lime.chatstate+json",
+              "content": {
+                "state": "composing",
+                "interval": 1000
+              }
+            },
+            "$cardContent": {
+              "document": {
+                "id": "43f8460c-067a-4ee6-8427-9fb9cf0f1882",
+                "type": "application/vnd.lime.chatstate+json",
+                "content": {
+                  "state": "composing",
+                  "interval": 1000
+                }
+              },
+              "editable": true,
+              "deletable": true,
+              "position": "left"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "action": {
+            "$id": "b5a6f654-d2d1-4e03-b68a-1f821b914c28",
+            "$typeOfContent": "raw-content",
+            "type": "SendRawMessage",
+            "settings": {
+              "metadata": {},
+              "type": "{{objMenu@type}}",
+              "rawContent": "{{contentJs}}"
+            }
+          },
+          "$invalid": false
+        },
+        {
+          "input": {
+            "bypass": false,
+            "$cardContent": {
+              "document": {
+                "id": "be996d59-606a-485c-bd73-cb31970b6f66",
+                "type": "text/plain",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false,
+            "expiration": "1:0"
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "desk:b69ef3a2-9983-48f8-9d40-16bad478a460",
+          "typeOfStateId": "state",
+          "$connId": "con_148",
+          "$id": "39ddbab4-9501-408a-8d34-433c6fc0fa6f",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "Continuar na fila"
+              ],
+              "variable": "validInputJs@input"
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "0af07bf9-f694-4636-a08b-fc1d339ed605",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "inputOptionJs",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(hideInputText, sentenceOtherMistakesJs, returnJs) {\n  let opt = [\"Continuar na fila\", \"Encerrar ❌\"];\n  let properties = {\n    text: `Olá {{contact.name}}! Sou da Pneus Nacional.\n\n{{n1}}Você deseja continuar na fila de atendimento?{{n2}}\n\nNosso time irá falar com você aqui pelo WhatsApp assim que possível.`,\n    options: opt,\n    values: opt,\n    description: [],\n    itens: [\n      { name: [opt[0], 'continuar'] },      \n      { name: [opt[1], 'sair', 'encerrar', 'finalizar'] }\n    ],\n    menuScope: {\n      \"whatsappButton\": true,\n      \"whatsappList\": false,\n      \"blipchatQuickReply\": false,\n      \"blipchatMenu\": true,\n      \"defaultText\": true\n    }\n  }\n\n  ////////////////////////////////////////////////////////////////////////////////\n  // Exibe mensagem e exceção no MENU\n  // if (hideInputText == 'true' || hideInputText == true) {\n  //   properties.text = sentenceOtherMistakesJs\n  // } else {\n  //   // Exibe mensagem de retorno\n  //   // if (returnJs == 'true' || returnJs == true) {\n  //   //   properties.text = 'Certo! Selecione a seguir como eu posso te ajudar hoje. 👇'\n  //   // }\n  // }\n  ////////////////////////////////////////////////////////////////////////////////\n\n  properties.itens = addItensNumeracao(properties.itens);\n\n  // Adição de opções sem numeração\n  let opcoesExtras = []\n\n  opcoesExtras = addItens(opcoesExtras);\n\n  for (let i = 0; i < opcoesExtras.length; i++) {\n    properties.itens.push(opcoesExtras[i]);\n  }\n\n  return JSON.stringify(properties);\n}\n\nfunction addItens(itens) {\n  let newItens = [];\n  let newNames;\n  let name;\n  let match;\n  for (let i = 0; i < itens.length; i++) {\n    name = itens[i].name;\n    newNames = []\n    for (let y = 0; y < itens[i].name.length; y++) {\n      match = name[y];\n      newNames.push(match);\n      // Adiciona uma variação lowerCase e UpperCase para cada opção do itens\n      newNames.push(match.toLowerCase());\n      newNames.push(match.toUpperCase());\n      newItens[i] = { name: newNames };\n    }\n  }\n  return newItens;\n}\n\nfunction addItensNumeracao(itens) {\n  let newItens = [];\n  let newNames;\n  let name;\n  let match;\n  for (let i = 0; i < itens.length; i++) {\n    name = itens[i].name;\n    newNames = []\n    for (let y = 0; y < itens[i].name.length; y++) {\n      match = name[y];\n      newNames.push(match);\n      // Adiciona uma variação lowerCase e UpperCase para cada opção do itens\n      newNames.push(match.toLowerCase());\n      newNames.push(match.toUpperCase());\n      newItens[i] = { name: newNames };\n    }\n    newNames.push(`${i + 1}`); // Acrescenta numeração automática\n  }\n  return newItens;\n} \n",
+            "inputVariables": [
+              "hideInputText",
+              "sentenceOtherMistakesJs",
+              "return"
+            ],
+            "outputVariable": "inputOptionJs",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        },
+        {
+          "$id": "19b44b1c-95c2-4d6f-be90-4d0f0d3f8a6e",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "inatividade fila exibicao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "inatividade fila exibicao",
+            "action": "Exibicao"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "dd25b0f8-8672-424f-8bad-2d05e8032a8e",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "objMenu",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "// {{resource.FunctionGetMenu}}\n\n// const run = (platform, menu) => {\n//   menu = JSON.parse(menu);\n//   platform = platform.toLowerCase();\n\n//   if (platform == 'instagram' || platform == 'messenger') {\n//     const objMenu = {\n//       'type': `text/plain`,\n//       'content' : geraMenuNumerico(menu)\n//     }\n//     return objMenu\n//   };\n\n//   let default_msg = {\n//     \"text\": menu.text,\n//     \"header\": 'Menu',\n//     \"body\": menu.text,\n//     \"footer\": '',\n//     \"button\": 'Menu',\n//     \"title\": 'Menu',\n//     \"namespaceTemplate\": '',\n//     \"nameTemplate\": '',\n//     \"options\": menu.options,\n//     \"values\": menu.values,\n//     \"submenu\": [],\n//     \"description\": menu.description,\n//     \"menuScope\": {\n//       ... menu.menuScope,\n//       \"platform\": platform\n//     },\n//   };\n\n//   var newMenu = getMenuForPlatform(default_msg);\n\n//   return newMenu;\n// };\n\n// function geraMenuNumerico(menu) {\n//   // menu = JSON.parse(menu);\n\n//   let listaOptions = '\\n\\n';\n//   for (let i = 0; i < menu.options.length; i++) {\n//     listaOptions = listaOptions + (i + 1) + '. ' + menu.options[i] + '\\n';\n//   }\n\n//   return menu.text + listaOptions;\n// }\n\n\n{{resource.FunctionGetMenu}}\n\nconst run = (platform, menu) => {\n  let convertPlatform = platform.toLowerCase();\n  menu = JSON.parse(menu);\n  platform = platform.toLowerCase();\n\n  if (platform == 'instagram' || platform == 'messenger') {\n    const objectType = {\n      'type': `text/plain`\n    }\n    return objectType\n  };\n\n  let default_msg = {\n    \"text\": menu.text,\n    \"header\": '',\n    \"body\": menu.text,\n    \"footer\": '',\n    \"button\": 'Marcas',\n    \"title\": 'Menu',\n    \"namespaceTemplate\": '',\n    \"nameTemplate\": '',\n    \"options\": menu.options,\n    \"values\": menu.values,\n    \"submenu\": [],\n    \"description\": menu.description,\n    \"menuScope\": {\n      ...menu.menuScope,\n      \"platform\": platform\n    }\n  };\n\n  var newMenu = getMenuForPlatform(default_msg);\n\n  return newMenu;\n};",
+            "inputVariables": [
+              "platform",
+              "inputOptionJs"
+            ],
+            "outputVariable": "objMenu",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        },
+        {
+          "$id": "801b6af0-1749-4aff-b0a3-6dd320348485",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "contentJs",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(menu, platform, objMenu) {\n  objMenu = JSON.parse(objMenu);\n  platform = platform.toLowerCase();\n\n  switch (platform) {\n    case 'instagram':\n      return geraMenuNumerico(menu);\n\n    case 'messenger':\n      return geraMenuNumerico(menu);\n\n    default:\n      return objMenu.content;\n  }\n}\n\nfunction geraMenuNumerico(menu) {\n  menu = JSON.parse(menu);\n\n  let listaOptions = '\\n\\n';\n  for (let i = 0; i < menu.options.length; i++) {\n    listaOptions = listaOptions + '{{n1}}' + (i + 1) + '.{{n2}} ' + menu.options[i] + '\\n';\n  }\n\n  return menu.text + listaOptions;\n}",
+            "inputVariables": [
+              "inputOptionJs",
+              "platform",
+              "objMenu"
+            ],
+            "outputVariable": "contentJs",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [
+        {
+          "$id": "4c3fd580-c601-45cc-8eae-e805e71a605f",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "validInputJs",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "// ============================================================================\n//      TYPE\n// ============================================================================\n// - reserved => quando há alguma palavra reservada que o bot deverá processar, \n// como SAIR E MENU por exemplo\n// - error => quando alguma validação deverá retornar um erro para cair em exceção\n// - success => quando a validação foi bem sucedida.\n// ============================================================================\n//      INPUT\n// ============================================================================\n// Retorna o input após processamento.\n// - Se type == error => o input será a descrição do erro. Ex: ERRO CEP\n// - Se type == success => o input será o input original processado.\n// ============================================================================\n//      VALIDATION\n// ============================================================================\n// Retorna em qual validação o input foi processado. Ex: cep\n// ============================================================================\n{{resource.FunctionProcessInput}}\n\nfunction run(input, inputType, platform, menu) {\n    try {\n\n        // =================================================================================\n        //             ATENÇÃO: MANIPULAR SOMENTE AS DUAS CONSTANTES A SEGUIR\n        // =================================================================================\n        // - validacaoMenu => true para validação de Menu, false para Input\n        // - validacoesInput => insira aqui que tipo de validação de input vai ser  \n        //   necessário (se mais de um for selecionado, apenas o mais acima será validado)\n        // - erroMenuEspecial => altere somente se, caso a validação seja um Menu e para\n        //   este menu haja um tratamento diferente de exceção.\n        // =================================================================================\n        const validacaoMenu = true;\n        const erroMenuEspecial = 'ERRO MENU HIBRIDO';\n        const validacoesInput = {\n            data: false,\n            email: false,\n            cep: false,\n            img: false,\n            imgTxt: false,\n            nome: false\n        };\n        // ========================================================================\n\n        // Inicia o objeto que será retornado pela função\n        let processedInput = {\n            'type': null,\n            'input': null,\n            'validation': 'none'\n        }\n\n        // Verifica se o usuário digitou SAIR ou MENU\n        // if (input == 'sair' || input == 'SAIR' || input == 'Sair') {\n        //     processedInput.type = 'reserved'\n        //     processedInput.input = 'SAIR'\n        //     return JSON.stringify(processedInput)\n        // } else if (input == 'menu' || input == 'MENU' || input == 'Menu') {\n        //     processedInput.type = 'reserved'\n        //     processedInput.input = 'MENU'\n        //     return JSON.stringify(processedInput)\n        // }\n\n        // Formata variáveis\n        menu = JSON.parse(menu);\n        platform = platform.toUpperCase()\n\n        if (validacaoMenu) {\n            // Validação de MENU\n            processedInput = validaMenu(input, menu, platform)\n\n            // Verifica se precisa mudar a mensagem de erro do Menu Dinâmico para o Especial\n            if ((processedInput.input == 'ERRO DINAMICO' || processedInput.input == 'ERRO NUMERICO') && erroMenuEspecial != '') {\n                processedInput.input = erroMenuEspecial; \n            }\n            return JSON.stringify(processedInput);\n\n        } else {\n            // Validação de INPUT\n            const val = Object.entries(validacoesInput);\n            processedInput = validaInput(val, input, inputType)\n\n            // Se nenhuma validação foi processada, retorna o input sem validação\n            if (processedInput.input == 'INPUT SEM VALIDAÇÕES') {\n                return JSON.stringify({type: 'success', input: input, validation: 'none'});\n\n            } else {\n                return JSON.stringify(processedInput);\n            }\n        }\n\n    } catch (e) {\n        return {type: 'error', input: 'ERRO INESPERADO', validation: 'none'}\n    }\n}",
+            "inputVariables": [
+              "input.content",
+              "input.type",
+              "platform",
+              "inputOptionJs"
+            ],
+            "outputVariable": "validInputJs",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        },
+        {
+          "$id": "c145f280-a16c-4442-b8cc-5d2946cb7715",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "destination",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(validInput) {\n  let input = JSON.parse(validInput).input\n\n  getOptionSelected = (input) => {\n      const optionList = {\n          'Encontrar pneus': 'pneus',\n          'Conhecer serviços': 'servicos'\n      }\n\n      return optionList[input] || 'ERROR: NO MATCH'\n  }\n\n  return getOptionSelected(input);\n}",
+            "inputVariables": [
+              "validInputJs"
+            ],
+            "outputVariable": "destination",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "variable": "validInputJs@type",
+              "values": [
+                "success"
+              ]
+            }
+          ]
+        },
+        {
+          "$id": "ca0780fb-4590-4991-b281-fda1d115b2b6",
+          "$typeOfContent": "",
+          "type": "TrackEvent",
+          "$title": "inatividade fila selecao",
+          "$invalid": false,
+          "settings": {
+            "extras": {},
+            "category": "inatividade fila selecao",
+            "action": "{{validInputJs@input}}"
+          },
+          "conditions": []
+        }
+      ],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "fbd7dfe9-3f1d-48cc-adc6-4c119d01ed97",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [
+        {
+          "background": "#61D36F",
+          "label": "Event tracking",
+          "id": "blip-tag-c54b55c8-285f-be44-167f-ddb9370efbe9",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF6F1E",
+          "label": "executeScript",
+          "id": "blip-tag-df3af129-53bb-ec72-481d-85ae1c73cfe0",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FFEC03",
+          "label": "userInput",
+          "id": "blip-tag-59565120-de68-cdcc-653c-94c14e2b5e9e",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "4ca10337-bc34-45cd-81ba-bd9db027c75b",
+      "$title": "[I.0.0.1][MENU] Inatividade",
+      "$position": {
+        "top": "1267.5px",
+        "left": "466.25px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "isAiGenerated": false
+    },
+    "a5568428-ce9e-46be-828f-7111cc989b2b": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "2408e195-b7d8-4066-9814-0615f894c32f",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [
+        {
+          "stateId": "fbd7dfe9-3f1d-48cc-adc6-4c119d01ed97",
+          "typeOfStateId": "state",
+          "$connId": "con_153",
+          "$id": "f84792ac-6e25-40b4-9a4d-4cdf35012cd5",
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "equals",
+              "values": [
+                "SEM ATENDENTE ATRIBUIDO"
+              ],
+              "variable": "comOuSemAtendente"
+            }
+          ],
+          "$invalid": false
+        }
+      ],
+      "$enteringCustomActions": [
+        {
+          "$id": "8d05636a-968f-4d8d-a902-8f9347d0879b",
+          "$typeOfContent": "",
+          "type": "SetVariable",
+          "$title": "ticketId",
+          "$invalid": false,
+          "settings": {
+            "variable": "ticketId",
+            "value": "{{helpdeskopenticketcommandresponse@resource.id}}"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "833b5974-8de4-4f95-be6b-7026f5dc4720",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "Change Status",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Content-Type": "application/json",
+              "Authorization": "{{resource.keyTransbordo}}"
+            },
+            "method": "POST",
+            "body": "{\n    \"id\": \"{{$guid}}\",\n    \"to\": \"postmaster@desk.msging.net\",\n    \"method\": \"set\",\n    \"uri\": \"/tickets/change-status\",\n    \"type\": \"application/vnd.iris.ticket+json\",\n    \"resource\": {\n        \"id\": \"{{ticketId}}\",\n        \"status\": \"ClosedClient\"\n    }\n}",
+            "uri": "{{resource.urlBlip}}",
+            "responseStatusVariable": "statusClose",
+            "responseBodyVariable": "responseClose"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "78b1a880-3f31-47a9-983a-41b1b8a3876d",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "Fechar Ticket",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "{{resource.keyTransbordo}}",
+              "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "body": "{\n    \"id\": \"44ffea8b-2a9a-43bb-b6e0-617c17955f4e\",\n    \"method\": \"set\",\n    \"to\": \"postmaster@desk.msging.net\",\n    \"uri\": \"/tickets/{{ticketId}}/close\",\n    \"type\": \"application/vnd.iris.ticket+json\",\n    \"resource\": {\n        \"closedBy\": \"agent%40email.net@blip.ai\",\n        \"tags\": [\n            \"Encerrado pelo Cliente\"\n        ]\n    }\n}",
+            "uri": "{{resource.urlBlip}}",
+            "responseStatusVariable": "fecharTicketStatus",
+            "responseBodyVariable": "fecharTicketResponse"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "68371608-82da-4584-97ed-65b0a141871e",
+          "$typeOfContent": "",
+          "type": "MergeContact",
+          "$title": "Team [reset]",
+          "$invalid": false,
+          "settings": {
+            "extras": {
+              "Team": "-"
+            }
+          },
+          "conditions": [
+            {
+              "source": "context",
+              "comparison": "exists",
+              "values": [],
+              "variable": "contact.extras.Equipe"
+            }
+          ]
+        },
+        {
+          "$id": "526a5542-57b9-4485-85ce-11b22935512f",
+          "$typeOfContent": "",
+          "type": "ProcessHttp",
+          "$title": "Get Ticket",
+          "$invalid": false,
+          "settings": {
+            "headers": {
+              "Authorization": "{{resource.keyTransbordo}}",
+              "Content-Type": "application/json"
+            },
+            "method": "POST",
+            "body": "{\n  \"id\": \"{{$guid}}\",\n  \"to\": \"postmaster@desk.msging.net\",\n  \"method\": \"get\",\n  \"uri\": \"/ticket/{{ticketId}}\"\n}",
+            "uri": "{{resource.urlBlip}}",
+            "responseStatusVariable": "getTicketStatus",
+            "responseBodyVariable": "getTicketResponse"
+          },
+          "conditions": []
+        },
+        {
+          "$id": "54daec78-1c17-4910-aaee-78dc3ded08f2",
+          "$typeOfContent": "",
+          "type": "ExecuteScript",
+          "$title": "Valida COM atendente ou SEM",
+          "$invalid": false,
+          "settings": {
+            "function": "run",
+            "source": "function run(response, status) {\n    try {\n        response = JSON.parse(response)\n\n        // VALIDA SE STATUS DA REQUISIÇÃO DEU SUCESSO\n        if (status >= 200 && status <= 299 ? true : false) {\n\n            // VALIDA SE O STATUS DA RESPONSE É SUCESSO OU FAILURE\n            if (response.status == 'success' ? true : false) {\n\n                // VERIFICA SE HÁ A PROPRIEDADE resource.agentIdentity\n                if (response.resource.hasOwnProperty('agentIdentity')) {\n                    return `COM ATENDENTE ATRIBUIDO - ${response.resource.agentIdentity}`\n                } else {\n                    return 'SEM ATENDENTE ATRIBUIDO'\n                }\n\n            } else {\n                return `ERRO DE CONSULTA - Status: ${status}, Response: ${JSON.stringify(response)}`\n            }\n\n        } else {\n            return `ERRO API - Status: ${status}, Response: ${JSON.stringify(response)}`\n        }\n    } catch (e) {\n        return `ERRO SCRIPT - ${e}`\n    }\n}",
+            "inputVariables": [
+              "getTicketResponse",
+              "getTicketStatus"
+            ],
+            "outputVariable": "comOuSemAtendente",
+            "LocalTimeZoneEnabled": false
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [
+        {
+          "$id": "f0b18d61-45d5-4c0a-8064-0949057a21c5",
+          "$typeOfContent": "",
+          "type": "SetVariable",
+          "$title": "tipoAtendimento",
+          "$invalid": false,
+          "settings": {
+            "variable": "tipoAtendimento",
+            "value": "humano"
+          },
+          "conditions": []
+        }
+      ],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "a4425c36-b361-4363-97cc-0bb558f88edf",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "$tags": [
+        {
+          "background": "#FF1E90",
+          "label": "HTTP Request",
+          "id": "blip-tag-5673e590-3e8b-161c-883c-12340bcae7d5",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF961E",
+          "label": "executeScript",
+          "id": "blip-tag-a1578857-f2c5-9986-b4db-67b36b5956a3",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#FF4A1E",
+          "label": "Set variable",
+          "id": "blip-tag-0b488f20-3494-a80c-e63c-d05d80fe4a4a",
+          "canChangeBackground": false
+        },
+        {
+          "background": "#7762E3",
+          "label": "Set Contact",
+          "id": "blip-tag-6e13007c-716c-6d50-68aa-0efb8b4afb47",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "a5568428-ce9e-46be-828f-7111cc989b2b",
+      "root": false,
+      "$title": "Close a Ticket as a user [API]",
+      "$position": {
+        "top": "838px",
+        "left": "1024px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false,
+      "addonsSettings": {
+        "backgroundColor": "#f06292",
+        "textColor": "#000000",
+        "commentsIdList": []
+      },
+      "isAiGenerated": false
+    },
+    "fbd7dfe9-3f1d-48cc-adc6-4c119d01ed97": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "d7b3fb7a-d38f-41bf-9a73-a8f384be83c2",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [
+        {
+          "$id": "6242b4e5-7e2a-48bc-8841-5309e501b213",
+          "$typeOfContent": "",
+          "type": "SetVariable",
+          "$title": "tipoAtendimento",
+          "$invalid": false,
+          "settings": {
+            "variable": "tipoAtendimento",
+            "value": "bot"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "a4425c36-b361-4363-97cc-0bb558f88edf",
+        "$invalid": false,
+        "typeOfStateId": "state"
+      },
+      "isAiGenerated": false,
+      "$tags": [
+        {
+          "background": "#FF4A1E",
+          "label": "Set variable",
+          "id": "blip-tag-0b488f20-3494-a80c-e63c-d05d80fe4a4a",
+          "canChangeBackground": false
+        }
+      ],
+      "id": "fbd7dfe9-3f1d-48cc-adc6-4c119d01ed97",
+      "root": false,
+      "$title": "[GO TO] Finalização Sem Atendimento",
+      "$position": {
+        "top": "979px",
+        "left": "1024px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    },
+    "b54311a3-7053-4a1c-98e4-c477bbb0256a": {
+      "$contentActions": [
+        {
+          "input": {
+            "bypass": true,
+            "$cardContent": {
+              "document": {
+                "id": "5c0a422f-3046-409d-8555-49e3dbab983b",
+                "type": "text/plain",
+                "textContent": "Entrada do usuário",
+                "content": "Entrada do usuário"
+              },
+              "editable": false,
+              "deletable": true,
+              "position": "right",
+              "editing": false
+            },
+            "$invalid": false
+          },
+          "$invalid": false
+        }
+      ],
+      "$conditionOutputs": [],
+      "$enteringCustomActions": [
+        {
+          "$id": "f63ecb24-0784-48a9-b7bd-fb047a9739d5",
+          "$typeOfContent": "",
+          "type": "Redirect",
+          "$title": "Redirecionar a um serviço",
+          "$invalid": false,
+          "settings": {
+            "context": {
+              "type": "text/plain",
+              "value": "#digitalbot"
+            },
+            "address": "Teste1"
+          },
+          "conditions": []
+        }
+      ],
+      "$leavingCustomActions": [],
+      "$inputSuggestions": [],
+      "$defaultOutput": {
+        "stateId": "fallback",
+        "$invalid": false
+      },
+      "isAiGenerated": false,
+      "$tags": [],
+      "id": "b54311a3-7053-4a1c-98e4-c477bbb0256a",
+      "root": false,
+      "$title": "[GO TO] New Transbordo",
+      "$position": {
+        "top": "1247px",
+        "left": "972px"
+      },
+      "$invalidContentActions": false,
+      "$invalidOutputs": false,
+      "$invalidCustomActions": false,
+      "$invalid": false
+    }
+  },
+  "globalActions": {
+    "$contentActions": [],
+    "$conditionOutputs": [],
+    "$enteringCustomActions": [],
+    "$leavingCustomActions": [],
+    "$inputSuggestions": [],
+    "$defaultOutput": {
+      "stateId": "fallback",
+      "$invalid": false
+    },
+    "$tags": [],
+    "id": "global-actions",
+    "$invalidContentActions": false,
+    "$invalidOutputs": false,
+    "$invalidCustomActions": false,
+    "$invalid": false
+  }
+}

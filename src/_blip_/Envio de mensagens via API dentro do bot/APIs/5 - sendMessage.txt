@@ -1,0 +1,39 @@
+API 4 - Envia mensagem ativa
+
+curl --location 'https://drogariaaraujo.http.msging.net/messages' \
+--header 'Authorization: Key YXJhdWpvcm91dGVyaG1sOlYzYWVOYnJONWpTbkJTUkFhZkxu' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: __cf_bm=u3XYHTTeA0FiqHtvjEEKFrnBCufrBS.VBvDYpuRhw_g-1729795839-1.0.1.1-.b10jJSBbPV3DXyTkRkgpbZALc3fv3p8axT6OMo2qR742n7vPwat.pJgjAAppPNia52ONIZbaqf6_rIsmGuTgg' \
+--data-raw '{
+    "id": "2e70529f-289b-43bb-a6fa-e93d677544b8",
+    "to": "{{numero}}@wa.gw.msging.net",
+    "type": "application/json",
+    "content": {
+        "type": "template",
+        "template": {
+            "name": "{{template}}",
+            "language": {
+                "code": "pt_BR",
+                "policy": "deterministic"
+            },
+            "components": [
+                {
+                    "type": "body",
+                    "parameters": [
+                    {
+                        "type": "text",
+                        "text": "{{param1}}"
+                    }
+                    ]
+                }
+            ]
+        }
+    }
+}'
+
+===============
+
+Variables:
+numero = 5582999158747
+template = manipulados_compra_recompra_hml
+param1 = Bruno

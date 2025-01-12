@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter cURL em JSON</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            font-size: 62.5%;
+            font-family: 'Mulish', sans-serif;
+            --wrapper-width: 50vw;
+        }
+
+        body {
+            background: #FFF;
+            padding: 0 3rem;
+        }
+
+        header {
+            background: #F5F5F5;
+            width: 100vw;
+            transform: translateX(-3rem);
+            margin-bottom: 2rem;
+            padding: 3rem;
+        }
+
+        header>h1 {
+            color: #1f1f23;
+            font-weight: 700;
+            font-size: 2.8rem;
+            line-height: 3.2rem;
+            text-align: center;
+        }
+
+        .wrapper,
+        #resultado {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            margin: auto;
+            max-width: var(--wrapper-width);
+            align-items: center;
+        }
+
+        label,
+        h2 {
+            color: #1f1f23;
+            font-weight: 500;
+            font-size: 2rem;
+        }
+
+        textarea {
+            background-color: #F5F5F5;
+            border: none;
+            border-radius: .8rem;
+            width: 100%;
+            resize: vertical;
+            font-size: 1.4rem;
+            padding: 2rem;
+            height: 13rem;
+        }
+
+        textarea::placeholder {
+            color: #8f8f8f;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        textarea:focus {
+            outline: 1px solid black;
+        }
+
+        button {
+            margin-bottom: 3rem;
+            width: 30rem;
+        }
+
+        #resultado {
+            border-top: 2px solid black;
+            padding-top: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Converter cURL em JSON</h1>
+    </header>
+
+    <div class="wrapper">
+        <label for="curlInput">Insira um cURL:</label> <br>
+        <textarea id="curlInput"
+            placeholder="Exemplo: curl --location --request GET '{{prdURL}}/concessionaires?cep=86000001' --data ''"></textarea>
+
+        <button id="converterBotao">Converter</button>
+    </div>
+
+    <div id="resultado" style="display: none;">
+        <div class="wrapper">
+            <h2>Resultado:</h2>
+            <textarea id="jsonResultado" readonly></textarea>
+            <button id="copiarBotao">Copiar JSON</button>
+        </div>
+    </div>
+
+    <script>
+        // Captura os elementos do DOM
+        const curlInput = document.getElementById('curlInput');
+        const converterBotao = document.getElementById('converterBotao');
+        const resultado = document.getElementById('resultado');
+        const jsonResultado = document.getElementById('jsonResultado');
+        const copiarBotao = document.getElementById('copiarBotao');
+
+        // Adiciona um ouvinte de evento para o clique no botão "Converter"
+        converterBotao.addEventListener('click', function () {
+            try {
+                const curlString = curlInput.value;
+
+                // Função para converter uma string cURL em um objeto JSON
+                function curlToJson(curlString) {
+                    var jsonRequestStr = {};
+
+                    // Extrai o método HTTP
+                    var methodMatch = curlString.match(/--request (\w+)/);
+                    if (methodMatch) {
+                        jsonRequestStr.method = methodMatch[1];
+                    }
+
+                    // Extrai a URL
+                    var urlMatch = curlString.match(/'([^']+)'/);
+                    if (urlMatch) {
+                        jsonRequestStr.url = urlMatch[1];
+                    }
+
+                    // Extrai os cabeçalhos
+                    var headerMatches = curlString.match(/--header '([^']+)'/g);
+                    if (headerMatches) {
+                        listaDeStrings = headerMatches.map(function (headerMatch) {
+                            return headerMatch.match(/--header '([^']+)'/)[1];
+                        });
+                    }
+
+                    // Chama a função para transformar a lista em um objeto JSON
+
+
+                    if (typeof listaDeStrings !== 'undefined') {
+                        jsonRequestStr.headers = listaParaJson(listaDeStrings);
+                    }
+
+                    // Extrai o corpo da solicitação (payload)
+                    var dataMatch = curlString.match(/--data-raw '([^']+)'/);
+                    if (dataMatch) {
+                        jsonRequestStr.body = JSON.parse(dataMatch[1]);
+                    }
+
+                    return jsonRequestStr;
+                }
+
+                // Função para transformar uma lista em um objeto JSON
+                function listaParaJson(lista) {
+                    var jsonResult = {};
+
+                    for (var i = 0; i < lista.length; i++) {
+                        var parts = lista[i].split(': ');
+                        if (parts.length === 2) {
+                            var chave = parts[0];
+                            var valor = parts[1];
+                            jsonResult[chave] = valor;
+                        }
+                    }
+
+                    return jsonResult;
+                }
+
+                function generateGUID() {
+                    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                        var r = Math.random() * 16 | 0,
+                            v = c === 'x' ? r : (r & 0x3 | 0x8);
+                        return v.toString(16);
+                    });
+                }
+
+                function criaJsonAcao(jsonRequestStr) {
+                    jsonRequest = jsonRequestStr
+
+
+                    jsonAction = {
+                        action: {
+                            $id: "",
+                            $typeOfContent: "",
+                            type: "ProcessHttp",
+                            $title: "Requisição Do Curl",
+                            $invalid: false,
+                            settings: {
+                                headers: {},
+                                method: "",
+                                body: "",
+                                uri: "",
+                                responseStatusVariable: "status",
+                                responseBodyVariable: "response"
+                            },
+                            conditions: [
+
+                            ]
+                        },
+                        isCopyFromBlipActions: true
+                    }
+                    jsonAction.action.$id = "via-script-" + generateGUID()
+                    jsonAction.action.settings.headers = jsonRequest.headers
+                    jsonAction.action.settings.method = jsonRequest.method
+                    jsonAction.action.settings.body = JSON.stringify(jsonRequest.body)
+                    jsonAction.action.settings.uri = jsonRequest.url
+
+                    return JSON.stringify(jsonAction)
+
+                }
+
+                // Chama a função para converter cURL em JSON
+                const jsonRequestStr = curlToJson(curlString);
+                const jsonBlockStr = criaJsonAcao(jsonRequestStr)
+
+                // Exibe o resultado na página
+                jsonResultado.value = jsonBlockStr;
+                resultado.style.display = 'block';
+            } catch (error) {
+                alert('Erro ao converter cURL em JSON: ' + error.message);
+            }
+        });
+
+        // Adiciona um ouvinte de evento para o clique no botão "Copiar JSON"
+        copiarBotao.addEventListener('click', function () {
+            jsonResultado.select();
+            document.execCommand('copy');
+            copiarBotao.textContent = 'JSON Copiado!';
+        });
+    </script>
+</body>
+
+</html>

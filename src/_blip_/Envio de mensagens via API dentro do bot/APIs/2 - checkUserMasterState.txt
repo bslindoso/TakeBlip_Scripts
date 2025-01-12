@@ -1,0 +1,30 @@
+API 2 - Checa qual serviço o user está (Master-State)
+
+curl --location 'https://drogariaaraujo.http.msging.net/commands' \
+--header 'Authorization: Key YXJhdWpvcm91dGVyaG1sOlYzYWVOYnJONWpTbkJTUkFhZkxu' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: __cf_bm=hHKC7jchHHrHN_MC2VDAKehJEzxNlPyTjMJ82VNZy60-1732726426-1.0.1.1-vpRx8CQ07arSD2GZX6rMmRAFlt7F4Nx8iBBu_8X_ApeJiseWgN6jVo2UxJm2aLjN6_it6I679U6wi_ugyxVs_w' \
+--data-raw '{
+  "id": "6fb1890e-ca88-41d5-959b-bd16a532faf7",
+  "to": "postmaster@msging.net",
+  "method": "get",
+  "uri": "/contexts/{{numero}}@wa.gw.msging.net/Master-State"
+}'
+
+=======================
+
+Response:
+
+{
+  "type": "text/plain",
+    "resource": "araujoonboardinghml@msging.net",
+      "method": "get",
+        "status": "success",
+          "id": "e63b30fc-0b58-48dd-990c-5158c49e4000",
+            "from": "postmaster@builder.msging.net/#msging-application-builder-d7cb6df64-2qd6d",
+              "to": "araujorouterhml@msging.net/!msging-server-shqth-8kjr08hv",
+                "metadata": {
+    "traceparent": "00-acd5c7815e53b6f87ac709985c07067f-5912c1565808fe23-01",
+      "#command.uri": "lime://araujorouterhml@msging.net/contexts/5531994389374@wa.gw.msging.net/Master-State"
+  }
+}

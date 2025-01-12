@@ -1,0 +1,211 @@
+[
+  {
+    "$id": "98c87606-f80d-41c9-85b9-ba045acd21be",
+    "$typeOfContent": "",
+    "type": "SetVariable",
+    "$title": "SERVICE",
+    "$invalid": false,
+    "settings": {
+      "variable": "service",
+      "value": "boasvindas"
+    },
+    "conditions": []
+  },
+  {
+    "$id": "d3a5114c-7cef-4f0d-af4a-31e3c74f7d07",
+    "$typeOfContent": "",
+    "type": "ExecuteScript",
+    "$title": "GET PLATFORM",
+    "$invalid": false,
+    "settings": {
+      "function": "run",
+      "source": "function run(contactIdentity) {\n    return getUserChannel(contactIdentity);\n}\n\nfunction getUserChannel(contactIdentity) {\n    const DEFAULT_CHANNEL = 'default';\n    const CHANNEL_INDEX = 1;\n\n    const CHANNEL_IDENTIFIERS = {\n        'wa.gw.msging.net': 'WhatsApp',\n        '0mn.io': 'BlipChat',\n        'take.io': 'TakeSMS',\n        'messenger.gw.msging.net': 'Messenger',\n        'instagram.gw.msging.net': 'Instagram',\n        'abs.gw.msging.net': 'Teams',\n        'businessmessages.gw.msging.net': 'gbm',\n        'skype.gw.msging.net': 'Skype',\n        'telegram.gw.msging.net': 'Telegram',\n        'workplace.gw.msging.net': 'Workplace',\n        'mailgun.gw.msging.net': 'Email',\n        'pagseguro.gw.msging.net': 'PageSeguro'\n    };\n\n    let contactChannelId = contactIdentity.split('@')[CHANNEL_INDEX];\n\n    return CHANNEL_IDENTIFIERS[contactChannelId] || DEFAULT_CHANNEL;\n}",
+      "inputVariables": [
+        "contact.identity"
+      ],
+      "outputVariable": "platform",
+      "LocalTimeZoneEnabled": false
+    },
+    "conditions": []
+  },
+  {
+    "$id": "1e0a12c3-3bd0-45b8-9592-898a0d17fb7a",
+    "$typeOfContent": "",
+    "type": "ExecuteScript",
+    "$title": "CHANNEL TAGS",
+    "$invalid": false,
+    "settings": {
+      "function": "run",
+      "source": "{{resource.FunctionGetMenu}}\nfunction run(platform) {\n  return channelTags(platform);\n}",
+      "inputVariables": [
+        "platform"
+      ],
+      "outputVariable": "channelTags",
+      "LocalTimeZoneEnabled": false
+    },
+    "conditions": []
+  },
+  {
+    "$id": "c185e811-51f6-4036-bb91-b84d8a08be1e",
+    "$typeOfContent": "",
+    "type": "ExecuteScript",
+    "$title": "Whatsapp Number",
+    "$invalid": false,
+    "settings": {
+      "function": "run",
+      "source": "function run(contact) {\n    \n    // Sem o código do país         \n    // let phone = contact.split(\"@\")[0].replace(\"55\", \"\");   \n\n    // Com o código do país\n    let phone = contact.split(\"@\")[0];   \n    let tamanho = phone.length;\n\n\n    if(tamanho == 10){\n        \n        let telefone = phone.split('').join().replace(/\\D/g, '');\n        let math = Math.floor(telefone.length - 8 ); \n        let concat = telefone.substr(0,math)+\"9\"+telefone.substr(math);\n        let retorno = concat;\n\n        return retorno;\n    } else {\n        \n        let retorno = phone\n        return retorno;\n    }\n\n}",
+      "inputVariables": [
+        "contact.identity"
+      ],
+      "outputVariable": "wanumber",
+      "LocalTimeZoneEnabled": false
+    },
+    "conditions": [
+      {
+        "source": "context",
+        "comparison": "equals",
+        "variable": "platform",
+        "values": [
+          "Whatsapp"
+        ]
+      }
+    ]
+  },
+  {
+    "$id": "b2c53651-fb9e-4163-b77e-5ffa56265b07",
+    "$typeOfContent": "",
+    "type": "MergeContact",
+    "$title": "Telefone: WhatsApp",
+    "$invalid": false,
+    "settings": {
+      "extras": {},
+      "phoneNumber": "{{wanumber}}"
+    },
+    "conditions": [
+      {
+        "source": "context",
+        "comparison": "equals",
+        "variable": "platform",
+        "values": [
+          "Whatsapp"
+        ]
+      },
+      {
+        "source": "context",
+        "comparison": "exists",
+        "values": [],
+        "variable": "wanumber"
+      }
+    ]
+  },
+  {
+    "$id": "2b67cddf-03af-41f5-a723-07176d8344eb",
+    "$typeOfContent": "",
+    "type": "ProcessHttp",
+    "$title": "GET Whatsapp Information",
+    "$invalid": false,
+    "settings": {
+      "headers": {
+        "Authorization": "{{resource.keyRouterBlip}}",
+        "Content-Type": "application/json"
+      },
+      "method": "POST",
+      "body": "{\n\"id\": \"{{$guid}}\",\n\"to\": \"postmaster@wa.gw.msging.net\",\n\"method\": \"get\",\n\"uri\": \"lime://wa.gw.msging.net/accounts/{{wanumber}}\"\n}",
+      "uri": "https://http.msging.net/commands",
+      "responseStatusVariable": "statusWppInfo",
+      "responseBodyVariable": "responseWppInfo"
+    },
+    "conditions": [
+      {
+        "source": "context",
+        "comparison": "equals",
+        "variable": "platform",
+        "values": [
+          "WhatsApp"
+        ]
+      }
+    ]
+  },
+  {
+    "$id": "ce22a169-7f63-4bd6-b375-ace0b1246918",
+    "$typeOfContent": "",
+    "type": "MergeContact",
+    "$title": "SET Whatsapp Full Name",
+    "$invalid": false,
+    "settings": {
+      "extras": {},
+      "name": "{{responseWppInfo@resource.fullName}}"
+    },
+    "conditions": [
+      {
+        "source": "context",
+        "comparison": "equals",
+        "variable": "platform",
+        "values": [
+          "Whatsapp"
+        ]
+      }
+    ]
+  },
+  {
+    "$id": "9723fb17-392b-4ef1-ab2d-d6fa1757bb60",
+    "$typeOfContent": "",
+    "type": "SetVariable",
+    "$title": "openBold",
+    "$invalid": false,
+    "settings": {
+      "variable": "n1",
+      "value": "{{channelTags@bold.open}}",
+      "expiration": null
+    },
+    "conditions": []
+  },
+  {
+    "$id": "d6ecf2df-35e3-47bc-9895-c41306197d45",
+    "$typeOfContent": "",
+    "type": "SetVariable",
+    "$title": "closeBold",
+    "$invalid": false,
+    "settings": {
+      "variable": "n2",
+      "value": "{{channelTags@bold.close}}"
+    },
+    "conditions": []
+  },
+  {
+    "$id": "9149107e-580b-4eb3-8eb9-165b47482575",
+    "$typeOfContent": "",
+    "type": "SetVariable",
+    "$title": "openItalic",
+    "$invalid": false,
+    "settings": {
+      "variable": "i1",
+      "value": "{{channelTags@italic.open}}"
+    },
+    "conditions": []
+  },
+  {
+    "$id": "56e47675-bdb9-4f24-bd2e-83ce80b7c6c0",
+    "$typeOfContent": "",
+    "type": "SetVariable",
+    "$title": "closeItalic",
+    "$invalid": false,
+    "settings": {
+      "variable": "i2",
+      "value": "{{channelTags@italic.close}}"
+    },
+    "conditions": []
+  },
+  {
+    "$id": "bdb84258-dd8b-45a5-a69c-3a169bebf84e",
+    "$typeOfContent": "",
+    "type": "SetVariable",
+    "$title": "italicValue",
+    "$invalid": false,
+    "settings": {
+      "variable": "italicValue",
+      "value": "{{channelTags@italic}}"
+    },
+    "conditions": []
+  }
+]

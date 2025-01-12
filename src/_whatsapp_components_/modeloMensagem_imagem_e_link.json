@@ -1,0 +1,34 @@
+{
+  "type": "template",
+  "template": {
+    "name": "{{resource.templatesConfig@catalogDLI2024}}",
+    "language": {
+      "policy": "deterministic",
+      "code": "pt_BR"
+    },
+    "components": [
+      {
+        "type": "header",
+        "parameters": [
+          {
+            "type": "image",
+            "image": {
+              "link": "https://blipmediastore.blob.core.windows.net/public-medias/Media_0017a32b-d1c6-4b8f-8710-fdb5367d2fcc"
+            }
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "sub_type": "url",
+        "index": 0,
+        "parameters": [
+          {
+            "type": "text",
+            "text": "{{numero}}&trackingName=NewLink&routerIdentifier={{resource.botConfig@routerIdentifier}}"
+          }
+        ]
+      }
+    ]
+  }
+}

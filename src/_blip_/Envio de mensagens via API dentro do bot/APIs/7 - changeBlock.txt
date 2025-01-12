@@ -1,0 +1,25 @@
+API 6 - Muda o user state (bloco)
+
+curl --location 'https://drogariaaraujo.http.msging.net/commands' \
+--header 'Authorization: Key YXJhdWpvcm91dGVyaG1sOlYzYWVOYnJONWpTbkJTUkFhZkxu' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: __cf_bm=X3K8trSN.Ms_rXCS1xNO1xb6m4zstTkqgRQ_E_uwNpE-1732737030-1.0.1.1-rxGnRRRbPbkziARMVpFsGrlQI.8u2..A2h4cbHFGi9rQIIkyE2B_j4mn2VHXvRfFb3XX65vqSQPTyzNlHp1lGQ' \
+--data-raw '{
+    "id": "864aed9a-ddea-403f-83c8-041ff8b3cb1f",
+    "to": "postmaster@msging.net",
+    "method": "set",
+    "uri": "/contexts/5582999158747@wa.gw.msging.net/stateid%407bf07007-e27a-402c-8e84-a952f0289bbc",
+    "type": "text/plain",
+    "resource": "6a609f77-b81c-4c8e-a886-0f613f671a61"
+}'
+
+Payload:
+
+{
+    "id": "{{$guid}}",
+    "to": "postmaster@msging.net",
+    "method": "set",
+    "uri": "/contexts/{{numero}}@wa.gw.msging.net/stateid%40{{idFlow}}",
+    "type": "text/plain",
+    "resource": "{{idBloco}}"
+}

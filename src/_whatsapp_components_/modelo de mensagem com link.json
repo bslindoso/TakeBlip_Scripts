@@ -1,0 +1,12 @@
+{
+  "type": "template",
+  "template": {
+    "namespace": "{{resource.botConfig@wabaNamespace}}",
+    "name": "{{resource.templatesConfig@novoPedido}}",
+    "language": {
+      "policy": "deterministic",
+      "code": "pt_BR"
+    },
+    "components": []
+  }
+}

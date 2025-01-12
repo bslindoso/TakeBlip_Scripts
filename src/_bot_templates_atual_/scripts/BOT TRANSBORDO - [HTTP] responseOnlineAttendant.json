@@ -1,0 +1,21 @@
+[
+  {
+    "$id": "9afbe6cb-7b7a-411e-8c35-24996cf314c7",
+    "$typeOfContent": "",
+    "type": "ProcessHttp",
+    "$title": "GET Online Attendant",
+    "$invalid": false,
+    "settings": {
+      "headers": {
+        "Authorization": "{{resource.keyManipBalcao@http}}",
+        "Content-Type": "application/json"
+      },
+      "method": "POST",
+      "body": "{\n   \"id\": \"{{$guid}}\",\n   \"to\": \"postmaster@desk.msging.net\",\n   \"method\": \"get\",\n   \"uri\": \"/attendants\"\n }",
+      "uri": "{{resource.urlBlip}}",
+      "responseStatusVariable": "statusOnlineAttendant",
+      "responseBodyVariable": "responseOnlineAttendant"
+    },
+    "conditions": []
+  }
+]

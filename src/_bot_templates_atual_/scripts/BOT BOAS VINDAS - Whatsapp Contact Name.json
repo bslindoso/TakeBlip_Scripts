@@ -1,0 +1,79 @@
+[
+  {
+    "$id": "c185e811-51f6-4036-bb91-b84d8a08be1e",
+    "$typeOfContent": "",
+    "type": "ExecuteScript",
+    "$title": "Whatsapp Number",
+    "$invalid": false,
+    "settings": {
+      "function": "run",
+      "source": "function run(contact) {\n    \n    // Sem o código do país         \n    // let phone = contact.split(\"@\")[0].replace(\"55\", \"\");   \n\n    // Com o código do país\n    let phone = contact.split(\"@\")[0];   \n    let tamanho = phone.length;\n\n\n    if(tamanho == 10){\n        \n        let telefone = phone.split('').join().replace(/\\D/g, '');\n        let math = Math.floor(telefone.length - 8 ); \n        let concat = telefone.substr(0,math)+\"9\"+telefone.substr(math);\n        let retorno = concat;\n\n        return retorno;\n    } else {\n        \n        let retorno = phone\n        return retorno;\n    }\n\n}",
+      "inputVariables": [
+        "contact.identity"
+      ],
+      "outputVariable": "wanumber",
+      "LocalTimeZoneEnabled": false
+    },
+    "conditions": [
+      {
+        "source": "context",
+        "comparison": "equals",
+        "variable": "platform",
+        "values": [
+          "Whatsapp"
+        ],
+        "$$hashKey": "object:1139"
+      }
+    ]
+  },
+  {
+    "$id": "2b67cddf-03af-41f5-a723-07176d8344eb",
+    "$typeOfContent": "",
+    "type": "ProcessHttp",
+    "$title": "GET Whatsapp Information",
+    "$invalid": false,
+    "settings": {
+      "headers": {
+        "Authorization": "{{resource.keyRouterBlip}}",
+        "Content-Type": "application/json"
+      },
+      "method": "POST",
+      "body": "{\n\"id\": \"{{$guid}}\",\n\"to\": \"postmaster@wa.gw.msging.net\",\n\"method\": \"get\",\n\"uri\": \"lime://wa.gw.msging.net/accounts/{{wanumber}}\"\n}",
+      "uri": "https://http.msging.net/commands",
+      "responseStatusVariable": "statusWppInfo",
+      "responseBodyVariable": "responseWppInfo"
+    },
+    "conditions": [
+      {
+        "source": "context",
+        "comparison": "equals",
+        "variable": "platform",
+        "values": [
+          "WhatsApp"
+        ],
+        "$$hashKey": "object:1182"
+      }
+    ]
+  },
+  {
+    "$id": "ce22a169-7f63-4bd6-b375-ace0b1246918",
+    "$typeOfContent": "",
+    "type": "MergeContact",
+    "$title": "SET Whatsapp Full Name",
+    "$invalid": false,
+    "settings": {
+      "extras": {},
+      "name": "{{responseWppInfo@resource.fullName}}"
+    },
+    "conditions": [
+      {
+        "source": "context",
+        "comparison": "equals",
+        "variable": "platform",
+        "values": [
+          "Whatsapp"
+        ]
+      }
+    ]
+  }
+]
